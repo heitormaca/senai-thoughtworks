@@ -25,6 +25,47 @@ namespace TW.Repositorios
 
         }
 
+        public async Task<List<Classificado>> Get(string busca, string marca, string categoria/*, float? Preco*/)
+        {
+            var query = context
+                .Classificado
+                .Include(a => a.IdEquipamentoNavigation)
+                .Include(a => a.IdEquipamentoNavigation.IdCategoriaNavigation)
+                .Include(a => a.IdImagemClassificadoNavigation)
+                .Include(a => a.Interesse)
+                .AsQueryable();
+
+            if (!string.IsNullOrEmpty(busca)) {
+                query = query.Where(a => 
+                    a.IdEquipamentoNavigation.NomeEquipamento.Contains(busca) || 
+                    a.IdEquipamentoNavigation.Processador.Contains(busca) ||
+                    (a.CodigoClassificado).ToString().Contains(busca) ||
+                    a.IdEquipamentoNavigation.Marca.Contains(busca) ||
+                    a.IdEquipamentoNavigation.Modelo.Contains(busca) ||
+                    a.IdEquipamentoNavigation.SistemaOperacional.Contains(busca) ||
+                    a.IdEquipamentoNavigation.Polegada.Contains(busca) ||
+                    a.IdEquipamentoNavigation.MemoriaRam.Contains(busca) ||
+                    a.IdEquipamentoNavigation.Ssd.Contains(busca) ||
+                    a.IdEquipamentoNavigation.Hd.Contains(busca) ||
+                    a.IdEquipamentoNavigation.PlacaDeVideo.Contains(busca) ||
+                    a.IdEquipamentoNavigation.IdCategoriaNavigation.NomeCategoria.Contains(busca)
+                );
+            }
+
+            if (!string.IsNullOrEmpty(marca)) {
+                query = query.Where(a => a.IdEquipamentoNavigation.Marca.Contains(marca));
+            }
+            
+            if (!string.IsNullOrEmpty(categoria)) {
+                query = query.Where(a => a.IdEquipamentoNavigation.IdCategoriaNavigation.NomeCategoria.Contains(busca));
+            }
+            // if (!float.IsNullOrEmpty(Preco)){
+            //     query = query.Where(a => a.Preco.Contains(Preco));
+            // }
+
+            return await query.ToListAsync();
+        }
+
         public async Task<Classificado> Get(int id)
         {
             return await context.Classificado.FindAsync(id);
@@ -43,100 +84,7 @@ namespace TW.Repositorios
             await context.SaveChangesAsync();
             return classificado;
         }
-
-        public async Task<List<Classificado>> FiltroCategoriaMarcaCres(int categoria, string marca)
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Where(a => a.IdEquipamentoNavigation.IdCategoria == categoria && a.IdEquipamentoNavigation.Marca == marca)
-                                                                              .Include(b => b.IdEquipamentoNavigation)
-                                                                              .Include(c => c.IdImagemClassificadoNavigation)
-                                                                              .Include(E => E.Interesse)
-                                                                              .OrderBy(d => d.Preco)
-                                                                              .ToListAsync();
-
-            return listaClassificados;
-        }
-        public async Task<List<Classificado>> FiltroCategoriaMarcaDecres(int categoria, string marca)
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Where(a => a.IdEquipamentoNavigation.IdCategoria == categoria && a.IdEquipamentoNavigation.Marca == marca)
-                                                                              .Include(b => b.IdEquipamentoNavigation)
-                                                                              .Include(c => c.IdImagemClassificadoNavigation)
-                                                                              .Include(E => E.Interesse)
-                                                                              .OrderByDescending(d => d.Preco)
-                                                                              .ToListAsync();
-
-            return listaClassificados;
-        }
-
-        public async Task<List<Classificado>> FiltroCategoriaCres(int categoria)
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Where(a => a.IdEquipamentoNavigation.IdCategoria == categoria)
-                                                                              .Include(b => b.IdEquipamentoNavigation)
-                                                                              .Include(c => c.IdImagemClassificadoNavigation)
-                                                                              .Include(E => E.Interesse)
-                                                                              .OrderBy(d => d.Preco)
-                                                                              .ToListAsync();
-
-            return listaClassificados;
-        }
-
-        public async Task<List<Classificado>> FiltroCategoriaDecres(int categoria)
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Where(a => a.IdEquipamentoNavigation.IdCategoria == categoria)
-                                                                              .Include(b => b.IdEquipamentoNavigation)
-                                                                              .Include(c => c.IdImagemClassificadoNavigation)
-                                                                              .Include(E => E.Interesse)
-                                                                              .OrderByDescending(d => d.Preco)
-                                                                              .ToListAsync();
-
-            return listaClassificados;
-        }
-
-        public async Task<List<Classificado>> FiltroMarcaCres(string marca)
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Where(a => a.IdEquipamentoNavigation.Marca == marca)
-                                                                              .Include(b => b.IdEquipamentoNavigation)
-                                                                              .Include(c => c.IdImagemClassificadoNavigation)
-                                                                              .Include(E => E.Interesse)
-                                                                              .OrderBy(d => d.Preco)
-                                                                              .ToListAsync();
-
-            return listaClassificados;
-        }
-
-        public async Task<List<Classificado>> FiltroMarcaDecres(string marca)
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Where(a => a.IdEquipamentoNavigation.Marca == marca)
-                                                                              .Include(b => b.IdEquipamentoNavigation)
-                                                                              .Include(c => c.IdImagemClassificadoNavigation)
-                                                                              .Include(E => E.Interesse)
-                                                                              .OrderByDescending(d => d.Preco)
-                                                                              .ToListAsync();
-
-            return listaClassificados;
-        }
-
-        public async Task<List<Classificado>> FiltroCres()
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Include(b => b.IdEquipamentoNavigation)
-                                                                              .Include(c => c.IdImagemClassificadoNavigation)
-                                                                              .Include(E => E.Interesse)
-                                                                              .OrderBy(d => d.Preco)
-                                                                              .ToListAsync();                                                                                                                                              
-
-            return listaClassificados;
-        }
-
-        public async Task<List<Classificado>> FiltroDecres()
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Include(b => b.IdEquipamentoNavigation)
-                                                                              .Include(c => c.IdImagemClassificadoNavigation)
-                                                                              .Include(E => E.Interesse)
-                                                                              .OrderByDescending(d => d.Preco)
-                                                                              .ToListAsync(); 
-
-            return listaClassificados;
-        }
-
+    
         public async Task<List<Classificado>> SemFiltro()
         {
             List<Classificado> listaClassificados = await context.Classificado.Include(b => b.IdEquipamentoNavigation)
@@ -214,5 +162,6 @@ namespace TW.Repositorios
                                                                               .ToListAsync();
             return listaClassificados; 
         }
+
     }
 }

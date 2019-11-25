@@ -22,14 +22,14 @@ namespace TW.Controllers {
  LoginRepositorio loginRepositorio = new LoginRepositorio();
         private IConfiguration configuracao;
 
-        public LoginController (IConfiguration config) {
+        public LoginController(IConfiguration config) {
             configuracao = config;
         }
 
 
         // Gerar as tokens de acesso para o usuário
 
-            private string GenerateJSONWebToken (Usuario userInfo){
+            private string GenerateJSONWebToken(Usuario userInfo){
             var securityKey = new SymmetricSecurityKey (Encoding.UTF8.GetBytes (configuracao["Jwt:key"]));
             var credentials = new SigningCredentials (securityKey, SecurityAlgorithms.HmacSha256);
             string resposta;
@@ -44,6 +44,7 @@ namespace TW.Controllers {
                 new Claim (JwtRegisteredClaimNames.Email, userInfo.Email),
                 new Claim (JwtRegisteredClaimNames.Jti, Guid.NewGuid ().ToString ()),
                 new Claim (ClaimTypes.Role, resposta),
+                new Claim ("id", userInfo.IdUsuario.ToString()),
                 new Claim ("Role", resposta)
             };
 
@@ -56,19 +57,24 @@ namespace TW.Controllers {
         }
 
         // Processo de login
-        private Usuario Autenticacao (LoginViewModel login) {
+        private Usuario Autenticacao(LoginViewModel login) {
              Usuario usuario = loginRepositorio.Login(login);
             return usuario;
         }
 
         [AllowAnonymous]
+        /// <summary>
+        /// Método de logar no sistema.
+        /// </summary>
+        /// <param name="login">Envia o email e a senha.</param>
+        /// <returns>Retorna o token de acesso.</returns>
         [HttpPost]
-        public IActionResult Login ([FromBody] LoginViewModel login) {
+        public IActionResult PostLogin([FromBody] LoginViewModel login) {
             IActionResult response = Unauthorized ();
             var user = Autenticacao (login);
 
             if (user != null) {
-                var tokenString = GenerateJSONWebToken (user);
+                var tokenString = GenerateJSONWebToken(user);
                 response = Ok (new { token = tokenString });
             }
             return response;
