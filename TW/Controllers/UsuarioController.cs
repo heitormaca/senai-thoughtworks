@@ -66,57 +66,12 @@ namespace TW.Controllers
                 throw;
             }
         }
-        
 
-        /// <summary>
-        /// Método para cadastrar usuário comum ou administrador no sistema.
-        /// </summary>
-        /// <param name="usuario">Envia nome completo, nome de usuário, email e senha.</param>
-        /// <returns>Retorna os dados do usuário recém cadastrado.</returns>
-        [AllowAnonymous]
-        [HttpPost]
-        public async Task<ActionResult<Usuario>> Post(Usuario usuario)
-        {
-            try
-            {
-                var listaUser = await repositorio.Get();
-                if(listaUser.Count == 0){
-                usuario.CategoriaUsuario = false;
-                }
-                await repositorio.Post(usuario);
-
-            }
-            catch (System.Exception)
-            {
-                throw;
-            }
-            return usuario;
-        }
-        
-        // [HttpPut("{id}")]
-        // public async Task<ActionResult<Usuario>> Put(int id, Usuario usuario)
-        // {
-        //     if(id != usuario.IdUsuario)
-        //     {
-        //         return BadRequest();
-        //     }
-        //     try
-        //     {
-        //        return await repositorio.Put(usuario);
-                
-        //     }
-        //     catch (DbUpdateConcurrencyException)
-        //     {
-        //         var usuarioValido = await repositorio.Get(id);
-        //         if(usuarioValido == null)
-        //         {
-        //             return NotFound();
-        //         }else{
-        //             throw;
-        //         }
-        //     }
-        // }
-
+    /// <summary>
+    /// Método para atualizar a senha do usuário.
+    /// </summary>
+    /// <param name="model">Envia a senha que seja ser atualizada.</param>
+    /// <returns>Retorna a senha do usuário atualizada.</returns>
     [Authorize]
     [HttpPatch("changePassword")]
     public async Task<IActionResult> ChangePassword([FromBody] PasswordUpdateViewModel model){
@@ -130,20 +85,6 @@ namespace TW.Controllers
         }
         catch (System.Exception)
         {
-            throw;
-        }
-    }
-
-    [Authorize]
-    [HttpPut("pUser")]
-    public async Task<ActionResult<Usuario>> PutUser(Usuario PasswordUpdate){
-
-        try{
-            var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
-            var usr = await repositorio.Get(int.Parse(idDoUsuario));
-            await repositorio.Put(usr);
-            return usr;
-        }catch (System.Exception){
             throw;
         }
     }
@@ -168,7 +109,7 @@ namespace TW.Controllers
         }
     }
 
-    public string Upload (IFormFile arquivo, string savingFolder){
+    private string Upload (IFormFile arquivo, string savingFolder){
         
         if(savingFolder == null) {
             savingFolder = Path.Combine ("imgUpdated");                

@@ -25,7 +25,7 @@ namespace TW.Repositorios
 
         }
 
-        public async Task<List<Classificado>> Get(string busca, string marca, string categoria/*, float? Preco*/)
+        public async Task<List<Classificado>> Get(string busca, string marca, string categoria, bool ordenacao)
         {
             var query = context
                 .Classificado
@@ -35,6 +35,9 @@ namespace TW.Repositorios
                 .Include(a => a.Interesse)
                 .AsQueryable();
 
+            if (!string.IsNullOrEmpty(categoria)) {
+                query = query.Where(a => a.IdEquipamentoNavigation.IdCategoriaNavigation.NomeCategoria.Contains(categoria));
+            }
             if (!string.IsNullOrEmpty(busca)) {
                 query = query.Where(a => 
                     a.IdEquipamentoNavigation.NomeEquipamento.Contains(busca) || 
@@ -52,23 +55,34 @@ namespace TW.Repositorios
                 );
             }
 
+            if(ordenacao == true){
+                query = query.OrderBy(p => p.Preco);
+            }else{
+                query = query.OrderByDescending(p => p.Preco);
+            }
+
             if (!string.IsNullOrEmpty(marca)) {
                 query = query.Where(a => a.IdEquipamentoNavigation.Marca.Contains(marca));
             }
             
-            if (!string.IsNullOrEmpty(categoria)) {
-                query = query.Where(a => a.IdEquipamentoNavigation.IdCategoriaNavigation.NomeCategoria.Contains(busca));
+            foreach (var item in query)
+            {
+                item.IdEquipamentoNavigation.IdCategoriaNavigation.Equipamento = null;
             }
-            // if (!float.IsNullOrEmpty(Preco)){
-            //     query = query.Where(a => a.Preco.Contains(Preco));
-            // }
 
             return await query.ToListAsync();
         }
 
-        public async Task<Classificado> Get(int id)
+        public async Task<Classificado> GetPageProduct(int id)
         {
-            return await context.Classificado.FindAsync(id);
+            Classificado produto = await context.Classificado
+                                    .Include(a => a.IdEquipamentoNavigation)
+                                    .Include(a => a.IdEquipamentoNavigation.IdCategoriaNavigation)
+                                    .Include(a => a.IdImagemClassificadoNavigation)
+                                    .Include(a => a.Interesse)
+                                    .Where(a => a.IdClassificado == id)
+                                    .FirstOrDefaultAsync();
+            return produto;
         }
 
         public async Task<Classificado> Post(Classificado classificado)
@@ -83,27 +97,6 @@ namespace TW.Repositorios
             context.Entry(classificado).State = EntityState.Modified;
             await context.SaveChangesAsync();
             return classificado;
-        }
-    
-        public async Task<List<Classificado>> SemFiltro()
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Include(b => b.IdEquipamentoNavigation)
-                                                                              .Include(c => c.IdImagemClassificadoNavigation)
-                                                                              .Include(E => E.Interesse)
-                                                                              .OrderByDescending(d => d.IdClassificado)
-                                                                              .ToListAsync(); 
-
-            return listaClassificados;
-        }
-
-        public async Task<Classificado> ProdutoClassificado(int id)
-        {
-            Classificado produto = await context.Classificado.Include(a => a.IdImagemClassificadoNavigation)
-                                                        .Include(b => b.IdEquipamentoNavigation.IdCategoriaNavigation)
-                                                        .Include(c => c.Interesse)
-                                                        .Where(x => x.IdClassificado == id)
-                                                        .FirstOrDefaultAsync();
-            return produto;
         }
 
         public async Task<List<Classificado>> FiltroPorMarca(string marca)

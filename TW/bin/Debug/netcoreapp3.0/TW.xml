@@ -1,0 +1,79 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>TW</name>
+    </assembly>
+    <members>
+        <member name="M:TW.Controllers.ClassificadoController.GetHome(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            Método para buscar a lista de classificados com seus respectivos nomes, imagens e preços para a barra de busca e para os filtros da home page.
+            </summary>
+            <param name="busca">Envia um valor para busca.</param>
+            <param name="marca">Envia uma marca.</param>
+            <param name="categoria">Envia uma categoria.</param>
+            <param name="ordenacao">Envia um estado true para ordenar Crescente e false para ordenar decrescente.</param>
+            <returns>Retorna a lista de classificados com seus respectivos nomes, imagens e preços para a barra de busca e para os filtros da home page.</returns>
+        </member>
+        <member name="M:TW.Controllers.ClassificadoController.GetProdutoClassificado(System.Int32)">
+            <summary>
+            Método para buscar um classificado específico com todas as informações (Equipamento,Imagens).
+            </summary>
+            <param name="id">Envia um id.</param>
+            <returns>Retorna um classificado específico com todas as informações (Equipamento,Imagens).</returns>
+        </member>
+        <member name="M:TW.Controllers.InteresseController.Get">
+            <summary>
+            Método que traz uma lista de Interesses
+            </summary>
+            <returns>Retorna uma lista de Interesses</returns>
+        </member>
+        <member name="M:TW.Controllers.InteresseController.GetAction(System.Int32)">
+            <summary>
+            Método de busca de interesse por ID
+            </summary>
+            <param name="id">Recebe o ID especifico do interesse</param>
+            <returns>Retorna para o usuário o interesse buscado</returns>
+        </member>
+        <member name="M:TW.Controllers.InteresseController.Put(System.Int32,TW.Models.Interesse)">
+            <summary>
+            Método de envio de e-mails para os usuários que registraram interesse no classificado
+            </summary>
+            <param name="id">Recebe o ID especifico do interesse</param>
+            <param name="interesse">Recebe as informações do interesse que serão alteradas</param>
+            <returns>Retorna para o usuário o interesse com as informções alteradas e envia os emails para todos os tipos de usuários</returns>
+        </member>
+        <member name="M:TW.Controllers.InteresseController.Delete(System.Int32)">
+            <summary>
+            Método que deleta um registro de interesse
+            </summary>
+            <param name="id">Recebe o ID especifico do interesse</param>
+            <returns>Retorna o interesse especificado</returns>
+        </member>
+        <member name="M:TW.Controllers.LoginController.PostLogin(TW.ViewModel.LoginViewModel)">
+            <summary>
+            Método de logar no sistema.
+            </summary>
+            <param name="login">Envia o email e a senha.</param>
+            <returns>Retorna o token de acesso.</returns>
+        </member>
+        <member name="M:TW.Controllers.UsuarioController.GetUser">
+            <summary>
+            Método para buscar dados do usuário logado.
+            </summary>
+            <returns>Retorna os dados do usuário logado.</returns>
+        </member>
+        <member name="M:TW.Controllers.UsuarioController.ChangePassword(TW.ViewModel.PasswordUpdateViewModel)">
+            <summary>
+            Método para atualizar a senha do usuário.
+            </summary>
+            <param name="model">Envia a senha que seja ser atualizada.</param>
+            <returns>Retorna a senha do usuário atualizada.</returns>
+        </member>
+        <member name="M:TW.Controllers.UsuarioController.PutUserImage">
+            <summary>
+            Método para atualizar a imagem do usuário logado.
+            </summary>
+            <returns>Atualiza a imagem do usuário logado.</returns>
+        </member>
+    </members>
+</doc>

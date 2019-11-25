@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +17,8 @@ namespace TW.Controllers {
     [EnableCors]
 
     public class InteresseController : ControllerBase {
-        InteresseRepositorio repositorio = new InteresseRepositorio ();
+        InteresseRepositorio repositorio = new InteresseRepositorio();
+        UsuarioRepositorio urepositorio = new UsuarioRepositorio();
         Validacoes validacoes = new Validacoes ();
 
         /// <summary>
@@ -54,27 +57,30 @@ namespace TW.Controllers {
             return interesseRetornado;
         }
 
+        [Authorize(Roles="Comum")]
         [HttpPost]
-        public async Task<ActionResult<Interesse>> Post (Interesse interesse) //tipo do objeto que está sendo enviado (Categoria) - nome que você determina pro objeto
+        public async Task<ActionResult<Interesse>> Post(Interesse interesse)
         {
             try
             {
-                await repositorio.Post(interesse);
+                var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
+                var usr = await urepositorio.Get(int.Parse(idDoUsuario));
+                interesse.IdUsuario = usr.IdUsuario;
+                return await repositorio.Post(interesse);
             }
             catch (System.Exception)
             {
                 throw;
             }
-            return interesse;
-        }
 
+        }
+       
         /// <summary>
         /// Método de envio de e-mails para os usuários que registraram interesse no classificado
         /// </summary>
         /// <param name="id">Recebe o ID especifico do interesse</param>
         /// <param name="interesse">Recebe as informações do interesse que serão alteradas</param>
         /// <returns>Retorna para o usuário o interesse com as informções alteradas e envia os emails para todos os tipos de usuários</returns>
-
         [HttpPut ("{id}")]
         public async Task<ActionResult<Interesse>> Put (int id, Interesse interesse)
         {

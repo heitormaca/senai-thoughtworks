@@ -62,12 +62,12 @@ namespace TW.Controllers {
             return usuario;
         }
 
-        [AllowAnonymous]
         /// <summary>
         /// Método de logar no sistema.
         /// </summary>
         /// <param name="login">Envia o email e a senha.</param>
         /// <returns>Retorna o token de acesso.</returns>
+        [AllowAnonymous]
         [HttpPost]
         public IActionResult PostLogin([FromBody] LoginViewModel login) {
             IActionResult response = Unauthorized ();

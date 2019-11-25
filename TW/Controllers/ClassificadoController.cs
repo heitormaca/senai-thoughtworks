@@ -24,24 +24,15 @@ namespace TW.Controllers
         /// <param name="busca">Envia um valor para busca.</param>
         /// <param name="marca">Envia uma marca.</param>
         /// <param name="categoria">Envia uma categoria.</param>
+        /// <param name="ordenacao">Envia um estado true para ordenar Crescente e false para ordenar decrescente.</param>
         /// <returns>Retorna a lista de classificados com seus respectivos nomes, imagens e preços para a barra de busca e para os filtros da home page.</returns>
         [HttpGet]
         [Authorize(Roles="Comum")]
-        public async Task<IActionResult> GetHome(string busca, string marca, string categoria/*, float? preco*/)
+        public async Task<IActionResult> GetHome(string busca, string marca, string categoria, bool ordenacao)
         {
-            return Ok(await repositorio.Get(busca, marca, categoria/*, preco*/));
+            return Ok(await repositorio.Get(busca, marca, categoria, ordenacao));
         }
 
-        /// <summary>
-        /// Método para buscar a lista dos classificados com seus respectivos nomes, imagens e preços.
-        /// </summary>
-        /// <returns>Retorna a lista dos classificados com seus respectivos nomes, imagens e preços.</returns>
-        [Authorize(Roles="Comum")]
-        [HttpGet("listHome")]
-        public async Task<ActionResult<List<Classificado>>> GetListHome()
-        {
-            return await repositorio.SemFiltro();
-        }
 
         // [HttpGet]
         // public async Task<ActionResult<List<Classificado>>> Get() //definição do tipo de retorno
@@ -111,16 +102,22 @@ namespace TW.Controllers
     //         return await repositorio.FiltrarNomeEquipamentoZA();
     //     }
 
-    //     [HttpGet("aa/{id}")]
-    //     public async Task<ActionResult<Classificado>> GetProdutoClassificado(int id)
-    //     {
-    //         Classificado classificadoRetornado = await repositorio.ProdutoClassificado(id);
-    //         if(classificadoRetornado == null)
-    //         {
-    //             return NotFound();
-    //         }
-    //         return classificadoRetornado;
-    //     }    
+    /// <summary>
+    /// Método para buscar um classificado específico com todas as informações (Equipamento,Imagens).
+    /// </summary>
+    /// <param name="id">Envia um id.</param>
+    /// <returns>Retorna um classificado específico com todas as informações (Equipamento,Imagens).</returns>
+    [Authorize(Roles="Comum")]
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Classificado>> GetProdutoClassificado(int id)
+    {
+        Classificado classificadoRetornado = await repositorio.GetPageProduct(id);
+        if(classificadoRetornado == null)
+        {
+            return NotFound();
+        }
+        return classificadoRetornado;
+    }    
 
     //     [HttpGet("{id}")]
     //     public async Task<ActionResult<Classificado>> GetAction(int id)
