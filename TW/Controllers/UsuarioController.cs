@@ -67,81 +67,93 @@ namespace TW.Controllers
             }
         }
 
-    /// <summary>
-    /// Método para atualizar a senha do usuário.
-    /// </summary>
-    /// <param name="model">Envia a senha que seja ser atualizada.</param>
-    /// <returns>Retorna a senha do usuário atualizada.</returns>
-    [Authorize]
-    [HttpPatch("changePassword")]
-    public async Task<IActionResult> ChangePassword([FromBody] PasswordUpdateViewModel model){
-        try
+        /// <summary>
+        /// Método para atualizar a senha do usuário.
+        /// </summary>
+        /// <param name="model">Envia a senha que seja ser atualizada.</param>
+        /// <returns>Retorna a senha do usuário atualizada.</returns>
+        [Authorize]
+        [HttpPatch("changePassword")]
+        public async Task<IActionResult> ChangePassword([FromBody] PasswordUpdateViewModel model){
+            try
+            {
+                var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
+                var usr = await repositorio.Get(int.Parse(idDoUsuario));
+                usr.Senha = model.Senha;
+                await repositorio.Put(usr);
+                return Ok(usr);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Método para cadastrar usuário comum ou administrador no sistema.
+        /// </summary>
+        /// <param name="usuario">Envia nome completo, nome de usuário, email e senha.</param>
+        /// <returns>Retorna os dados do usuário recém cadastrado.</returns>
+        [AllowAnonymous]
+        [HttpPost]
+        public async Task<ActionResult<Usuario>> PostUser(Usuario usuario)
         {
-            var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
-            var usr = await repositorio.Get(int.Parse(idDoUsuario));
-            usr.Senha = model.Senha;
-            await repositorio.Put(usr);
-            return Ok(usr);
-        }
-        catch (System.Exception)
-        {
-            throw;
-        }
-    }
-
-    /// <summary>
-    /// Método para atualizar a imagem do usuário logado.
-    /// </summary>
-    /// <returns>Atualiza a imagem do usuário logado.</returns>
-    [Authorize]
-    [HttpPut("userImage")]
-    public async Task<ActionResult<Usuario>> PutUserImage(){
-
-        try{
-            var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
-            var usr = await repositorio.Get(int.Parse(idDoUsuario));
-            var arquivo = Request.Form.Files[0];
-            usr.ImagemUsuario = Upload(arquivo,"Imagens/UsuarioImagens");
-            await repositorio.Put(usr);
-            return usr;
-        }catch (System.Exception){
-            throw;
-        }
-    }
-
-    private string Upload (IFormFile arquivo, string savingFolder){
-        
-        if(savingFolder == null) {
-            savingFolder = Path.Combine ("imgUpdated");                
+            try
+            {
+                var listUser = await repositorio.Get();
+                if(listUser.Count == 0)
+                {
+                    usuario.CategoriaUsuario = false;
+                }
+                await repositorio.Post(usuario);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+            return usuario;
         }
 
-        var pathToSave = Path.Combine (Directory.GetCurrentDirectory (), savingFolder);
+        /// <summary>
+        /// Método para atualizar a imagem do usuário logado.
+        /// </summary>
+        /// <returns>Atualiza a imagem do usuário logado.</returns>
+        [Authorize]
+        [HttpPut("userImage")]
+        public async Task<ActionResult<Usuario>> PutUserImage(){
 
-        if (arquivo.Length > 0) {
-            var fileName = ContentDispositionHeaderValue.Parse (arquivo.ContentDisposition).FileName.Trim ('"');
-            var fullPath = Path.Combine (pathToSave, fileName);
+            try{
+                var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
+                var usr = await repositorio.Get(int.Parse(idDoUsuario));
+                var arquivo = Request.Form.Files[0];
+                usr.ImagemUsuario = Upload(arquivo,"Imagens/UsuarioImagens");
+                await repositorio.Put(usr);
+                return usr;
+            }catch (System.Exception){
+                throw;
+            }
+        }
 
-            using (var stream = new FileStream (fullPath, FileMode.Create)) {
-                arquivo.CopyTo (stream);
-            }                    
+        private string Upload (IFormFile arquivo, string savingFolder){
+            
+            if(savingFolder == null) {
+                savingFolder = Path.Combine ("imgUpdated");                
+            }
 
-            return fullPath;
-        } else {
-            return null;
-        }           
-    }
+            var pathToSave = Path.Combine (Directory.GetCurrentDirectory (), savingFolder);
 
+            if (arquivo.Length > 0) {
+                var fileName = ContentDispositionHeaderValue.Parse (arquivo.ContentDisposition).FileName.Trim ('"');
+                var fullPath = Path.Combine (pathToSave, fileName);
 
-    // [HttpDelete("{id}")]
-    // public async Task<ActionResult<Usuario>> Delete(int id)
-    // {
-    //     Usuario usuarioRetornado = await repositorio.Get(id);
-    //     if(usuarioRetornado == null)
-    //     {
-    //         return NotFound();
-    //     }
-    //     await repositorio.Delete(usuarioRetornado);
-    //     return usuarioRetornado;
-    // }
+                using (var stream = new FileStream (fullPath, FileMode.Create)) {
+                    arquivo.CopyTo (stream);
+                }                    
+
+                return fullPath;
+            } else {
+                return null;
+            }           
+        }
     }
 }

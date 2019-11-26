@@ -21,6 +21,24 @@ namespace TW.Controllers {
         UsuarioRepositorio urepositorio = new UsuarioRepositorio();
         Validacoes validacoes = new Validacoes ();
 
+        [Authorize(Roles="Comum")]
+        [HttpGet]
+        public async Task<ActionResult<List<Interesse>>> GetList()
+        {
+            
+            try
+            {
+                
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
+        }
+
+
+
         /// <summary>
         /// Método que traz uma lista de Interesses
         /// </summary>
@@ -57,9 +75,14 @@ namespace TW.Controllers {
             return interesseRetornado;
         }
 
+        /// <summary>
+        /// Método para Cadastrar o interesse do usuário logado.
+        /// </summary>
+        /// <param name="interesse">envia o interesse.</param>
+        /// <returns>Retorna o interesse do usuário logado.</returns>
         [Authorize(Roles="Comum")]
         [HttpPost]
-        public async Task<ActionResult<Interesse>> Post(Interesse interesse)
+        public async Task<ActionResult<Interesse>> PostInteresse(Interesse interesse)
         {
             try
             {

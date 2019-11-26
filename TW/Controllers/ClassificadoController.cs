@@ -109,7 +109,7 @@ namespace TW.Controllers
     /// <returns>Retorna um classificado específico com todas as informações (Equipamento,Imagens).</returns>
     [Authorize(Roles="Comum")]
     [HttpGet("{id}")]
-    public async Task<ActionResult<Classificado>> GetProdutoClassificado(int id)
+    public async Task<ActionResult<Classificado>> GetProductClassificado(int id)
     {
         Classificado classificadoRetornado = await repositorio.GetPageProduct(id);
         if(classificadoRetornado == null)
