@@ -21,31 +21,13 @@ namespace TW.Controllers {
         UsuarioRepositorio urepositorio = new UsuarioRepositorio();
         Validacoes validacoes = new Validacoes ();
 
-        [Authorize(Roles="Comum")]
-        [HttpGet]
-        public async Task<ActionResult<List<Interesse>>> GetList()
-        {
-            
-            try
-            {
-                
-            }
-            catch (System.Exception)
-            {
-                
-                throw;
-            }
-        }
-
-
-
         /// <summary>
         /// Método que traz uma lista de Interesses
         /// </summary>
         /// <returns>Retorna uma lista de Interesses</returns>
 
         [HttpGet]
-        public async Task<ActionResult<List<Interesse>>> Get () //definição do tipo de retorno
+        public async Task<ActionResult<List<Interesse>>> Get() //definição do tipo de retorno
         {
             try
             {
@@ -59,21 +41,44 @@ namespace TW.Controllers {
 
         }
 
-        /// <summary>
-        /// Método de busca de interesse por ID
-        /// </summary>
-        /// <param name="id">Recebe o ID especifico do interesse</param>
-        /// <returns>Retorna para o usuário o interesse buscado</returns>
 
-        [HttpGet ("{id}")]
-        public async Task<ActionResult<Interesse>> GetAction (int id) {
-            Interesse interesseRetornado = await repositorio.Get(id);
-            if(interesseRetornado == null)
+        /// <summary>
+        /// Método que lista os interesses do usuário logado.
+        /// </summary>
+        /// <returns>Retorna a lista dos interesses do usuário logado.</returns>
+        [Authorize(Roles="Comum")]
+        [HttpGet("{ListInteresse}")]
+        public async Task<ActionResult<List<Interesse>>> GetListInteresse() //definição do tipo de retorno
+        {
+            try
             {
-                return NotFound();
+                var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
+                var usr = await repositorio.GetListInteresse(int.Parse(idDoUsuario));
+
+                return usr;
             }
-            return interesseRetornado;
+            catch (System.Exception)
+            {
+                throw;
+            } 
+
         }
+
+        // /// <summary>
+        // /// Método de busca de interesse por ID
+        // /// </summary>
+        // /// <param name="id">Recebe o ID especifico do interesse</param>
+        // /// <returns>Retorna para o usuário o interesse buscado</returns>
+
+        // [HttpGet ("{id}")]
+        // public async Task<ActionResult<Interesse>> GetTandoFaz(int id) {
+        //     Interesse interesseRetornado = await repositorio.GetbyId(id);
+        //     if(interesseRetornado == null)
+        //     {
+        //         return NotFound();
+        //     }
+        //     return interesseRetornado;
+        // }
 
         /// <summary>
         /// Método para Cadastrar o interesse do usuário logado.
@@ -97,6 +102,7 @@ namespace TW.Controllers {
             }
 
         }
+        
        
         /// <summary>
         /// Método de envio de e-mails para os usuários que registraram interesse no classificado
@@ -105,7 +111,7 @@ namespace TW.Controllers {
         /// <param name="interesse">Recebe as informações do interesse que serão alteradas</param>
         /// <returns>Retorna para o usuário o interesse com as informções alteradas e envia os emails para todos os tipos de usuários</returns>
         [HttpPut ("{id}")]
-        public async Task<ActionResult<Interesse>> Put (int id, Interesse interesse)
+        public async Task<ActionResult<Interesse>> Put(int id, Interesse interesse)
         {
             if(id != interesse.IdInteresse)
             {
@@ -118,7 +124,7 @@ namespace TW.Controllers {
             }
             catch (DbUpdateConcurrencyException)
             {
-                var usuarioValido = await repositorio.Get(id);
+                var usuarioValido = await repositorio.GetbyId(id);
                 if(usuarioValido == null)
                 {
                     return NotFound();
@@ -126,24 +132,6 @@ namespace TW.Controllers {
                     throw;
                 }
             }
-        }
-
-        /// <summary>
-        /// Método que deleta um registro de interesse
-        /// </summary>
-        /// <param name="id">Recebe o ID especifico do interesse</param>
-        /// <returns>Retorna o interesse especificado</returns>
-
-        [HttpDelete ("{id}")]
-        public async Task<ActionResult<Interesse>> Delete (int id)
-        {
-            Interesse interesseRetornado = await repositorio.Get(id);
-            if(interesseRetornado == null)
-            {
-                return NotFound();
-            }
-            await repositorio.Delete(interesseRetornado);
-            return interesseRetornado;
         }
     }
 }   

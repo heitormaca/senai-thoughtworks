@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,21 @@ namespace TW.Repositorios
     public class InteresseRepositorio : IInteresseRepositorio
     {
         TwContext context = new TwContext();
+        public async Task<List<Interesse>> GetListInteresse(int id)
+        {
+            List<Interesse> listaInteresse = await context.Interesse.Include(a => a.IdClassificadoNavigation)
+                                                                    .Include(b => b.IdClassificadoNavigation.IdEquipamentoNavigation)
+                                                                    .Include (c => c.IdClassificadoNavigation.IdImagemClassificadoNavigation)
+                                                                    .Where(l => l.IdUsuario == id)
+                                                                    .ToListAsync();
+                                                
+
+            foreach (var item in listaInteresse)
+            {
+            item.IdClassificadoNavigation.Interesse = null;
+            }                                                        
+            return listaInteresse;
+        }
         public async Task<Interesse> Delete(Interesse interesseRetornado)
         {
             context.Interesse.Remove(interesseRetornado);
@@ -21,7 +37,7 @@ namespace TW.Repositorios
         {
            return await context.Interesse.ToListAsync();
         }
-        public async Task<Interesse> Get(int id)
+        public async Task<Interesse> GetbyId(int id)
         {
           return await context.Interesse.FindAsync(id);
         }

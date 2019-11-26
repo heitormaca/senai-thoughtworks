@@ -14,7 +14,7 @@
             <param name="ordenacao">Envia um estado true para ordenar Crescente e false para ordenar decrescente.</param>
             <returns>Retorna a lista de classificados com seus respectivos nomes, imagens e preços para a barra de busca e para os filtros da home page.</returns>
         </member>
-        <member name="M:TW.Controllers.ClassificadoController.GetProdutoClassificado(System.Int32)">
+        <member name="M:TW.Controllers.ClassificadoController.GetProductClassificado(System.Int32)">
             <summary>
             Método para buscar um classificado específico com todas as informações (Equipamento,Imagens).
             </summary>
@@ -27,12 +27,12 @@
             </summary>
             <returns>Retorna uma lista de Interesses</returns>
         </member>
-        <member name="M:TW.Controllers.InteresseController.GetAction(System.Int32)">
+        <member name="M:TW.Controllers.InteresseController.PostInteresse(TW.Models.Interesse)">
             <summary>
-            Método de busca de interesse por ID
+            Método para Cadastrar o interesse do usuário logado.
             </summary>
-            <param name="id">Recebe o ID especifico do interesse</param>
-            <returns>Retorna para o usuário o interesse buscado</returns>
+            <param name="interesse">envia o interesse.</param>
+            <returns>Retorna o interesse do usuário logado.</returns>
         </member>
         <member name="M:TW.Controllers.InteresseController.Put(System.Int32,TW.Models.Interesse)">
             <summary>
@@ -68,6 +68,13 @@
             </summary>
             <param name="model">Envia a senha que seja ser atualizada.</param>
             <returns>Retorna a senha do usuário atualizada.</returns>
+        </member>
+        <member name="M:TW.Controllers.UsuarioController.PostUser(TW.Models.Usuario)">
+            <summary>
+            Método para cadastrar usuário comum ou administrador no sistema.
+            </summary>
+            <param name="usuario">Envia nome completo, nome de usuário, email e senha.</param>
+            <returns>Retorna os dados do usuário recém cadastrado.</returns>
         </member>
         <member name="M:TW.Controllers.UsuarioController.PutUserImage">
             <summary>
