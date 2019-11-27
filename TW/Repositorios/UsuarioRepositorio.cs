@@ -10,21 +10,51 @@ namespace TW.Repositorios
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
         TwContext context = new TwContext();
-        public async Task<Usuario> Delete(Usuario usuarioRetornado)
-        {
-            context.Usuario.Remove(usuarioRetornado);
-            await context.SaveChangesAsync();
-            return usuarioRetornado;
-        }
+        
 
-        public async Task<List<Usuario>> Get()
+        public async Task<List<Usuario>> GetList(string busca, bool ordNomeC, bool ordNomeU, bool ordEmail)
         {
-            return await context.Usuario.ToListAsync();   
+            var query = context
+                .Usuario
+                .AsQueryable();
+            if(!string.IsNullOrEmpty(busca))
+            {
+                query = query.Where(a => 
+                a.NomeCompleto.Contains(busca) ||
+                a.NomeUsuario.Contains(busca) ||
+                a.Email.Contains(busca)
+                );
+            }
+            if(ordNomeC == true)
+            {
+                query = query.OrderBy(p => p.NomeCompleto);
+            }else{
+                query = query.OrderByDescending(p => p.NomeCompleto);
+            }
+            if(ordNomeU == true)
+            {
+                query = query.OrderBy(p => p.NomeUsuario);
+            }else{
+                query = query.OrderByDescending(p => p.NomeCompleto);
+            }
+            if(ordEmail == true)
+            {
+                query = query.OrderBy(p => p.Email);
+            }else{
+                query = query.OrderByDescending(p => p.Email);
+            }
+            
+
+            return await query.ToListAsync();   
         }
 
         public async Task<Usuario> Get(int id)
         {
             return await context.Usuario.FindAsync(id);
+        }
+        public async Task<List<Usuario>> GetL()
+        {
+            return await context.Usuario.ToListAsync();
         }
         public async Task<bool> ValidaEmail(Usuario usuario)
         {

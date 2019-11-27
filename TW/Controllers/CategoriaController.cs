@@ -18,16 +18,16 @@ namespace TW.Controllers
 
 
         /// <summary>
-        /// Método que lista todas as categorias cadastradas.
+        /// Método que lista, busca e ordena categorias.
         /// </summary>
-        /// <returns>Retorna a lista de todas categorias cadastradas.</returns>
+        /// <returns>Retorna uma lista, uma busca e um tipo de ordenação para categorias.</returns>
         [Authorize(Roles="Administrador")]
         [HttpGet]
-        public async Task<ActionResult<List<Categoria>>> GetListCat()
+        public async Task<IActionResult> GetListCat(string busca, bool ordenacao)
         {
             try
             {
-                return await repositorio.GetList();
+                return Ok(await repositorio.GetList(busca, ordenacao));
             
             }
             catch (System.Exception)
@@ -37,8 +37,14 @@ namespace TW.Controllers
         
         }       
 
+        /// <summary>
+        /// Método que cadastra uma categoria.
+        /// </summary>
+        /// <param name="categoria">Envia uma categoria.</param>
+        /// <returns>Retorna uma categoria cadastrada.</returns>
+        [Authorize(Roles="Administrador")]
         [HttpPost]
-        public async Task<ActionResult<Categoria>> Post(Categoria categoria) //tipo do objeto que está sendo enviado (Categoria) - nome que você determina pro objeto
+        public async Task<ActionResult<Categoria>> PostCat(Categoria categoria)
         {
             try
             {

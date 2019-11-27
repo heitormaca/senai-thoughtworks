@@ -50,6 +50,13 @@ namespace TW.Controllers
         //     return usuarioRetornado;
         // }
 
+
+        [Authorize(Roles="Administrador")]
+        [HttpGet]
+        public async Task<IActionResult> GetDashUser(string busca, bool ordNomeC, bool ordNomeU, bool ordEmail)
+        {
+            return Ok(await repositorio.GetList(busca, ordNomeC, ordNomeU, ordEmail));
+        }
         /// <summary>
         /// Método para buscar dados do usuário logado.
         /// </summary>
@@ -100,7 +107,7 @@ namespace TW.Controllers
         {
             try
             {
-                var listUser = await repositorio.Get();
+                var listUser = await repositorio.GetL();
                 if(listUser.Count == 0)
                 {
                     usuario.CategoriaUsuario = false;

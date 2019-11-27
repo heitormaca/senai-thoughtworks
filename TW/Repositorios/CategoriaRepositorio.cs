@@ -11,7 +11,7 @@ namespace TW.Repositorios
     {
         TwContext context = new TwContext();
 
-        public async Task<List<Categoria>> Get(string busca, string ordenacao)
+        public async Task<List<Categoria>> GetList(string busca, bool ordenacao)
         {
             var query = context
                 .Categoria
@@ -19,41 +19,21 @@ namespace TW.Repositorios
                 
             if (!string.IsNullOrEmpty(busca)) {
                 query = query.Where(a => 
-                    a.IdEquipamentoNavigation.NomeEquipamento.Contains(busca) || 
-                    a.IdEquipamentoNavigation.Processador.Contains(busca) ||
-                    (a.CodigoClassificado).ToString().Contains(busca) ||
-                    a.IdEquipamentoNavigation.Marca.Contains(busca) ||
-                    a.IdEquipamentoNavigation.Modelo.Contains(busca) ||
-                    a.IdEquipamentoNavigation.SistemaOperacional.Contains(busca) ||
-                    a.IdEquipamentoNavigation.Polegada.Contains(busca) ||
-                    a.IdEquipamentoNavigation.MemoriaRam.Contains(busca) ||
-                    a.IdEquipamentoNavigation.Ssd.Contains(busca) ||
-                    a.IdEquipamentoNavigation.Hd.Contains(busca) ||
-                    a.IdEquipamentoNavigation.PlacaDeVideo.Contains(busca) ||
-                    a.IdEquipamentoNavigation.IdCategoriaNavigation.NomeCategoria.Contains(busca)
+                    a.NomeCategoria.Contains(busca)
                 );
             }
-
             if(ordenacao == true){
-                query = query.OrderBy(p => p.Preco);
+                query = query.OrderBy(p => p.NomeCategoria);
             }else{
-                query = query.OrderByDescending(p => p.Preco);
+                query = query.OrderByDescending(p => p.NomeCategoria);
             }
-
-            if (!string.IsNullOrEmpty(marca)) {
-                query = query.Where(a => a.IdEquipamentoNavigation.Marca.Contains(marca));
-            }
-        public async Task<Categoria> Delete(Categoria categoriaRetornada)
-        {
-            context.Categoria.Remove(categoriaRetornada);
-            await context.SaveChangesAsync();
-            return categoriaRetornada;
+            return await query.ToListAsync();
         }
 
-        public async Task<List<Categoria>> GetList()
-        {
-            return await context.Categoria.ToListAsync();
-        }
+        // public async Task<List<Categoria>> GetList()
+        // {
+        //     return await context.Categoria.ToListAsync();
+        // }
 
         public async Task<Categoria> Get(int id)
         {

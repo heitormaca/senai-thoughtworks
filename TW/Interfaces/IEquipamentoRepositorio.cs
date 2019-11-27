@@ -6,10 +6,9 @@ namespace TW.Interfaces
 {
     public interface IEquipamentoRepositorio
     {
-        Task<List<Equipamento>> Get();
+        Task<List<Equipamento>> GetList(string busca, bool ordenacao);
         Task<Equipamento> Get(int id);
         Task<Equipamento> Post(Equipamento equipamento);
-        Task<Equipamento> Put(Equipamento equipamento);
-        Task<Equipamento> Delete(Equipamento equipamentoRetornado); 
+        Task<Equipamento> Put(Equipamento equipamento); 
     }
 }
