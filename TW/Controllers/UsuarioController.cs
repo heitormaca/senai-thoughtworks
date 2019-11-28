@@ -20,37 +20,17 @@ namespace TW.Controllers
 
     public class UsuarioController : ControllerBase
     {
-        UsuarioRepositorio repositorio = new UsuarioRepositorio();
-        // [Authorize(Roles="Administrador")]
-        // [HttpGet]
-        // // public async Task<IActionResult> Get() //definição do tipo de retorno
-        // public async Task<ActionResult<List<Usuario>>> Get() //definição do tipo de retorno
-        // {
-        //     try
-        //     {
-        //         //  return Ok(HttpContext.User.Claims.First(a => a.Type == "id").Value);
-        //         return await repositorio.Get();
-        //         // await vai esperar trazer a lista para armazenar em Categoria
-        //     }
-        //     catch (System.Exception)
-        //     {
-        //         throw;
-        //     } 
-            
-        // }       
-        // [Authorize(Roles="Comum")]
-        // [HttpGet("{id}")]
-        // public async Task<ActionResult<Usuario>> GetAction(int id)
-        // {
-        //     Usuario usuarioRetornado = await repositorio.Get(id);
-        //     if(usuarioRetornado == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     return usuarioRetornado;
-        // }
+        UsuarioRepositorio repositorio = new UsuarioRepositorio();    
+        
 
-
+        /// <summary>
+        /// Método para listar, buscar e filtrar dados de usuários registrados no sistema.
+        /// </summary>
+        /// <param name="busca">Envia um valor para busca.</param>
+        /// <param name="ordNomeC">Envia um estado true para ordenar de A-Z e false para Z-A.</param>
+        /// <param name="ordNomeU">Envia um estado true para ordenar de A-Z e false para Z-A.</param>
+        /// <param name="ordEmail">Envia um estado true para ordenar de A-Z e false para Z-A.</param>
+        /// <returns></returns>
         [Authorize(Roles="Administrador")]
         [HttpGet]
         public async Task<IActionResult> GetDashUser(string busca, bool ordNomeC, bool ordNomeU, bool ordEmail)

@@ -14,20 +14,30 @@ namespace TW.Controllers
     public class EquipamentoController : ControllerBase
     {
         EquipamentoRepositorio repositorio = new EquipamentoRepositorio();
-        
+
         /// <summary>
         /// Método que lista, busca e ordena equipamentos.
         /// </summary>
         /// <param name="busca">Envia um valor para busca.</param>
-        /// <param name="ordenacao">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
+        /// <param name="ordNomeE">Envia um estado true para ordenar de A-Z e false para Z-A.</param>
         /// <returns>Retorna uma lista, uma busca e um tipo de ordenação para equipamentos.</returns>
+        // / <param name="ordMarca">Envia um estado true para ordenar de A-Z e false para Z-A.</param>
+        // / <param name="ordMem">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
+        // / <param name="ordModelo">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
+        // / <param name="ordSO">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
+        // / <param name="ordPol">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
+        // / <param name="ordPeso">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
+        // / <param name="ordPvideo">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
+        // / <param name="ordProc">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
+        // / <param name="ordHd">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
+        // / <param name="ordSsd">Envia um estado true para ordenar de A-Z e falta para Z-A.</param>
         [Authorize(Roles="Administrador")]
         [HttpGet]
-        public async Task<IActionResult> GetListEqui(string busca, bool ordenacao)
+        public async Task<IActionResult> GetListEqui(string busca, bool ordNomeE/*, bool ordMarca, bool ordMem, bool ordModelo, bool ordSO, bool ordPol, bool ordPeso, bool ordPvideo, bool ordProc, bool ordHd, bool ordSsd*/)
         {
             try
             {
-                return Ok(await repositorio.GetList(busca, ordenacao));
+                return Ok(await repositorio.GetList(busca, ordNomeE/*, ordMarca, ordMem, ordModelo/*, ordSO , ordPol, ordPeso, ordPvideo, ordProc,ordHd, ordSsd*/));
             }
             catch (System.Exception)
             {

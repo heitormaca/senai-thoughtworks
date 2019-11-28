@@ -7,8 +7,6 @@ namespace TW.Infertaces
     public interface ICategoriaRepositorio
     {
         Task<List<Categoria>> GetList(string busca, bool ordenacao);
-        Task<Categoria> Get(int id);
         Task<Categoria> Post(Categoria categoria);
-        Task<Categoria> Put(Categoria categoria);
     }
 }   

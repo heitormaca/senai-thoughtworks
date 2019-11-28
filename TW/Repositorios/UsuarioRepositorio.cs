@@ -79,12 +79,5 @@ namespace TW.Repositorios
             await context.SaveChangesAsync();
             return usuario;
         }
-
-        public async Task<Usuario> Salvar(Usuario usuario)
-        {
-            context.Entry(usuario).State = EntityState.Modified;
-            await context.SaveChangesAsync();
-            return usuario;
-        }
     }
 }

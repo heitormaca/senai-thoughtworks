@@ -11,5 +11,6 @@ namespace TW.Interfaces
         Task<List<Usuario>> GetL();
         Task<Usuario> Post(Usuario usuario);
         Task<bool> ValidaEmail(Usuario usuario);
+        Task<Usuario> Put(Usuario usuario);
     }
 }   

@@ -49,59 +49,6 @@ namespace TW.Controllers
             
         // }
 
-    //     [HttpGet("statuson/{0}")]
-
-    //    public async Task<ActionResult<List<Classificado>>> GetStatusClassificadoCres(bool status)
-    //    {
-    //        try
-    //        {
-    //            return await repositorio.StatusClassificadoON(status);
-    //        }
-    //        catch(System.Exception)
-    //        {
-    //            throw;
-    //        }  
-    //    }
-    //    [HttpGet("statusoff/{1}")]
-
-    //    public async Task<ActionResult<List<Classificado>>> GetStatusClassificadoDecres(bool status)
-    //    {
-    //        try
-    //        {
-    //            return await repositorio.StatusClassificadoOFF(status);
-    //        }
-    //        catch(System.Exception)
-    //        {
-    //            throw;
-    //        }  
-    //    }
-
-    //    [HttpGet("precoc")]
-
-    //     public async Task<ActionResult<List<Classificado>>> GetFiltroPrecoCres()
-    //     {
-    //             return await repositorio.FiltroPrecoCres();
-    //     }
-
-    //     [HttpGet("precod")]
-
-    //     public async Task<ActionResult<List<Classificado>>> GetFiltroPrecoDecres()
-    //     {
-    //             return await repositorio.FiltroPrecoDecres();
-    //     }
-
-    //     [HttpGet("nomeequipamentoaz")]
-    //     public async Task<ActionResult<List<Classificado>>> GetFiltrarNomeEquipamentoAZ()
-    //     {
-    //         return await repositorio.FiltrarNomeEquipamentoAZ();
-    //     }
-
-    //     [HttpGet("nomeequipamentoza")]
-    //     public async Task<ActionResult<List<Classificado>>> GetFiltrarNomeEquipamentoZA()
-    //     {
-    //         return await repositorio.FiltrarNomeEquipamentoZA();
-    //     }
-
     /// <summary>
     /// Método para buscar um classificado específico com todas as informações (Equipamento,Imagens).
     /// </summary>
@@ -117,7 +64,9 @@ namespace TW.Controllers
             return NotFound();
         }
         return classificadoRetornado;
-    }    
+    }
+    
+     
 
     //     [HttpGet("{id}")]
     //     public async Task<ActionResult<Classificado>> GetAction(int id)
@@ -145,12 +94,6 @@ namespace TW.Controllers
         //     return classificado;
         // }
 
-        // [HttpGet ("h/{marca}")]
-        // public async Task<ActionResult<List<Classificado>>> GetFilterMarca (string marca) {
-        //     return await repositorio.FiltroPorMarca(marca);
-        // }
-
-
         // [HttpPut("{id}")]
         // public async Task<ActionResult<Classificado>> Put(int id, Classificado classificado)
         // {
@@ -173,18 +116,6 @@ namespace TW.Controllers
         //             throw;
         //         }
         //     }
-        // }
-
-        // [HttpDelete("{id}")]
-        // public async Task<ActionResult<Classificado>> Delete(int id)
-        // {
-        //     Classificado classificadoRetornado = await repositorio.Get(id);
-        //     if(classificadoRetornado == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     await repositorio.Delete(classificadoRetornado);
-        //     return classificadoRetornado;
         // }
     }
 }
