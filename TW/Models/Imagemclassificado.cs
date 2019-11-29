@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Threading.Tasks;
 
 namespace TW.Models
 {
@@ -32,5 +33,10 @@ namespace TW.Models
 
         [InverseProperty("IdImagemClassificadoNavigation")]
         public virtual ICollection<Classificado> Classificado { get; set; }
+
+        internal Task Post(Imagemclassificado imagem)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -27,11 +27,11 @@ namespace TW.Repositorios
             return await context.Imagemclassificado.FindAsync(id);
         }
 
-        public async Task<Imagemclassificado> Post(Imagemclassificado imagem)
+        public async Task<int> Post(Imagemclassificado imagem)
         {
            await context.Imagemclassificado.AddAsync(imagem);
            await context.SaveChangesAsync();
-           return imagem;
+           return imagem.IdImagemClassificado;
         }
 
         public async Task<Imagemclassificado> Put(Imagemclassificado imagem)

@@ -111,8 +111,7 @@ namespace TW.Repositorios
             return await context.Classificado.ToListAsync();
         }
         public async Task<Classificado> Post(Classificado classificado)
-        {
-               
+        {   
             await context.Classificado.AddAsync(classificado);
             await context.SaveChangesAsync();
             return classificado;

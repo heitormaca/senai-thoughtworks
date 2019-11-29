@@ -18,7 +18,6 @@ namespace TW.Controllers {
 
     public class InteresseController : ControllerBase {
         InteresseRepositorio repositorio = new InteresseRepositorio();
-        UsuarioRepositorio urepositorio = new UsuarioRepositorio();
         Validacoes validacoes = new Validacoes ();
 
         /// <summary>
@@ -88,6 +87,7 @@ namespace TW.Controllers {
         [HttpPost]
         public async Task<ActionResult<Interesse>> PostInteresse(Interesse interesse)
         {
+            UsuarioRepositorio urepositorio = new UsuarioRepositorio();
             try
             {
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;

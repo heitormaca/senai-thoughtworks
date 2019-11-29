@@ -42,20 +42,20 @@ namespace TW.Controllers
       //     return imagemRetornanda;
       //  }
 
-      //  [HttpPost]
+       [HttpPost]
 
-      //  public async Task<ActionResult<Imagemclassificado>> Post(Imagemclassificado imagem)
-      //  {
-      //     try 
-      //     {
-      //        await repositorio.Post(imagem);
-      //     }
-      //     catch (System.Exception)
-      //     {
-      //        throw;
-      //     }
-      //     return imagem;
-      //  }
+       public async Task<ActionResult<Imagemclassificado>> Post(Imagemclassificado imagem)
+       {
+          try 
+          {
+             await repositorio.Post(imagem);
+          }
+          catch (System.Exception)
+          {
+             throw;
+          }
+          return imagem;
+       }
        
 
 
