@@ -12,7 +12,7 @@ namespace TW.Repositorios
         TwContext context = new TwContext();
         
 
-        public async Task<List<Usuario>> GetList(string busca, bool ordNomeC, bool ordNomeU, bool ordEmail)
+        public async Task<List<Usuario>> GetList(string busca, bool? ordNomeC, bool? ordNomeU, bool? ordEmail)
         {
             var query = context
                 .Usuario
@@ -28,23 +28,21 @@ namespace TW.Repositorios
             if(ordNomeC == true)
             {
                 query = query.OrderBy(p => p.NomeCompleto);
-            }else{
+            }else if(ordNomeC == false){
                 query = query.OrderByDescending(p => p.NomeCompleto);
-            }
+            }else{}
             if(ordNomeU == true)
             {
                 query = query.OrderBy(p => p.NomeUsuario);
-            }else{
+            }else if(ordNomeU == false){
                 query = query.OrderByDescending(p => p.NomeCompleto);
-            }
+            }else{}
             if(ordEmail == true)
             {
                 query = query.OrderBy(p => p.Email);
-            }else{
+            }else if(ordEmail == false){
                 query = query.OrderByDescending(p => p.Email);
-            }
-            
-
+            }else{}
             return await query.ToListAsync();   
         }
 

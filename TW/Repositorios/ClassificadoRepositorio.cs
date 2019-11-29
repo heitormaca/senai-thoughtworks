@@ -12,20 +12,8 @@ namespace TW.Repositorios
     public class ClassificadoRepositorio : IClassificadoRepositorio
     {
         TwContext context = new TwContext();
-        public async Task<Classificado> Delete(Classificado classificadoRetornado)
-        {
-            context.Classificado.Remove(classificadoRetornado);
-            await context.SaveChangesAsync();
-            return classificadoRetornado;
-        }
-
-        public async Task<List<Classificado>> Get()
-        {
-            return await context.Classificado.ToListAsync();
-
-        }
-
-        public async Task<List<Classificado>> Get(string busca, string marca, string categoria, bool ordenacao)
+    
+        public async Task<List<Classificado>> GetListHome(string busca, string marca, string categoria, bool ordenacao)
         {
             var query = context
                 .Classificado
@@ -73,6 +61,39 @@ namespace TW.Repositorios
             return await query.ToListAsync();
         }
 
+        public async Task<List<Classificado>> GetListAdm(string busca, bool? ordNomeE, bool? ordCodClass, bool? ordNumSerie)
+        {
+            var query = context
+                .Classificado
+                .Include(a => a.IdEquipamentoNavigation)
+                .AsQueryable();
+            if (!string.IsNullOrEmpty(busca)){
+                query = query.Where(a =>
+                    a.IdEquipamentoNavigation.NomeEquipamento.Contains(busca) ||
+                    (a.CodigoClassificado).ToString().Contains(busca) ||
+                    a.NumeroDeSerie.Contains(busca)
+                );
+            }
+            if(ordNomeE == true){
+                query = query.OrderBy(p=>p.IdEquipamentoNavigation.NomeEquipamento);
+            }else if(ordNomeE == false){
+                query = query.OrderByDescending(p=>p.IdEquipamentoNavigation.NomeEquipamento);
+            }else{}
+            if(ordCodClass == true){
+                query = query.OrderBy(p=>p.CodigoClassificado);
+            }else if(ordCodClass == false){
+                query = query.OrderByDescending(p=>p.CodigoClassificado);
+            }else{}
+            if(ordNumSerie == true){
+                query = query.OrderBy(p=>p.NumeroDeSerie);
+            }else if(ordNumSerie == false){
+                query = query.OrderByDescending(p=>p.NumeroDeSerie);
+            }else{}
+        
+            return await query.ToListAsync();
+        }
+
+
         public async Task<Classificado> GetPageProduct(int id)
         {
             Classificado produto = await context.Classificado
@@ -85,8 +106,13 @@ namespace TW.Repositorios
             return produto;
         }
 
+        public async Task<List<Classificado>> GetL()
+        {
+            return await context.Classificado.ToListAsync();
+        }
         public async Task<Classificado> Post(Classificado classificado)
         {
+               
             await context.Classificado.AddAsync(classificado);
             await context.SaveChangesAsync();
             return classificado;
@@ -97,63 +123,6 @@ namespace TW.Repositorios
             context.Entry(classificado).State = EntityState.Modified;
             await context.SaveChangesAsync();
             return classificado;
-        }
-
-        public async Task<List<Classificado>> FiltroPorMarca(string marca)
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Where(a => a.IdEquipamentoNavigation.Marca == marca)
-                                                                              .Include(b => b.IdEquipamentoNavigation)
-                                                                              .ToListAsync();
-            return listaClassificados;
-        }
-
-        // public async Task<List<Classificado>> StatusClassificadoON(bool StatusClassificadoON )
-        // {
-        //     List<Classificado> produto = await context.Classificado.Where(a => a.StatusClassificado == StatusClassificadoON)
-        //                                                            .Include(b => b.IdEquipamentoNavigation)
-        //                                                            .ToListAsync();
-        //     return produto;
-        // }
-        // public async Task<List<Classificado>> StatusClassificadoOFF(bool StatusClassificadoOFF)
-        // {
-        //     List<Classificado> produto = await context.Classificado.Where(a => a.StatusClassificado == StatusClassificadoOFF)
-        //                                                            .Include(b => b.IdEquipamentoNavigation)
-        //                                                            .ToListAsync();
-        //     return produto;
-        // }
-
-        public async Task<List<Classificado>> FiltroPrecoCres()
-        {
-             List<Classificado> listaPreco= await context.Classificado.Include(b => b.IdEquipamentoNavigation)
-                                                                      .OrderBy(d => d.Preco)
-                                                                      .ToListAsync();
-
-            return listaPreco;
-        }
-
-        public async Task<List<Classificado>> FiltroPrecoDecres()
-        {
-            List<Classificado> listaPreco= await context.Classificado.Include(b => b.IdEquipamentoNavigation)
-                                                                      .OrderByDescending(d => d.Preco)
-                                                                      .ToListAsync();
-
-            return listaPreco;
-        }
-
-        public async Task<List<Classificado>> FiltrarNomeEquipamentoAZ()
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Include(a => a.IdEquipamentoNavigation)
-                                                                              .OrderBy(c => c.IdEquipamentoNavigation.NomeEquipamento)
-                                                                              .ToListAsync();
-            return listaClassificados;
-        }
-
-        public async Task<List<Classificado>> FiltrarNomeEquipamentoZA()
-        {
-            List<Classificado> listaClassificados = await context.Classificado.Include(b => b.IdEquipamentoNavigation)
-                                                                              .OrderByDescending(d => d.IdEquipamentoNavigation.NomeEquipamento)
-                                                                              .ToListAsync();
-            return listaClassificados; 
         }
 
     }

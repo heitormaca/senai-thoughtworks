@@ -30,13 +30,14 @@ namespace TW.Controllers
         /// <param name="ordNomeC">Envia um estado true para ordenar de A-Z e false para Z-A.</param>
         /// <param name="ordNomeU">Envia um estado true para ordenar de A-Z e false para Z-A.</param>
         /// <param name="ordEmail">Envia um estado true para ordenar de A-Z e false para Z-A.</param>
-        /// <returns></returns>
+        /// <returns>Retorna uma lista, uma busca e um tipo de ordenação para usuários.</returns>
         [Authorize(Roles="Administrador")]
         [HttpGet]
-        public async Task<IActionResult> GetDashUser(string busca, bool ordNomeC, bool ordNomeU, bool ordEmail)
+        public async Task<IActionResult> GetDashUser(string busca, bool? ordNomeC, bool? ordNomeU, bool? ordEmail)
         {
             return Ok(await repositorio.GetList(busca, ordNomeC, ordNomeU, ordEmail));
         }
+        
         /// <summary>
         /// Método para buscar dados do usuário logado.
         /// </summary>

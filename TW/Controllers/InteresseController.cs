@@ -41,7 +41,6 @@ namespace TW.Controllers {
 
         }
 
-
         /// <summary>
         /// Método que lista os interesses do usuário logado.
         /// </summary>
@@ -103,7 +102,6 @@ namespace TW.Controllers {
 
         }
         
-       
         /// <summary>
         /// Método de envio de e-mails para os usuários que registraram interesse no classificado
         /// </summary>

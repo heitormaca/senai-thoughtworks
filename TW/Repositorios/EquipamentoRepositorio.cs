@@ -10,7 +10,7 @@ namespace TW.Repositorios
     public class EquipamentoRepositorio : IEquipamentoRepositorio
     {
         TwContext context = new TwContext();
-        public async Task<List<Equipamento>> GetList(string busca, bool ordNomeE/*, bool ordMarca, bool ordMem, bool ordModelo, bool ordSO, bool ordPol, bool ordPeso, bool ordPvideo, bool ordProc, bool ordHd, bool ordSsd*/)
+        public async Task<List<Equipamento>> GetList(string busca, bool? ordNomeE, bool? ordMarca, bool? ordMem, bool? ordModelo, bool? ordSO, bool? ordPol, bool? ordPeso, bool? ordPvideo, bool? ordProc, bool? ordHd, bool? ordSsd)
         {
             var query = context
                 .Equipamento
@@ -32,61 +32,61 @@ namespace TW.Repositorios
                     a.Alimentacao.Contains(busca)
                 );
             }
-            if( ordNomeE == true){
+            if(ordNomeE == true){
                 query = query.OrderBy(p =>p.NomeEquipamento);
-            }else{
+            }else if(ordNomeE == false){
                 query = query.OrderByDescending(p =>p.NomeEquipamento);
-            }
-            // if(ordMarca == true){
-            //     query = query.OrderBy(p =>p.Marca);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.Marca);
-            // }
-            // if(ordMem == true){
-            //     query = query.OrderBy(p =>p.MemoriaRam);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.MemoriaRam);
-            // }
-            // if(ordModelo == true){
-            //     query = query.OrderBy(p =>p.Modelo);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.Modelo);
-            // }
-            // if(ordSO == true){
-            //     query = query.OrderBy(p =>p.SistemaOperacional);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.SistemaOperacional);
-            // }
-            // if(ordPol == true){
-            //     query = query.OrderBy(p =>p.Polegada);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.Polegada);
-            // }
-            // if(ordPeso == true){
-            //     query = query.OrderBy(p =>p.Peso);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.Peso);
-            // }
-            // if(ordPvideo == true){
-            //     query = query.OrderBy(p =>p.PlacaDeVideo);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.PlacaDeVideo);
-            // }
-            // if(ordProc == true){
-            //     query = query.OrderBy(p =>p.Processador);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.Processador);
-            // }
-            // if(ordHd == true){
-            //     query = query.OrderBy(p =>p.Hd);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.Hd);
-            // }
-            // if(ordSsd == true){
-            //     query = query.OrderBy(p =>p.Ssd);
-            // }else{
-            //     query = query.OrderByDescending(p =>p.Ssd);
-            // }
+            }else{}
+            if(ordMarca == true){
+                query = query.OrderBy(p =>p.Marca);
+            }else if(ordMarca == false){
+                query = query.OrderByDescending(p =>p.Marca);
+            }else{}
+            if(ordMem == true){
+                query = query.OrderBy(p=>p.MemoriaRam);
+            }else if(ordMem == false){
+                query = query.OrderByDescending(p=>p.MemoriaRam);
+            }else{}
+            if(ordModelo == true){
+                query = query.OrderBy(p =>p.Modelo);
+            }else if(ordModelo == false){
+                query = query.OrderByDescending(p =>p.Modelo);
+            }else{}
+            if(ordSO == true){
+                query = query.OrderBy(p =>p.SistemaOperacional);
+            }else if(ordSO == false){
+                query = query.OrderByDescending(p =>p.SistemaOperacional);
+            }else{}
+            if(ordPol == true){
+                query = query.OrderBy(p =>p.Polegada);
+            }else if(ordPol == false){
+                query = query.OrderByDescending(p =>p.Polegada);
+            }else{}
+            if(ordPeso == true){
+                query = query.OrderBy(p =>p.Peso);
+            }else if(ordPeso == false){
+                query = query.OrderByDescending(p =>p.Peso);
+            }else{}
+            if(ordPvideo == true){
+                query = query.OrderBy(p =>p.PlacaDeVideo);
+            }else if(ordPvideo == false){
+                query = query.OrderByDescending(p =>p.PlacaDeVideo);
+            }else{}
+            if(ordProc == true){
+                query = query.OrderBy(p =>p.Processador);
+            }else if(ordProc == false){
+                query = query.OrderByDescending(p =>p.Processador);
+            }else{}
+            if(ordHd == true){
+                query = query.OrderBy(p =>p.Hd);
+            }else if(ordHd == false){
+                query = query.OrderByDescending(p =>p.Hd);
+            }else{}
+            if(ordSsd == true){
+                query = query.OrderBy(p =>p.Ssd);
+            }else if(ordSsd == false){
+                query = query.OrderByDescending(p =>p.Ssd);
+            }else{}
             
             return await query.ToListAsync();
         }
