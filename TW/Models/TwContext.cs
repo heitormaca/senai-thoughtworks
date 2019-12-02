@@ -4,13 +4,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace TW.Models
 {
-    public partial class TwContext : DbContext
+    public partial class TWContext : DbContext
     {
-        public TwContext()
+        public TWContext()
         {
         }
 
-        public TwContext(DbContextOptions<TwContext> options)
+        public TWContext(DbContextOptions<TWContext> options)
             : base(options)
         {
         }
@@ -26,7 +26,7 @@ namespace TW.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=Tw;Integrated Security=true;");
+                optionsBuilder.UseSqlServer("Server=.\\SQLEXPRESS;Database=TW;Integrated Security=true;");
             }
         }
 
@@ -35,7 +35,7 @@ namespace TW.Models
             modelBuilder.Entity<Categoria>(entity =>
             {
                 entity.HasKey(e => e.IdCategoria)
-                    .HasName("PK__CATEGORI__CD54BC5A9B23972F");
+                    .HasName("PK__CATEGORI__CD54BC5ADE83F55E");
 
                 entity.Property(e => e.NomeCategoria).IsUnicode(false);
 
@@ -45,7 +45,7 @@ namespace TW.Models
             modelBuilder.Entity<Classificado>(entity =>
             {
                 entity.HasKey(e => e.IdClassificado)
-                    .HasName("PK__CLASSIFI__946341BDE5EA2B99");
+                    .HasName("PK__CLASSIFI__946341BD65FDAB24");
 
                 entity.Property(e => e.NumeroDeSerie).IsUnicode(false);
 
@@ -54,18 +54,13 @@ namespace TW.Models
                 entity.HasOne(d => d.IdEquipamentoNavigation)
                     .WithMany(p => p.Classificado)
                     .HasForeignKey(d => d.IdEquipamento)
-                    .HasConstraintName("FK__CLASSIFIC__id_eq__45F365D3");
-
-                entity.HasOne(d => d.IdImagemClassificadoNavigation)
-                    .WithMany(p => p.Classificado)
-                    .HasForeignKey(d => d.IdImagemClassificado)
-                    .HasConstraintName("FK__CLASSIFIC__id_im__44FF419A");
+                    .HasConstraintName("FK__CLASSIFIC__id_eq__5535A963");
             });
 
             modelBuilder.Entity<Equipamento>(entity =>
             {
                 entity.HasKey(e => e.IdEquipamento)
-                    .HasName("PK__EQUIPAME__B5F07F5C5D8E9FC2");
+                    .HasName("PK__EQUIPAME__B5F07F5C17AD9718");
 
                 entity.Property(e => e.Alimentacao).IsUnicode(false);
 
@@ -98,27 +93,26 @@ namespace TW.Models
                 entity.HasOne(d => d.IdCategoriaNavigation)
                     .WithMany(p => p.Equipamento)
                     .HasForeignKey(d => d.IdCategoria)
-                    .HasConstraintName("FK__EQUIPAMEN__id_ca__3F466844");
+                    .HasConstraintName("FK__EQUIPAMEN__id_ca__5165187F");
             });
 
             modelBuilder.Entity<Imagemclassificado>(entity =>
             {
                 entity.HasKey(e => e.IdImagemClassificado)
-                    .HasName("PK__IMAGEMCL__8113F4367A27BCA2");
+                    .HasName("PK__IMAGEMCL__8113F4369033141E");
 
-                entity.Property(e => e.ImagemPrincipal).IsUnicode(false);
+                entity.Property(e => e.Imagem).IsUnicode(false);
 
-                entity.Property(e => e.ImagemSec1).IsUnicode(false);
-
-                entity.Property(e => e.ImagemSec2).IsUnicode(false);
-
-                entity.Property(e => e.ImagemSec3).IsUnicode(false);
+                entity.HasOne(d => d.IdClassificadoNavigation)
+                    .WithMany(p => p.Imagemclassificado)
+                    .HasForeignKey(d => d.IdClassificado)
+                    .HasConstraintName("FK__IMAGEMCLA__id_cl__5812160E");
             });
 
             modelBuilder.Entity<Interesse>(entity =>
             {
                 entity.HasKey(e => e.IdInteresse)
-                    .HasName("PK__INTERESS__9AA7BC1A2F09C176");
+                    .HasName("PK__INTERESS__9AA7BC1A53E057D1");
 
                 entity.Property(e => e.Comprador).HasDefaultValueSql("((0))");
 
@@ -129,18 +123,18 @@ namespace TW.Models
                 entity.HasOne(d => d.IdClassificadoNavigation)
                     .WithMany(p => p.Interesse)
                     .HasForeignKey(d => d.IdClassificado)
-                    .HasConstraintName("FK__INTERESSE__id_cl__4BAC3F29");
+                    .HasConstraintName("FK__INTERESSE__id_cl__5DCAEF64");
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Interesse)
                     .HasForeignKey(d => d.IdUsuario)
-                    .HasConstraintName("FK__INTERESSE__id_us__4CA06362");
+                    .HasConstraintName("FK__INTERESSE__id_us__5EBF139D");
             });
 
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => e.IdUsuario)
-                    .HasName("PK__USUARIO__4E3E04AD74668D78");
+                    .HasName("PK__USUARIO__4E3E04ADF5486FDE");
 
                 entity.Property(e => e.CategoriaUsuario).HasDefaultValueSql("((1))");
 

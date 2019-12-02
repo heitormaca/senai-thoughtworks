@@ -6,9 +6,9 @@ using TW.Models;
 
 namespace TW.Repositorios
 {
-    public class ImagemClassificadoRepositorio : IImagemClassificado
+    public class ImagemclassificadoRepositorio : IImagemclassificado
     {
-        TwContext context = new TwContext();
+        TWContext context = new TWContext();
 
         public async Task<Imagemclassificado> Delete(Imagemclassificado imagemRetornada)
         {

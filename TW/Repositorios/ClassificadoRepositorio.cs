@@ -11,7 +11,7 @@ namespace TW.Repositorios
 {
     public class ClassificadoRepositorio : IClassificadoRepositorio
     {
-        TwContext context = new TwContext();
+        TWContext context = new TWContext();
     
         public async Task<List<Classificado>> GetListHome(string busca, string marca, string categoria, bool ordenacao)
         {
@@ -19,7 +19,7 @@ namespace TW.Repositorios
                 .Classificado
                 .Include(a => a.IdEquipamentoNavigation)
                 .Include(a => a.IdEquipamentoNavigation.IdCategoriaNavigation)
-                .Include(a => a.IdImagemClassificadoNavigation)
+                .Include(a => a.Imagemclassificado)
                 .Include(a => a.Interesse)
                 .AsQueryable();
 
@@ -99,7 +99,7 @@ namespace TW.Repositorios
             Classificado produto = await context.Classificado
                                     .Include(a => a.IdEquipamentoNavigation)
                                     .Include(a => a.IdEquipamentoNavigation.IdCategoriaNavigation)
-                                    .Include(a => a.IdImagemClassificadoNavigation)
+                                    .Include(a => a.Imagemclassificado)
                                     .Include(a => a.Interesse)
                                     .Where(a => a.IdClassificado == id)
                                     .FirstOrDefaultAsync();

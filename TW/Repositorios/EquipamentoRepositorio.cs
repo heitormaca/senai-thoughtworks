@@ -9,7 +9,7 @@ namespace TW.Repositorios
 {
     public class EquipamentoRepositorio : IEquipamentoRepositorio
     {
-        TwContext context = new TwContext();
+        TWContext context = new TWContext();
         public async Task<List<Equipamento>> GetList(string busca, bool? ordNomeE, bool? ordMarca, bool? ordMem, bool? ordModelo, bool? ordSO, bool? ordPol, bool? ordPeso, bool? ordPvideo, bool? ordProc, bool? ordHd, bool? ordSsd)
         {
             var query = context

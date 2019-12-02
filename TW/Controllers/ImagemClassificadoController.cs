@@ -8,54 +8,54 @@ using TW.Repositorios;
 namespace TW.Controllers
 {
 
-    [Route("api/[controller]")]
-    [ApiController]
-    [Produces("application/json")]
+   [Route("api/[controller]")]
+   [ApiController]
+   [Produces("application/json")]
 
-    public class ImagemClassificadoController : ControllerBase
-    {
-       
-       ImagemClassificadoRepositorio repositorio = new ImagemClassificadoRepositorio();
+   public class ImagemClassificadoController : ControllerBase
+   {
+      
+      ImagemclassificadoRepositorio repositorio = new ImagemclassificadoRepositorio();
 
-      //  [HttpGet]
-      //  public async Task<ActionResult<List<Imagemclassificado>>> Get()
-      //  {
-      //    try
-      //    {
-      //         return await repositorio.Get();
-      //    }
-      //    catch (System.Exception)
-      //    {
-      //       throw;
-      //    }
-      //  }
+   //  [HttpGet]
+   //  public async Task<ActionResult<List<Imagemclassificado>>> Get()
+   //  {
+   //    try
+   //    {
+   //         return await repositorio.Get();
+   //    }
+   //    catch (System.Exception)
+   //    {
+   //       throw;
+   //    }
+   //  }
 
-      //  [HttpGet("{id}")]
+   //  [HttpGet("{id}")]
 
-      //  public async Task<ActionResult<Imagemclassificado>> GetAction(int id)
-      //  {
-      //     Imagemclassificado imagemRetornanda = await repositorio.Get(id);
-      //     if(imagemRetornanda == null)
-      //     {
-      //        return NotFound();
-      //     }
-      //     return imagemRetornanda;
-      //  }
+   //  public async Task<ActionResult<Imagemclassificado>> GetAction(int id)
+   //  {
+   //     Imagemclassificado imagemRetornanda = await repositorio.Get(id);
+   //     if(imagemRetornanda == null)
+   //     {
+   //        return NotFound();
+   //     }
+   //     return imagemRetornanda;
+   //  }
 
-       [HttpPost]
+   [HttpPost]
 
-       public async Task<ActionResult<Imagemclassificado>> Post(Imagemclassificado imagem)
-       {
-          try 
-          {
-             await repositorio.Post(imagem);
-          }
-          catch (System.Exception)
-          {
-             throw;
-          }
-          return imagem;
-       }
+   public async Task<ActionResult<Imagemclassificado>> Post(Imagemclassificado imagem)
+   {
+      try
+      {
+         await repositorio.Post(imagem);
+      }
+      catch (System.Exception)
+      {
+         throw;
+      }
+      return imagem;
+   }
        
 
 

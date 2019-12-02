@@ -10,6 +10,7 @@ namespace TW.Models
     {
         public Classificado()
         {
+            Imagemclassificado = new HashSet<Imagemclassificado>();
             Interesse = new HashSet<Interesse>();
         }
 
@@ -35,17 +36,14 @@ namespace TW.Models
         public string SoftwaresInclusos { get; set; }
         [Column("status_classificado")]
         public bool? StatusClassificado { get; set; }
-        [Column("id_imagem_classificado")]
-        public int? IdImagemClassificado { get; set; }
         [Column("id_equipamento")]
         public int? IdEquipamento { get; set; }
 
         [ForeignKey(nameof(IdEquipamento))]
         [InverseProperty(nameof(Equipamento.Classificado))]
         public virtual Equipamento IdEquipamentoNavigation { get; set; }
-        [ForeignKey(nameof(IdImagemClassificado))]
-        [InverseProperty(nameof(Imagemclassificado.Classificado))]
-        public virtual Imagemclassificado IdImagemClassificadoNavigation { get; set; }
+        [InverseProperty("IdClassificadoNavigation")]
+        public virtual ICollection<Imagemclassificado> Imagemclassificado { get; set; }
         [InverseProperty("IdClassificadoNavigation")]
         public virtual ICollection<Interesse> Interesse { get; set; }
     }

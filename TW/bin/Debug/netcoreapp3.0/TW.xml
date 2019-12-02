@@ -81,6 +81,13 @@
             </summary>
             <returns>Retorna a lista dos interesses do usuário logado.</returns>
         </member>
+        <member name="M:TW.Controllers.InteresseController.GetInteresseId(System.Int32)">
+            <summary>
+            Método de busca de interesse por ID
+            </summary>
+            <param name="id">Recebe o ID especifico do interesse</param>
+            <returns>Retorna para o usuário o interesse buscado</returns>
+        </member>
         <member name="M:TW.Controllers.InteresseController.PostInteresse(TW.Models.Interesse)">
             <summary>
             Método para Cadastrar o interesse do usuário logado.

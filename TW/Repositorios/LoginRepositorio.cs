@@ -9,7 +9,7 @@ namespace TW.Repositorios
 {
     public class LoginRepositorio : ILoginRepositorio
     {
-        TwContext context = new TwContext();
+        TWContext context = new TWContext();
         public  Usuario Login(LoginViewModel login)
         {
             Usuario usuario =  context.Usuario.FirstOrDefault(u => u.Email == login.Email && u.Senha == login.Senha);

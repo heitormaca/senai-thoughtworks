@@ -31,15 +31,7 @@ CREATE TABLE EQUIPAMENTO(
 	peso VARCHAR(50),
 	dimensoes VARCHAR(50),
 	status_equipamento BIT DEFAULT(1),
-	id_categoria INT FOREIGN KEY REFERENCES CATEGORIA(id_categoria),
-);
-
-CREATE TABLE IMAGEMCLASSIFICADO(
-	id_imagem_classificado INT IDENTITY PRIMARY KEY NOT NULL,
-	imagem_principal VARCHAR(255) NOT NULL,
-	imagem_sec1 VARCHAR(255),
-	imagem_sec2 VARCHAR(255),
-	imagem_sec3 VARCHAR(255)
+	id_categoria INT FOREIGN KEY REFERENCES CATEGORIA(id_categoria)
 );
 CREATE TABLE CLASSIFICADO(
 	id_classificado INT IDENTITY PRIMARY KEY NOT NULL,
@@ -51,9 +43,14 @@ CREATE TABLE CLASSIFICADO(
 	data_fabricacao DATE NOT NULL,
 	softwares_inclusos TEXT,
 	status_classificado BIT DEFAULT(1),
-	id_imagem_classificado INT FOREIGN KEY REFERENCES IMAGEMCLASSIFICADO(id_imagem_classificado),
 	id_equipamento INT FOREIGN KEY REFERENCES EQUIPAMENTO(id_equipamento)
 );
+CREATE TABLE IMAGEMCLASSIFICADO(
+	id_imagem_classificado INT IDENTITY PRIMARY KEY NOT NULL,
+	imagem VARCHAR(255),
+	id_classificado INT FOREIGN KEY REFERENCES CLASSIFICADO(id_classificado)
+);
+
 CREATE TABLE INTERESSE(
 	id_interesse INT IDENTITY PRIMARY KEY NOT NULL,
 	status_interesse BIT DEFAULT(1),
@@ -63,5 +60,3 @@ CREATE TABLE INTERESSE(
 	id_classificado INT FOREIGN KEY REFERENCES CLASSIFICADO(id_classificado),
 	id_usuario INT FOREIGN KEY REFERENCES USUARIO(id_usuario)
 );
-
-SELECT * FROM INFORMATION_SCHEMA.TABLES;

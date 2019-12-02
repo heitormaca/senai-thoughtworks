@@ -11,12 +11,12 @@ namespace TW.Repositorios
 {
     public class InteresseRepositorio : IInteresseRepositorio
     {
-        TwContext context = new TwContext();
+        TWContext context = new TWContext();
         public async Task<List<Interesse>> GetListInteresse(int id)
         {
             List<Interesse> listaInteresse = await context.Interesse.Include(a => a.IdClassificadoNavigation)
                                                                     .Include(b => b.IdClassificadoNavigation.IdEquipamentoNavigation)
-                                                                    .Include (c => c.IdClassificadoNavigation.IdImagemClassificadoNavigation)
+                                                                    .Include (c =>c.IdClassificadoNavigation.Imagemclassificado)
                                                                     .Where(l => l.IdUsuario == id)
                                                                     .ToListAsync();
                                                 

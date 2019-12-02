@@ -62,21 +62,21 @@ namespace TW.Controllers {
 
         }
 
-        // /// <summary>
-        // /// Método de busca de interesse por ID
-        // /// </summary>
-        // /// <param name="id">Recebe o ID especifico do interesse</param>
-        // /// <returns>Retorna para o usuário o interesse buscado</returns>
+        /// <summary>
+        /// Método de busca de interesse por ID
+        /// </summary>
+        /// <param name="id">Recebe o ID especifico do interesse</param>
+        /// <returns>Retorna para o usuário o interesse buscado</returns>
 
-        // [HttpGet ("{id}")]
-        // public async Task<ActionResult<Interesse>> GetTandoFaz(int id) {
-        //     Interesse interesseRetornado = await repositorio.GetbyId(id);
-        //     if(interesseRetornado == null)
-        //     {
-        //         return NotFound();
-        //     }
-        //     return interesseRetornado;
-        // }
+        [HttpGet("identificador/{id}")]
+        public async Task<ActionResult<Interesse>> GetInteresseId(int id) {
+            Interesse interesseRetornado = await repositorio.GetbyId(id);
+            if(interesseRetornado == null)
+            {
+                return NotFound();
+            }
+            return interesseRetornado;
+        }
 
         /// <summary>
         /// Método para Cadastrar o interesse do usuário logado.

@@ -9,7 +9,7 @@ namespace TW.Repositorios
 {
     public class UsuarioRepositorio : IUsuarioRepositorio
     {
-        TwContext context = new TwContext();
+        TWContext context = new TWContext();
         
 
         public async Task<List<Usuario>> GetList(string busca, bool? ordNomeC, bool? ordNomeU, bool? ordEmail)

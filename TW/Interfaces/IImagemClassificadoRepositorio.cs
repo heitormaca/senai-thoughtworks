@@ -4,7 +4,7 @@ using TW.Models;
 
 namespace TW.Infertaces
 {
-    public interface IImagemClassificado
+    public interface IImagemclassificado
     {
         Task<List<Imagemclassificado>> Get();
         Task<Imagemclassificado> Get(int id);

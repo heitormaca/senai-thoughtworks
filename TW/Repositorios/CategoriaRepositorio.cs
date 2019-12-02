@@ -9,7 +9,7 @@ namespace TW.Repositorios
 {
     public class CategoriaRepositorio : ICategoriaRepositorio
     {
-        TwContext context = new TwContext();
+        TWContext context = new TWContext();
 
         public async Task<List<Categoria>> GetList(string busca, bool ordenacao)
         {
