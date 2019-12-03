@@ -6579,11 +6579,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\heito\\Desktop\\Nova pasta\\TWNewTime\\TW\\TW.csproj",
+      "projectUniqueName": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
       "projectName": "TW",
-      "projectPath": "C:\\Users\\heito\\Desktop\\Nova pasta\\TWNewTime\\TW\\TW.csproj",
+      "projectPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
       "packagesPath": "C:\\Users\\heito\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\heito\\Desktop\\Nova pasta\\TWNewTime\\TW\\obj\\",
+      "outputPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\heito\\AppData\\Roaming\\NuGet\\NuGet.Config"
