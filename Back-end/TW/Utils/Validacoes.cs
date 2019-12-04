@@ -1,12 +1,13 @@
 using System;
 using System.Net;
 using System.Net.Mail;
+using Spire.Pdf;
 
 namespace TW.Utils
 {
     public class Validacoes
     {
-        public bool EnvioEmail (string email, string titulo, string body, string anexo) {
+        public bool EnvioEmail (string email, string titulo, string body, PdfDocument anexo) {
             try {
                 // Estancia da Classe de Mensagem
                 MailMessage _mailMessage = new MailMessage ();
@@ -34,7 +35,7 @@ namespace TW.Utils
 
                 _smtpClient.UseDefaultCredentials = false;
 
-                _smtpClient.Credentials = new NetworkCredential ("lightcodexp@gmail.com", "Codexp@l2"   );
+                _smtpClient.Credentials = new NetworkCredential ("lightcodexp@gmail.com", "Codexp@l23"   );
 
                 _smtpClient.EnableSsl = true;
 
@@ -65,15 +66,9 @@ namespace TW.Utils
                 //CONFIGURAÇÃO COM PORTA
                 SmtpClient _smtpClient = new SmtpClient ("smtp.gmail.com", Convert.ToInt32 ("587"));
 
-                //CONFIGURAÇÃO SEM PORTA
-
-                // SmtpClient _smtpClient = new SmtpClient(UtilRsource.ConfigSmtp);
-
-                // Credencial para envio por SMTP Seguro (Quando o servidor exige autenticação);
-
                 _smtpClient.UseDefaultCredentials = false;
 
-                _smtpClient.Credentials = new NetworkCredential ("lightcodexp@gmail.com", "Codexp@l2");
+                _smtpClient.Credentials = new NetworkCredential ("lightcodexp@gmail.com", "Codexp@l23");
 
                 _smtpClient.EnableSsl = true;
 

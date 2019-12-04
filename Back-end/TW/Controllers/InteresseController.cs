@@ -1,11 +1,13 @@
-using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Spire.Pdf;
+using Spire.Pdf.Graphics;
 using TW.Models;
 using TW.Repositorios;
 using TW.Utils;
@@ -130,6 +132,100 @@ namespace TW.Controllers {
                     throw;
                 }
             }
+        }
+        [HttpPut ("email/{id}")]
+        public async Task<ActionResult<Interesse>> PutEmail (int id, Interesse interesse) {
+
+            if (id != interesse.IdInteresse) {
+                return BadRequest ();
+            }
+
+            try {
+
+                var temp = interesse.IdClassificado;
+
+                interesse.Comprador = true;
+
+                var x = await repositorio.Put (interesse);
+
+                string titulo = $"Não foi dessa vez {interesse.IdUsuarioNavigation.NomeCompleto} - CLASSIFICADO ENCERRADO! - {interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento}";
+                // Construct the alternate body as HTML.
+                
+                string body = System.IO.File.ReadAllText (@"NaoComprador.html");
+
+                System.Console.WriteLine ("Contents of NaoComprador.html = {0}", body);
+
+                List<Interesse> lstInteresse = await repositorio.Get ();
+
+                foreach (var item in lstInteresse) {
+                    if (item.IdClassificado == temp && item.Comprador == false) {
+                        validacoes.EnvioEmailUsers (item.IdUsuarioNavigation.Email, titulo, body);
+                    }else if(item.IdClassificado == temp && item.Comprador == true)             
+                    {
+
+                        body = System.IO.File.ReadAllText (@"Comprador.html");
+                
+                        titulo = $"Parabéns {interesse.IdUsuarioNavigation.NomeCompleto} você foi selecionado - Você acaba de adquirir {interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento}";
+
+                        System.Console.WriteLine ("Contents of Comprador.html = {0}", body);
+
+                        string nome = interesse.IdUsuarioNavigation.NomeCompleto;
+                        string email = interesse.IdUsuarioNavigation.Email;
+                        string nomeClassificado = interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento;
+                        string codigoClassificado = interesse.IdClassificadoNavigation.CodigoClassificado.ToString();
+                        string nsClassificado = interesse.IdClassificadoNavigation.NumeroDeSerie;
+
+                        PdfDocument anexo = Pdf(nome, email, nomeClassificado, codigoClassificado, nsClassificado);
+
+
+                        // string anexo = @"C:\Users\fic\Desktop\apostila.pdf";
+
+                        validacoes.EnvioEmail(item.IdUsuarioNavigation.Email, titulo, body, anexo);
+                    }
+                }
+
+                return x;
+
+            } catch (DbUpdateConcurrencyException) {
+                var interesseValido = await repositorio.GetbyId(id);
+                if (interesseValido == null) {
+                    return NotFound ();
+                } else {
+                    throw;
+                }
+            }
+
+        }
+
+        private PdfDocument Pdf(string nome, string email, string nomeClassificado, string codigoClassificado, string nsClassificado)
+        {
+            PdfDocument doc = new PdfDocument();
+            PdfPageBase page = doc.Pages.Add();
+            page.Canvas.DrawString(@"New Time - Documento de compra"+
+                                    "Nome: "+nome+
+                                    "Email: "+email+
+                                    "Nome do Produto: "+nomeClassificado+
+                                    "Código do Classificado: "+codigoClassificado+
+                                    "Número de série:"+nsClassificado,
+                                    new PdfFont(PdfFontFamily.Helvetica, 13f),
+                                    new PdfSolidBrush(Color.Black),
+                                    new PointF(50, 50));
+                                    doc.SaveToFile("Compra.pdf");
+            return doc;
+            
+
+            
+
+
+
+
+
+
+
+
+          
+          
+            
         }
     }
 }   

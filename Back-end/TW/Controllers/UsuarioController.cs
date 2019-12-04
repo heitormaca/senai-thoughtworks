@@ -76,6 +76,41 @@ namespace TW.Controllers
                 throw;
             }
         }
+        [Authorize]
+        [HttpPatch("forgotPassword")]
+
+        private Usuario Autenticacao(ForgotPasswordViewModel verificacao)
+        {
+            Usuario usuario = repositorio.Verificacao(verificacao);
+            return usuario;
+        }
+        public IActionResult PostForgotPassword([FromBody] ForgotPasswordViewModel verificacao)
+        {
+            IActionResult response = Unauthorized();
+            var user = Autenticacao(verificacao);
+            if(user!=null)
+            {
+               repositorio.PutAtulizarsenha()
+               EnviaEmailcomNovaSenha()
+
+            }else{
+                return NotFound();
+            }
+        }
+        public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordViewModel model){
+            try
+            {
+                var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
+                var usr = await repositorio.Get(int.Parse(idDoUsuario));
+                usr.Senha = model.Senha;
+                await repositorio.Put(usr);
+                return Ok(usr);
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+        }
 
         /// <summary>
         /// Método para cadastrar usuário comum ou administrador no sistema.
@@ -122,19 +157,19 @@ namespace TW.Controllers
             }
         }
 
-        private string Upload (IFormFile arquivo, string savingFolder){
+        private string Upload(IFormFile arquivo, string savingFolder){
             
             if(savingFolder == null) {
-                savingFolder = Path.Combine ("imgUpdated");                
+                savingFolder = Path.Combine("imgUpdated");                
             }
 
-            var pathToSave = Path.Combine (Directory.GetCurrentDirectory (), savingFolder);
+            var pathToSave = Path.Combine(Directory.GetCurrentDirectory (), savingFolder);
 
             if (arquivo.Length > 0) {
                 var fileName = ContentDispositionHeaderValue.Parse (arquivo.ContentDisposition).FileName.Trim ('"');
                 var fullPath = Path.Combine (pathToSave, fileName);
 
-                using (var stream = new FileStream (fullPath, FileMode.Create)) {
+                using(var stream = new FileStream (fullPath, FileMode.Create)) {
                     arquivo.CopyTo (stream);
                 }                    
 

@@ -2,13 +2,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace TW.ViewModel
 {
-    public class LoginViewModel
+    public class ForgotPasswordViewModel
     {
         [Required]
         [StringLength(255)]
         public string Email { get; set; }
-        [StringLength(255, MinimumLength = 5)]
         [Required]
-        public string Senha { get; set; }
+        [StringLength(255)]
+        public string NomeCompleto { get; set; }
+        
     }
 }

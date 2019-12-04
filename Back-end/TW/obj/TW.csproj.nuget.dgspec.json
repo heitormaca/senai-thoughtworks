@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {}
+    "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {}
   },
   "projects": {
-    "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {
+    "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
+        "projectUniqueName": "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
         "projectName": "TW",
-        "projectPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
+        "projectPath": "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
         "packagesPath": "C:\\Users\\heito\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\obj\\",
+        "outputPath": "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\heito\\AppData\\Roaming\\NuGet\\NuGet.Config"
@@ -53,6 +53,10 @@
             "Microsoft.EntityFrameworkCore.SqlServer": {
               "target": "Package",
               "version": "[3.0.0, )"
+            },
+            "Spire.PDF": {
+              "target": "Package",
+              "version": "[5.11.18, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",

@@ -5,6 +5,6 @@ namespace TW.Interfaces
 {
     public interface ILoginRepositorio
     {
-         Usuario Login(LoginViewModel login);
+        Usuario Login(LoginViewModel login);
     }
 }

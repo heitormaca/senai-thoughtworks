@@ -68,35 +68,38 @@ namespace TW.Controllers
             return classificadoRetornado;
         }
 
-        // [HttpPost]
-        // [DisableRequestSizeLimit]
-        // public async Task<ActionResult<Classificado>> Post([FromForm] Classificado classificado)
-        // {
-        //     // ImagemclassificadoRepositorio imagem = new ImagemclassificadoRepositorio();
-        //     // Imagemclassificado imagens = new Imagemclassificado();
+        [HttpPost]
+        [DisableRequestSizeLimit]
+        public async Task<ActionResult<Classificado>> Post([FromForm] Classificado classificado)
+        {
+            ImagemclassificadoRepositorio imagemRepositorio = new ImagemclassificadoRepositorio();
+            Imagemclassificado imagem = new Imagemclassificado();
 
 
-        //         var arquivo = Request.Form.Files[0];
-        //     try
-        //     {
+                var arquivo = Request.Form.Files[0];
+            try
+            {
                
                 
-        //        Classificado classificadoSalvo = await repositorio.Post(classificado);
+               Classificado classificadoSalvo = await repositorio.Post(classificado);
 
-        //         Upload(arquivo, "Imagens/ClassificadoImagens");
+
+                imagem.IdClassificado = classificadoSalvo.IdClassificado;
+                imagem.Imagem = Upload(arquivo, "Imagens/ClassificadoImagens");
+
+                await repositorio.Post(classificado);
                 
-        //         await imagem.Post(imagens); 
+                await imagemRepositorio.Post(imagem); 
 
-        //         await repositorio.Post(classificado);
                 
       
-        //     }
-        //     catch (System.Exception)
-        //     {
-        //         throw;
-        //     }
-        //     return classificado;
-        // }
+            }
+            catch (System.Exception)
+            {
+                throw;
+            }
+            return classificado;
+        }
         private string Upload(IFormFile arquivo,string savingFolder){
             
             if(savingFolder == null) {

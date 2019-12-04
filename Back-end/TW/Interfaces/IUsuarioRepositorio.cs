@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TW.Models;
+using TW.ViewModel;
 
 namespace TW.Interfaces
 {
@@ -12,5 +13,7 @@ namespace TW.Interfaces
         Task<Usuario> Post(Usuario usuario);
         Task<bool> ValidaEmail(Usuario usuario);
         Task<Usuario> Put(Usuario usuario);
+        Usuario Verificacao(ForgotPasswordViewModel login);
+
     }
 }   

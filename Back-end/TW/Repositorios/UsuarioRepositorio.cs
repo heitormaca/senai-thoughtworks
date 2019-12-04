@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using TW.Interfaces;
 using TW.Models;
+using TW.ViewModel;
 
 namespace TW.Repositorios
 {
@@ -75,6 +76,11 @@ namespace TW.Repositorios
         {
             context.Entry(usuario).State = EntityState.Modified;
             await context.SaveChangesAsync();
+            return usuario;
+        }
+
+        public Usuario Verificacao(ForgotPasswordViewModel verificacao){
+            Usuario usuario = context.Usuario.FirstOrDefault(u => u.Email == verificacao.Email && u.Senha == verificacao.NomeCompleto);
             return usuario;
         }
     }
