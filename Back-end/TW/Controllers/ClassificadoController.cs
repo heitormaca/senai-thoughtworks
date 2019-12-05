@@ -13,7 +13,7 @@ using TW.Models;
 using TW.Repositorios;
 
 namespace TW.Controllers
-{   
+{
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
@@ -31,7 +31,7 @@ namespace TW.Controllers
         /// <param name="ordenacao">Envia um estado true para ordenar Crescente e false para ordenar decrescente.</param>
         /// <returns>Retorna a lista de classificados com seus respectivos nomes, imagens e preços para a barra de busca e para os filtros da home page.</returns>
         [HttpGet]
-        [Authorize(Roles="Comum")]
+        [Authorize(Roles = "Comum")]
         public async Task<IActionResult> GetHome(string busca, string marca, string categoria, bool ordenacao)
         {
             return Ok(await repositorio.GetListHome(busca, marca, categoria, ordenacao));
@@ -46,8 +46,9 @@ namespace TW.Controllers
         /// <param name="ordNumSerie">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
         /// <returns>Retorna uma lista, uma busca e um tipo de ordenação para classificados.</returns>
         [HttpGet("adm")]
-        [Authorize(Roles="Administrador")]
-        public async Task<IActionResult> GetAdm(string busca, bool? ordNomeE, bool? ordCodClass, bool? ordNumSerie){
+        [Authorize(Roles = "Administrador")]
+        public async Task<IActionResult> GetAdm(string busca, bool? ordNomeE, bool? ordCodClass, bool? ordNumSerie)
+        {
             return Ok(await repositorio.GetListAdm(busca, ordNomeE, ordCodClass, ordNumSerie));
         }
 
@@ -61,64 +62,68 @@ namespace TW.Controllers
         public async Task<ActionResult<Classificado>> GetProductClassificado(int id)
         {
             Classificado classificadoRetornado = await repositorio.GetPageProduct(id);
-            if(classificadoRetornado == null)
+            if (classificadoRetornado == null)
             {
                 return NotFound();
             }
             return classificadoRetornado;
         }
-
+        
+        
         [HttpPost]
         [DisableRequestSizeLimit]
-        public async Task<ActionResult<Classificado>> Post([FromForm] Classificado classificado)
+        public async Task<IActionResult> PostClassificado([FromForm] Classificado classificado)
         {
-            ImagemclassificadoRepositorio imagemRepositorio = new ImagemclassificadoRepositorio();
-            Imagemclassificado imagem = new Imagemclassificado();
-
-
-                var arquivo = Request.Form.Files[0];
             try
             {
-               
-                
-               Classificado classificadoSalvo = await repositorio.Post(classificado);
+                var files = Request.Form.Files;
 
+                if (files.Count < 1) return BadRequest("Favor informar ao menos uma mensagem");
 
-                imagem.IdClassificado = classificadoSalvo.IdClassificado;
-                imagem.Imagem = Upload(arquivo, "Imagens/ClassificadoImagens");
+                var listaImagens = new List<Imagemclassificado>();
+                foreach (var file in files)
+                {
+                    var imagem = Upload(file, "Imagens/ClassificadoImagens");
+                    listaImagens.Add(new Imagemclassificado()
+                    {
+                        Imagem = imagem
+                    });
+                }
 
-                await repositorio.Post(classificado);
-                
-                await imagemRepositorio.Post(imagem); 
+                classificado.Imagemclassificado = listaImagens;
 
-                
-      
+                return Ok(await repositorio.Post(classificado));
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-                throw;
+                return StatusCode(500, e);
             }
-            return classificado;
         }
-        private string Upload(IFormFile arquivo,string savingFolder){
-            
-            if(savingFolder == null) {
-                savingFolder = Path.Combine("imgUpdated");                
+        private string Upload(IFormFile arquivo, string savingFolder)
+        {
+
+            if (savingFolder == null)
+            {
+                savingFolder = Path.Combine("imgUpdated");
             }
 
             var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), savingFolder);
 
-            if (arquivo.Length > 0) {
+            if (arquivo.Length > 0)
+            {
                 var fileName = ContentDispositionHeaderValue.Parse(arquivo.ContentDisposition).FileName.Trim('"');
                 var fullPath = Path.Combine(pathToSave, fileName);
 
-                using (var stream = new FileStream (fullPath, FileMode.Create)) {
+                using (var stream = new FileStream(fullPath, FileMode.Create))
+                {
                     arquivo.CopyTo(stream);
-                }                    
+                }
                 return fullPath;
-            } else {
+            }
+            else
+            {
                 return null;
-            }    
+            }
         }
         // [HttpPut("{id}")]
         // public async Task<ActionResult<Classificado>> Put(int id, Classificado classificado)
@@ -130,7 +135,7 @@ namespace TW.Controllers
         //     try
         //     {
         //        return await repositorio.Put(classificado);
-                
+
         //     }
         //     catch (DbUpdateConcurrencyException)
         //     {

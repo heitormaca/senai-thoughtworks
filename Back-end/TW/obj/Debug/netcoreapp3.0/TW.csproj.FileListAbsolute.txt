@@ -112,3 +112,10 @@ C:\Users\heito\Desktop\TWNewTime\Back-end\TW\obj\Debug\netcoreapp3.0\TW.csproj.C
 C:\Users\heito\Desktop\TWNewTime\Back-end\TW\obj\Debug\netcoreapp3.0\TW.dll
 C:\Users\heito\Desktop\TWNewTime\Back-end\TW\obj\Debug\netcoreapp3.0\TW.xml
 C:\Users\heito\Desktop\TWNewTime\Back-end\TW\obj\Debug\netcoreapp3.0\TW.pdb
+C:\Users\heito\Desktop\TWNewTime\Back-end\TW\bin\Debug\netcoreapp3.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\heito\Desktop\TWNewTime\Back-end\TW\bin\Debug\netcoreapp3.0\Spire.License.dll
+C:\Users\heito\Desktop\TWNewTime\Back-end\TW\bin\Debug\netcoreapp3.0\Spire.Pdf.dll
+C:\Users\heito\Desktop\TWNewTime\Back-end\TW\bin\Debug\netcoreapp3.0\System.Drawing.Common.dll
+C:\Users\heito\Desktop\TWNewTime\Back-end\TW\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\heito\Desktop\TWNewTime\Back-end\TW\bin\Debug\netcoreapp3.0\runtimes\unix\lib\netcoreapp2.0\System.Drawing.Common.dll
+C:\Users\heito\Desktop\TWNewTime\Back-end\TW\bin\Debug\netcoreapp3.0\runtimes\win\lib\netcoreapp2.0\System.Drawing.Common.dll

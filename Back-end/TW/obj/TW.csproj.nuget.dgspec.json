@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {}
+    "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {}
   },
   "projects": {
-    "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {
+    "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
+        "projectUniqueName": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
         "projectName": "TW",
-        "projectPath": "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
+        "projectPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
         "packagesPath": "C:\\Users\\heito\\.nuget\\packages\\",
-        "outputPath": "c:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\obj\\",
+        "outputPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\heito\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -206,26 +206,14 @@ namespace TW.Controllers {
                                     "Email: "+email+
                                     "Nome do Produto: "+nomeClassificado+
                                     "Código do Classificado: "+codigoClassificado+
-                                    "Número de série:"+nsClassificado,
+                                    "Número de série: "+nsClassificado+
+                                    "Assinatura do Comprador ________________________________"+
+                                    "Assinatura da Empresa __________________________________",
                                     new PdfFont(PdfFontFamily.Helvetica, 13f),
                                     new PdfSolidBrush(Color.Black),
                                     new PointF(50, 50));
                                     doc.SaveToFile("Compra.pdf");
-            return doc;
-            
-
-            
-
-
-
-
-
-
-
-
-          
-          
-            
+            return doc;   
         }
     }
 }   

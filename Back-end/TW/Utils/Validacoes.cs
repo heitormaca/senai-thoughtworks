@@ -21,7 +21,7 @@ namespace TW.Utils
                 _mailMessage.Subject = titulo;
                 _mailMessage.IsBodyHtml = true;
                 _mailMessage.Body = body;
-                _mailMessage.Attachments.Add(new Attachment(anexo));
+                _mailMessage.Attachments.Add(new Attachment(anexo.ToString()));
                 
 
                 //CONFIGURAÇÃO COM PORTA
