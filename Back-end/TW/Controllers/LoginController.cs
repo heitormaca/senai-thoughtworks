@@ -1,9 +1,7 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.Linq;
 using System.Security.Claims;
 using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -70,7 +68,7 @@ namespace TW.Controllers {
         [AllowAnonymous]
         [HttpPost]
         public IActionResult PostLogin([FromBody] LoginViewModel login) {
-            IActionResult response = Unauthorized ();
+            IActionResult response = Unauthorized();
             var user = Autenticacao (login);
 
             if (user != null) {
@@ -78,10 +76,6 @@ namespace TW.Controllers {
                 response = Ok (new { token = tokenString });
             }
             return response;
-        }
-
-        internal static object Equals () {
-            throw new NotImplementedException ();
         }
     }
 }

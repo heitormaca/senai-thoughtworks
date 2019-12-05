@@ -44,6 +44,13 @@
             <param name="id">Envia um id.</param>
             <returns>Retorna um classificado específico com todas as informações (Equipamento,Imagens).</returns>
         </member>
+        <member name="M:TW.Controllers.ClassificadoController.PostClassificado(TW.Models.Classificado)">
+            <summary>
+            Método para cadastrar um classificado com no mínimo uma imagem.
+            </summary>
+            <param name="classificado">Envia uma classificado.</param>
+            <returns>Retorna o classificado cadastrado.</returns>
+        </member>
         <member name="M:TW.Controllers.EquipamentoController.GetListEqui(System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
             <summary>
             Método que lista, busca e ordena equipamentos.
@@ -69,24 +76,11 @@
             <param name="equipamento">Envia um equipamento.</param>
             <returns>Retorna o equipamento recém cadastrado.</returns>
         </member>
-        <member name="M:TW.Controllers.InteresseController.Get">
-            <summary>
-            Método que traz uma lista de Interesses
-            </summary>
-            <returns>Retorna uma lista de Interesses</returns>
-        </member>
         <member name="M:TW.Controllers.InteresseController.GetListInteresse">
             <summary>
             Método que lista os interesses do usuário logado.
             </summary>
             <returns>Retorna a lista dos interesses do usuário logado.</returns>
-        </member>
-        <member name="M:TW.Controllers.InteresseController.GetInteresseId(System.Int32)">
-            <summary>
-            Método de busca de interesse por ID
-            </summary>
-            <param name="id">Recebe o ID especifico do interesse</param>
-            <returns>Retorna para o usuário o interesse buscado</returns>
         </member>
         <member name="M:TW.Controllers.InteresseController.PostInteresse(TW.Models.Interesse)">
             <summary>

@@ -1,15 +1,12 @@
 using System.IO;
 using System.Net.Http.Headers;
-using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TW.Models;
 using TW.Repositorios;
 using System.Linq;
-using System.Collections.Generic;
 using TW.ViewModel;
 
 namespace TW.Controllers
@@ -44,14 +41,14 @@ namespace TW.Controllers
         /// <returns>Retorna os dados do usuário logado.</returns>
         [Authorize]
         [HttpGet("gUser")]
-        public async Task<ActionResult<Usuario>> GetUser(){
+        public async Task<IActionResult> GetUser(){
            
             try{
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await repositorio.Get(int.Parse(idDoUsuario));
-                return usr;
-            }catch (System.Exception){
-                throw;
+                return Ok(usr);
+            }catch (System.Exception e){
+                return StatusCode(500, e);
             }
         }
 
@@ -71,19 +68,19 @@ namespace TW.Controllers
                 await repositorio.Put(usr);
                 return Ok(usr);
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-                throw;
+                return StatusCode(500, e);
             }
         }
-        [Authorize]
-        [HttpPatch("forgotPassword")]
+        // [Authorize]
+        // [HttpPatch("forgotPassword")]
 
-        private Usuario Autenticacao(ForgotPasswordViewModel verificacao)
-        {
-            Usuario usuario = repositorio.Verificacao(verificacao);
-            return usuario;
-        }
+        // private Usuario Autenticacao(ForgotPasswordViewModel verificacao)
+        // {
+        //     Usuario usuario = repositorio.Verificacao(verificacao);
+        //     return usuario;
+        // }
         // public IActionResult PostForgotPassword([FromBody] ForgotPasswordViewModel verificacao)
         // {
         //     IActionResult response = Unauthorized();
@@ -119,7 +116,7 @@ namespace TW.Controllers
         /// <returns>Retorna os dados do usuário recém cadastrado.</returns>
         [AllowAnonymous]
         [HttpPost]
-        public async Task<ActionResult<Usuario>> PostUser(Usuario usuario)
+        public async Task<IActionResult> PostUser(Usuario usuario)
         {
             try
             {
@@ -130,11 +127,11 @@ namespace TW.Controllers
                 }
                 await repositorio.Post(usuario);
             }
-            catch (System.Exception)
-            {
-                throw;
+            catch (System.Exception e)
+            {   
+                return StatusCode(500, e);
             }
-            return usuario;
+            return Ok(usuario);
         }
 
         /// <summary>
@@ -143,7 +140,7 @@ namespace TW.Controllers
         /// <returns>Atualiza a imagem do usuário logado.</returns>
         [Authorize]
         [HttpPut("userImage")]
-        public async Task<ActionResult<Usuario>> PutUserImage(){
+        public async Task<IActionResult> PutUserImage(){
 
             try{
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
@@ -151,9 +148,9 @@ namespace TW.Controllers
                 var arquivo = Request.Form.Files[0];
                 usr.ImagemUsuario = Upload(arquivo,"Imagens/UsuarioImagens");
                 await repositorio.Put(usr);
-                return usr;
-            }catch (System.Exception){
-                throw;
+                return Ok(usr);
+            }catch (System.Exception e){
+                return StatusCode(500, e);
             }
         }
 
@@ -163,14 +160,14 @@ namespace TW.Controllers
                 savingFolder = Path.Combine("imgUpdated");                
             }
 
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory (), savingFolder);
+            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), savingFolder);
 
             if (arquivo.Length > 0) {
-                var fileName = ContentDispositionHeaderValue.Parse (arquivo.ContentDisposition).FileName.Trim ('"');
-                var fullPath = Path.Combine (pathToSave, fileName);
+                var fileName = ContentDispositionHeaderValue.Parse(arquivo.ContentDisposition).FileName.Trim ('"');
+                var fullPath = Path.Combine(pathToSave, fileName);
 
-                using(var stream = new FileStream (fullPath, FileMode.Create)) {
-                    arquivo.CopyTo (stream);
+                using(var stream = new FileStream(fullPath, FileMode.Create)) {
+                    arquivo.CopyTo(stream);
                 }                    
 
                 return fullPath;

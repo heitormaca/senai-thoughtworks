@@ -66,6 +66,7 @@ namespace TW.Repositorios
             var query = context
                 .Classificado
                 .Include(a => a.IdEquipamentoNavigation)
+                .Include(b => b.Imagemclassificado)
                 .AsQueryable();
             if (!string.IsNullOrEmpty(busca)){
                 query = query.Where(a =>

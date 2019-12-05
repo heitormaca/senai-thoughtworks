@@ -1,14 +1,11 @@
 
-using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TW.Models;
 using TW.Repositorios;
 
@@ -59,17 +56,22 @@ namespace TW.Controllers
         /// <returns>Retorna um classificado específico com todas as informações (Equipamento,Imagens).</returns>
         [Authorize]
         [HttpGet("{id}")]
-        public async Task<ActionResult<Classificado>> GetProductClassificado(int id)
+        public async Task<IActionResult> GetProductClassificado(int id)
         {
             Classificado classificadoRetornado = await repositorio.GetPageProduct(id);
             if (classificadoRetornado == null)
             {
-                return NotFound();
+                return NotFound("Classificado não encontrado.");
             }
-            return classificadoRetornado;
+            return Ok(classificadoRetornado);
         }
         
-        
+        /// <summary>
+        /// Método para cadastrar um classificado com no mínimo uma imagem.
+        /// </summary>
+        /// <param name="classificado">Envia uma classificado.</param>
+        /// <returns>Retorna o classificado cadastrado.</returns>
+        [Authorize(Roles = "Administrador")]
         [HttpPost]
         [DisableRequestSizeLimit]
         public async Task<IActionResult> PostClassificado([FromForm] Classificado classificado)
@@ -78,7 +80,7 @@ namespace TW.Controllers
             {
                 var files = Request.Form.Files;
 
-                if (files.Count < 1) return BadRequest("Favor informar ao menos uma mensagem");
+                if (files.Count < 1) return BadRequest("Favor informar ao menos uma imagem.");
 
                 var listaImagens = new List<Imagemclassificado>();
                 foreach (var file in files)
@@ -125,28 +127,5 @@ namespace TW.Controllers
                 return null;
             }
         }
-        // [HttpPut("{id}")]
-        // public async Task<ActionResult<Classificado>> Put(int id, Classificado classificado)
-        // {
-        //     if(id != classificado.IdClassificado)
-        //     {
-        //         return BadRequest();
-        //     }
-        //     try
-        //     {
-        //        return await repositorio.Put(classificado);
-
-        //     }
-        //     catch (DbUpdateConcurrencyException)
-        //     {
-        //         var classificadoValida = await repositorio.Get(id);
-        //         if(classificadoValida == null)
-        //         {
-        //             return NotFound();
-        //         }else{
-        //             throw;
-        //         }
-        //     }
-        // }
     }
 }

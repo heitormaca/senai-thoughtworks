@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TW.Models;
 using TW.Repositorios;
 
@@ -30,9 +28,9 @@ namespace TW.Controllers
                 return Ok(await repositorio.GetList(busca, ordenacao));
             
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-                throw;
+                return StatusCode(500, e);
             } 
         
         }       
@@ -44,17 +42,17 @@ namespace TW.Controllers
         /// <returns>Retorna uma categoria cadastrada.</returns>
         [Authorize(Roles="Administrador")]
         [HttpPost]
-        public async Task<ActionResult<Categoria>> PostCat(Categoria categoria)
+        public async Task<IActionResult> PostCat(Categoria categoria)
         {
             try
             {
                 await repositorio.Post(categoria);
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-                throw;
+                return StatusCode(500, e);
             }
-            return categoria;
+            return Ok(categoria);
          }
     }
 }

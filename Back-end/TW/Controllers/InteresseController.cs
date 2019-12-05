@@ -23,61 +23,25 @@ namespace TW.Controllers {
         Validacoes validacoes = new Validacoes ();
 
         /// <summary>
-        /// Método que traz uma lista de Interesses
-        /// </summary>
-        /// <returns>Retorna uma lista de Interesses</returns>
-
-        [HttpGet]
-        public async Task<ActionResult<List<Interesse>>> Get() //definição do tipo de retorno
-        {
-            try
-            {
-                return await repositorio.Get();
-                //await vai esperar trazer a lista para armazenar em Categoria
-            }
-            catch (System.Exception)
-            {
-                throw;
-            } 
-
-        }
-
-        /// <summary>
         /// Método que lista os interesses do usuário logado.
         /// </summary>
         /// <returns>Retorna a lista dos interesses do usuário logado.</returns>
         [Authorize(Roles="Comum")]
         [HttpGet("{ListInteresse}")]
-        public async Task<ActionResult<List<Interesse>>> GetListInteresse() //definição do tipo de retorno
+        public async Task<IActionResult> GetListInteresse() //definição do tipo de retorno
         {
             try
             {
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await repositorio.GetListInteresse(int.Parse(idDoUsuario));
 
-                return usr;
+                return Ok(usr);
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-                throw;
+                return StatusCode(500, e);
             } 
 
-        }
-
-        /// <summary>
-        /// Método de busca de interesse por ID
-        /// </summary>
-        /// <param name="id">Recebe o ID especifico do interesse</param>
-        /// <returns>Retorna para o usuário o interesse buscado</returns>
-
-        [HttpGet("identificador/{id}")]
-        public async Task<ActionResult<Interesse>> GetInteresseId(int id) {
-            Interesse interesseRetornado = await repositorio.GetbyId(id);
-            if(interesseRetornado == null)
-            {
-                return NotFound();
-            }
-            return interesseRetornado;
         }
 
         /// <summary>
@@ -87,7 +51,7 @@ namespace TW.Controllers {
         /// <returns>Retorna o interesse do usuário logado.</returns>
         [Authorize(Roles="Comum")]
         [HttpPost]
-        public async Task<ActionResult<Interesse>> PostInteresse(Interesse interesse)
+        public async Task<IActionResult> PostInteresse(Interesse interesse)
         {
             UsuarioRepositorio urepositorio = new UsuarioRepositorio();
             try
@@ -95,11 +59,11 @@ namespace TW.Controllers {
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await urepositorio.Get(int.Parse(idDoUsuario));
                 interesse.IdUsuario = usr.IdUsuario;
-                return await repositorio.Post(interesse);
+                return Ok(await repositorio.Post(interesse));
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-                throw;
+                return StatusCode(500, e);
             }
 
         }
@@ -111,33 +75,33 @@ namespace TW.Controllers {
         /// <param name="interesse">Recebe as informações do interesse que serão alteradas</param>
         /// <returns>Retorna para o usuário o interesse com as informções alteradas e envia os emails para todos os tipos de usuários</returns>
         [HttpPut ("{id}")]
-        public async Task<ActionResult<Interesse>> Put(int id, Interesse interesse)
+        public async Task<IActionResult> Put(int id, Interesse interesse)
         {
             if(id != interesse.IdInteresse)
             {
-                return BadRequest();
+                return BadRequest("Interesse não encontrado.");
             }
             try
             {
-               return await repositorio.Put(interesse);
+               return Ok(await repositorio.Put(interesse));
                 
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DbUpdateConcurrencyException e)
             {
-                var usuarioValido = await repositorio.GetbyId(id);
-                if(usuarioValido == null)
+                var interesseValido = await repositorio.GetbyId(id);
+                if(interesseValido == null)
                 {
-                    return NotFound();
+                    return NotFound("Interesse não encontrado.");
                 }else{
-                    throw;
+                    return StatusCode(500, e);
                 }
             }
         }
         [HttpPut ("email/{id}")]
-        public async Task<ActionResult<Interesse>> PutEmail (int id, Interesse interesse) {
+        public async Task<IActionResult> PutEmail (int id, Interesse interesse) {
 
             if (id != interesse.IdInteresse) {
-                return BadRequest ();
+                return BadRequest ("Interesse não encontrado.");
             }
 
             try {
@@ -184,14 +148,14 @@ namespace TW.Controllers {
                     }
                 }
 
-                return x;
+                return Ok(x);
 
-            } catch (DbUpdateConcurrencyException) {
+            } catch (DbUpdateConcurrencyException e) {
                 var interesseValido = await repositorio.GetbyId(id);
                 if (interesseValido == null) {
-                    return NotFound ();
+                    return NotFound("Interesse não encontrado.");
                 } else {
-                    throw;
+                    return StatusCode(500, e);
                 }
             }
 

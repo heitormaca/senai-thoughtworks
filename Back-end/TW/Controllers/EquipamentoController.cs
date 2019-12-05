@@ -1,8 +1,6 @@
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using TW.Models;
 using TW.Repositorios;
 
@@ -39,9 +37,9 @@ namespace TW.Controllers
             {
                 return Ok(await repositorio.GetList(busca, ordNomeE, ordMarca, ordMem, ordModelo, ordSO , ordPol, ordPeso, ordPvideo, ordProc,ordHd, ordSsd));
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-                throw;
+                return StatusCode(500, e);
             }
         }
 
@@ -52,18 +50,17 @@ namespace TW.Controllers
         /// <returns>Retorna o equipamento recém cadastrado.</returns>
         [Authorize(Roles="Administrador")]
         [HttpPost]
-        public async Task<ActionResult<Equipamento>> PostEqui(Equipamento equipamento)
+        public async Task<IActionResult> PostEqui(Equipamento equipamento)
         {
             try
             {
                 await repositorio.Post(equipamento);
             }
-            catch (System.Exception)
+            catch (System.Exception e)
             {
-            
-                throw;
+                return StatusCode(500, e);
             }
-            return equipamento;
+            return Ok(equipamento);
         }
 
     }
