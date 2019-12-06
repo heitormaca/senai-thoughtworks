@@ -30,7 +30,7 @@ namespace TW.Models
         public string Email { get; set; }
         [Required]
         [Column("senha")]
-        [StringLength(255)]
+        [StringLength(2000)]
         public string Senha { get; set; }
         [Column("imagem_usuario")]
         [StringLength(255)]

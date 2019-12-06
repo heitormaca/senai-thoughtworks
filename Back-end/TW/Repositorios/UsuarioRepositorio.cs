@@ -78,6 +78,14 @@ namespace TW.Repositorios
             await context.SaveChangesAsync();
             return usuario;
         }
+        public async Task<Usuario> PutNewPassword(Usuario usuario)
+        {
+            string novaSenha = "CIFV@Y#"+usuario.Email.Length.ToString()+"¨&*("+usuario.NomeCompleto.Length.ToString()+"189mN";
+            usuario.Senha = novaSenha;
+            context.Entry(usuario).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return usuario;
+        }
 
         public Usuario Verificacao(ForgotPasswordViewModel verificacao){
             Usuario usuario = context.Usuario.FirstOrDefault(u => u.Email == verificacao.Email && u.Senha == verificacao.NomeCompleto);

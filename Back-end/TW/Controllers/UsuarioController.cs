@@ -8,6 +8,9 @@ using TW.Models;
 using TW.Repositorios;
 using System.Linq;
 using TW.ViewModel;
+using System.Text;
+using System.Security.Cryptography;
+using System;
 
 namespace TW.Controllers
 {
@@ -73,42 +76,52 @@ namespace TW.Controllers
                 return StatusCode(500, e);
             }
         }
-        // [Authorize]
-        // [HttpPatch("forgotPassword")]
+        [Authorize]
+        [HttpPatch("forgotPassword")]
+        public async Task<IActionResult> PostForgotPassword([FromBody] ForgotPasswordViewModel verificacao)
+        {
+            IActionResult response = Unauthorized("Dados inválidos.");
+            var user = Autenticacao(verificacao);
+            if(user!=null)
+            {   
+                await repositorio.PutNewPassword(user);
+                return Ok(user);
+             
+                // EnviaEmailcomNovaSenha()
 
-        // private Usuario Autenticacao(ForgotPasswordViewModel verificacao)
-        // {
-        //     Usuario usuario = repositorio.Verificacao(verificacao);
-        //     return usuario;
-        // }
-        // public IActionResult PostForgotPassword([FromBody] ForgotPasswordViewModel verificacao)
-        // {
-        //     IActionResult response = Unauthorized();
-        //     var user = Autenticacao(verificacao);
-        //     if(user!=null)
-        //     {
-        //        repositorio.PutAtulizarsenha()
-        //        EnviaEmailcomNovaSenha()
+            }else{
+                return response;
+            }
+        }
+        private Usuario Autenticacao(ForgotPasswordViewModel verificacao)
+        {
+            Usuario usuario = repositorio.Verificacao(verificacao);
+            return usuario;
+        }
 
-        //     }else{
-        //         return NotFound();
-        //     }
-        // }
-        // public async Task<IActionResult> ForgotPassword([FromBody] ForgotPasswordViewModel model){
-        //     try
-        //     {
-        //         var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
-        //         var usr = await repositorio.Get(int.Parse(idDoUsuario));
-        //         usr.Senha = model.Senha;
-        //         await repositorio.Put(usr);
-        //         return Ok(usr);
-        //     }
-        //     catch (System.Exception)
-        //     {
-        //         throw;
-        //     }
-        // }
-
+        public static string Encrypt(string encryptString)    
+        {    
+            string EncryptionKey = "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio";  //we can change the code converstion key as per our requirement    
+            byte[] clearBytes = Encoding.Unicode.GetBytes(encryptString);    
+            using (Aes encryptor = Aes.Create())    
+            {    
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] {      
+            0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76      
+        });    
+                encryptor.Key = pdb.GetBytes(32);    
+                encryptor.IV = pdb.GetBytes(16);    
+                using (MemoryStream ms = new MemoryStream())    
+                {    
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))    
+                    {    
+                        cs.Write(clearBytes, 0, clearBytes.Length);    
+                        cs.Close();    
+                    }    
+                    encryptString = Convert.ToBase64String(ms.ToArray());    
+                }    
+            }    
+            return encryptString;    
+        }    
         /// <summary>
         /// Método para cadastrar usuário comum ou administrador no sistema.
         /// </summary>
@@ -125,6 +138,8 @@ namespace TW.Controllers
                 {
                     usuario.CategoriaUsuario = false;
                 }
+                var senhaEncrypt = Encrypt(usuario.Senha);
+                usuario.Senha = senhaEncrypt;
                 await repositorio.Post(usuario);
             }
             catch (System.Exception e)

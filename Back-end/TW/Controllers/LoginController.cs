@@ -1,6 +1,8 @@
 using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Security.Claims;
+using System.Security.Cryptography;
 using System.Text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,10 +55,35 @@ namespace TW.Controllers {
 
             return new JwtSecurityTokenHandler ().WriteToken (token);
         }
-
+        //Método de criptografia
+        public static string Encrypt(string encryptString)    
+        {    
+            string EncryptionKey = "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio";  //we can change the code converstion key as per our requirement    
+            byte[] clearBytes = Encoding.Unicode.GetBytes(encryptString);    
+            using (Aes encryptor = Aes.Create())    
+            {    
+                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] {      
+            0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76      
+        });    
+                encryptor.Key = pdb.GetBytes(32);    
+                encryptor.IV = pdb.GetBytes(16);    
+                using (MemoryStream ms = new MemoryStream())    
+                {    
+                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))    
+                    {    
+                        cs.Write(clearBytes, 0, clearBytes.Length);    
+                        cs.Close();    
+                    }    
+                    encryptString = Convert.ToBase64String(ms.ToArray());    
+                }    
+            }    
+            return encryptString;    
+        }
         // Processo de login
         private Usuario Autenticacao(LoginViewModel login) {
-             Usuario usuario = loginRepositorio.Login(login);
+            var senhaEncrypt = Encrypt(login.Senha);
+            login.Senha = senhaEncrypt;
+            Usuario usuario = loginRepositorio.Login(login);
             return usuario;
         }
 
