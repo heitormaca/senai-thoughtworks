@@ -22,9 +22,8 @@ namespace TW.Controllers
 
     public class UsuarioController : ControllerBase
     {
-        UsuarioRepositorio repositorio = new UsuarioRepositorio();    
+        UsuarioRepositorio repositorio = new UsuarioRepositorio();  
         
-
         /// <summary>
         /// Método para listar, buscar e filtrar dados de usuários registrados no sistema.
         /// </summary>
@@ -78,6 +77,7 @@ namespace TW.Controllers
                 return StatusCode(500, e);
             }
         }
+
         [HttpPatch("forgotPassword")]
         public async Task<IActionResult> PostForgotPassword([FromBody] ForgotPasswordViewModel verificacao)
         {
@@ -85,15 +85,23 @@ namespace TW.Controllers
             var user = Autenticacao(verificacao);
             if(user!=null)
             {   
-                
+                string novaSenha = "CIFV@Y#"+user.Email.Length.ToString()+"¨&*("+user.NomeCompleto.Length.ToString()+"189mN";
+                var senhaEncrypy = Encrypt(novaSenha);
+                user.Senha = senhaEncrypy;
                 await repositorio.PutNewPassword(user);
-
-                
-                
+                string email = user.Email;
+                string titulo = "Alteração de senha NewTime";
+                string body = $"<h1>Alteração de senha NewTime</h1>"+
+                                $"<br>"+
+                                $"<br>"+
+                                $"<p>Prezado(a) {user.NomeCompleto},</p>"+
+                                $"<br>"+
+                                $"<p>Atendendo ao seu pedido, segue abaixo a sua nova senha."+
+                                $"<p>Nova senha: {novaSenha}</p>"+
+                                $"<br>"+
+                                $"<p>ATENÇÂO: Está é uma senha provisória, favor altera-la após o seu login.</p>";
+                EnvioEmail(email, titulo, body);
                 return Ok(user);
-             
-                
-
             }else{
                 return response;
             }

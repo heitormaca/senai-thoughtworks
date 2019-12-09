@@ -86,9 +86,6 @@ namespace TW.Repositorios
         }
         public async Task<Usuario> PutNewPassword(Usuario usuario)
         {
-            string novaSenha = "CIFV@Y#"+usuario.Email.Length.ToString()+"¨&*("+usuario.NomeCompleto.Length.ToString()+"189mN";
-            var senhaEncrypy = Encrypt(novaSenha);
-            usuario.Senha = senhaEncrypy;
             context.Entry(usuario).State = EntityState.Modified;
             await context.SaveChangesAsync();
             return usuario;

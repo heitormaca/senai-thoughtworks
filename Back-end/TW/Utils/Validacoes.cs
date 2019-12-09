@@ -35,7 +35,7 @@ namespace TW.Utils
 
                 _smtpClient.UseDefaultCredentials = false;
 
-                _smtpClient.Credentials = new NetworkCredential ("lightcodexp@gmail.com", "Codexp@l23"   );
+                _smtpClient.Credentials = new NetworkCredential ("lightcodexp@gmail.com", "Codexp@l23");
 
                 _smtpClient.EnableSsl = true;
 
