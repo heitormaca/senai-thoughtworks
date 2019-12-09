@@ -110,7 +110,7 @@ namespace TW.Controllers {
 
                 interesse.Comprador = true;
 
-                var x = await repositorio.Put (interesse);
+                var x = await repositorio.Put(interesse);
 
                 string titulo = $"Não foi dessa vez {interesse.IdUsuarioNavigation.NomeCompleto} - CLASSIFICADO ENCERRADO! - {interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento}";
                 // Construct the alternate body as HTML.
