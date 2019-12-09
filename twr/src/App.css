@@ -1,0 +1,212 @@
+/* CONFIGURAÇÕES GERAIS DA PÁGINA */
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+a, p, label, input, td{
+  font-family: 'Open Sans', sans-serif;
+}
+h1, h2, h3, h4{
+  font-family: 'Open Sans', sans-serif;
+}
+body{
+  font-size: 16px;
+}
+/* FIM DAS CONFIGURAÇÕES GERAIS DA PÁGINA */
+
+/* img src={} */
+/* INICIO DA ESTILIZAÇÃO DO BANNER IMAGEM HOME  */
+.banner-home {
+  height: 82vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00205a;
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+/* FIM DA ESTILIZAÇÃO DO BANNER IMAGEM HOME  */
+
+
+/* INICIO DA ESTILIZAÇÃO DA PARTE DE SELEÇÃO DE OPÇÕES */
+.home_filtro{
+  height: 25vh;
+  display: flex;
+  justify-content: center;
+  padding-top: 3em;
+}
+.home_filtro_box_bottom_box1_box{
+  width: 75vw;
+  height: 15vh;
+  border: none 2em solid;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #E0E0E0, 0px 0px 10px #E0E0E0;
+  display: flex;
+  background-color: #E0E0E0;
+  justify-content: center;
+  align-items: center;
+  
+}
+.home_filtro_box_bottom_box1_box_1{
+  width: 300vw;
+  height: 118vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-circulo-filtro-um{
+  width: 80px; 
+  height:80px; 
+  border: #2764e9 2px solid;
+  border-radius: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF;
+}
+.home-circulo-filtro-dois{
+  width: 80px; 
+  height:80px; 
+  border: #2764e9 2px solid;
+  border-radius: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF;
+}
+.home-circulo-filtro-tres{
+  width: 80px;
+  height:80px; 
+  border: #2764e9 2px solid;
+  border-radius: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #FFF;
+}
+.paragrafo-filtro-home{
+  padding-left: 1em;
+}
+.linkagem-filtro-home{
+  text-decoration:none; 
+  color: rgb(124, 122, 122);
+}
+.barra-serapacao-filtro{
+  border-left: 1px solid rgb(158, 158, 158);
+  height: 11vh;
+  width: 11vw;
+}
+.fa-chevron-down{
+  color: #7A7A7A;
+  padding-left: 0.50em;
+}
+/* FIM DA ESTILIZAÇÃO DA PARTE DE SELEÇÃO DE OPÇÕES */
+
+
+/* INICIO DA ESTILIZAÇÃO DA PÁGINA HOME PRODUTOS */
+.home-notebook-apresentacao{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-notebook-box{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-cards-separacao-notebooks{ 
+  width: 405.5px;
+  height: 377px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home_produto_desk_box_box_card{
+  width: 355px;
+  height: 328px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 7px #E0E0E0, 0px 0px 7px #E0E0E0;
+}
+.home-guardar-notebooks{
+  width: 355px;
+  height: 209px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-guardar-notebooks img{
+  height: 170px;
+}
+.home_produto_desk_box_box_card_bottom{
+  width: 355px;
+  height: 119px;
+  border-radius: 0px 0px 5px 5px;
+  background-color: #F5F5F5;
+}
+.home-descricao-notebooks{ 
+  width: 356px;
+  height: 73px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.home-descricao-notebooks p{
+  font-size: 21px;
+  color: #7A7A7A;
+}
+.home-carrinhos-cards{ 
+  width: 347px;
+  height: 49px;
+  display: flex;
+}
+.home-precos-cards-left{ 
+  width: 310px;
+  height: 49px;
+}
+.home-precos-cards-bottom{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00205a;
+  width: 137.76px;
+  height: 46px;
+  border-radius: 0px 3px 0px 3px;
+}
+.home-borda-preco-notebooks{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 131.76px;
+  height: 40px;
+  border: 1px solid #FFF;
+  border-radius: 0px 3px 0px 3px;
+}
+.home-borda-preco-notebooks p{
+  color: #FFF;
+  font-size: 18px;
+}
+.home-produto-interesse-notebook{
+  margin-top: 5px;
+  width: 28px;
+  height: 68.4px;
+}
+.home-carrinhos-box{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: solid #D2CBCB 1px;
+  background-color: #FFF;
+  width: 32px;
+  height: 32px;
+  border-radius: 5px;
+}
+.home-carrinhos-box{
+  color: #2764e9;
+  font-size: 20px;
+}
+/* FIM DA ESTILIZAÇÃO DA PÁGINA HOME PRODUTOS */
+

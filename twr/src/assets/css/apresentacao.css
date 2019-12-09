@@ -1,0 +1,334 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    
+}
+
+
+
+
+/*   ESTILIZAÇÃO DO MENU/HEADER/TOPO DA APRESENTAÇÃO */
+#topo-apresentacao{
+    width: 98.9vw;
+    height: 13vh;
+    background: #00205a;
+    display: flex;
+    justify-content: center;      
+}
+
+.menu-apresentacao{
+    display: flex;
+    width: 80%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.imagem_logo_apresentacao{
+    width: 5vw;
+    margin-top: 5px;
+}
+
+#apresentacao-logo{
+    display: none;
+}
+
+#ul-apresentacao{
+    list-style-type: none;
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+
+.apresentacao-as{
+    font-size: 1em;
+    text-decoration: none;
+    padding: 1.70em 2em;
+    color:  #00205a;
+}
+
+#li-apresentacao{
+    background-color: #ffffff;
+}
+
+
+
+
+
+/* ESTILIZAÇÃO DO BOTÃO DA APRESENTAÇÃO */
+.button-apresentacao-nt {
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: none;
+    color: #00205a;
+    text-align: center;
+    font-size: 1em;
+    padding: 1em;
+    width: 8vw;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+
+
+
+
+/*   ESTILIZAÇÃO DO BANNER DA APRESENTAÇÃO  */
+#banner-apresentacao{
+    background-color: #00205a;
+    height: 90vh; /*altura da imagem*/
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover; /* irá cobrir toda a section*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem-banner-apresentacao{
+    width: 90vw;
+}
+
+
+
+
+
+/* ESTILIZAÇÃO DO HR DA APRESENTAÇÃO */
+.hr-um-apresentacao { /*estilizando o hr*/
+    background:  #00205a;
+    width: 22vw;
+    height: 0.2vh;
+    margin: 0 auto;
+}
+
+
+.hr-dois-apresentacao { /*estilizando o hr*/
+    background: #ffffff;
+    width: 22vw;
+    height: 0.2vh;
+    margin: 0 auto;
+}
+
+
+
+
+
+
+/* INICIO DAS SECTIONS E APRESENTAÇÃO DO SITE */ 
+
+#primeira-section-apresentacao{
+    background-image: url("../img/bannerazulzinho.png");
+    height: 95vh; /*altura da imagem*/
+    width: 98.9vw;
+    background-repeat: no-repeat;
+    background-size: cover; /* irá cobrir toda a section*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+.itens-apresentacao-um {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+#segunda-section-apresentacao {
+    background-color: #00205a;
+    display: flex;
+    justify-content: space-around;
+    padding: 9em;
+}
+
+.itens-apresentacao-dois {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.hdois-um-apresentacao{
+    color: #00205a;
+    font-size: 1.9em;
+    padding: 0.30em;
+}
+
+.hdois-dois-apresentacao{
+    color: #ffffff;
+    font-size: 1.9em;
+    padding: 0.30em;
+    
+}
+
+.paragrafo-um-apresentacao{
+    color: #00205a;
+    font-size: 1.4em; /*mudar o tamanho da fonte no media query*/
+    padding: 1em 2em 2em;
+    line-height: 1.8;
+}
+
+.paragrafo-dois-apresentacao{
+    color: #ffffff;
+    font-size: 1.4em;
+    padding: 1em 2em 2em;
+    line-height: 1.8;
+    
+}
+
+.imagem-segunda-section-apresentacao{
+    width: 18vw;
+}
+
+
+
+
+
+
+/*   ESTILIZAÇÃO DO FOOTER DA APRESENTAÇÃO  */
+
+.footer-apresentacao {
+    background-color: #B2B2B2;
+    width: 98.9vw;
+}
+
+.footer-apresentacao > div > ol {
+    display: flex;
+    list-style: none;
+}
+
+.li-footer-apresentacao{
+    padding-left: 50px;
+}
+
+.olis-footer-apresentacao, a{
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.footer-apresentacao > div{
+    padding: 0.95em;
+    display: flex;
+}
+
+.lista-opcoes-footer-apresentacao{
+    justify-content: center;
+}
+
+.lista-icones-footer-apresentacao{
+    font-size: 1.8em;
+    color:  #ffffff;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.lista-icones-footer-apresentacao, i{
+    margin-left: 15px;
+    color: #ffffff;
+}
+
+
+
+
+
+
+
+/*   RESPONSIVIDADE  IPAD e IPAD PRO - 768px */
+@media screen and (max-width: 768px) {
+    #topo-apresentacao{
+        width: 100vw;
+        height: 13vh;
+        background: #00205a;
+        display: flex;
+        justify-content: center;      
+    }
+    
+    .button-apresentacao-nt {
+    border-radius: 4px;
+    background-color: #ffffff;
+    border: none;
+    color: #00205a;
+    text-align: center;
+    font-size: 0.90em;
+    padding: 0.55em;
+    width: 8vw;
+    transition: all 0.5s;
+    cursor: pointer;
+}
+
+#primeira-section-apresentacao{
+background-image: none;
+}
+ 
+.footer-apresentacao {
+    background-color: #B2B2B2;
+    width: 100vw;
+}
+
+.lista-icones-footer-apresentacao{
+    font-size: 1.6em;
+    color:  #ffffff;
+    display: flex;
+    justify-content: flex-end;
+}
+}
+
+
+
+
+/*   RESPONSIVIDADE  MOBILE - 375px  */
+@media screen and (max-width: 375px){
+    .button-apresentacao-nt {
+        border-radius: 4px;
+        background-color: #ffffff;
+        border: none;
+        color: #00205a;
+        text-align: center;
+        font-size: 0.45em;
+        padding: 0.55em;
+        width: 10vw;
+        transition: all 0.5s;
+        cursor: pointer;
+    }
+
+    .hdois-um-apresentacao{
+        color: #00205a;
+        font-size: 1em;
+        padding: 0.30em;
+    }
+    
+    .hdois-dois-apresentacao{
+        color: #ffffff;
+        font-size: 1em;
+        padding: 0.30em;
+        
+    }
+    
+    .paragrafo-um-apresentacao{
+        color: #00205a;
+        font-size: 1em; /*mudar o tamanho da fonte no media query*/
+        padding: 1em 2em 2em;
+        line-height: 1.8;
+    }
+    
+    .paragrafo-dois-apresentacao{
+        color: #ffffff;
+        font-size: 1em;
+        padding: 1em 2em 2em;
+        line-height: 1.8;
+        
+    }
+
+    .lista-icones-footer-apresentacao{
+        font-size: 1em;
+        color:  #ffffff;
+        display: flex;
+        justify-content: flex-end;
+    }
+    
+    .lista-icones-footer-apresentacao, i{
+        margin-left: 15px;
+        color: #ffffff;
+    }
+}
