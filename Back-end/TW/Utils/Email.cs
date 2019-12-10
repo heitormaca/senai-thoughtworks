@@ -5,9 +5,9 @@ using Spire.Pdf;
 
 namespace TW.Utils
 {
-    public class Validacoes
+    public class Email
     {
-        public bool EnvioEmail (string email, string titulo, string body, PdfDocument anexo) {
+        public bool EnvioEmailComprador (string email, string titulo, string body, PdfDocument anexo) {
             try {
                 // Estancia da Classe de Mensagem
                 MailMessage _mailMessage = new MailMessage ();
@@ -47,8 +47,7 @@ namespace TW.Utils
                 throw ex;
             }
         }
-
-        public bool EnvioEmailUsers (string email, string titulo, string body) {
+        public bool EnvioEmail (string email, string titulo, string body) {
             try {
                 // Estancia da Classe de Mensagem
                 MailMessage _mailMessage = new MailMessage ();

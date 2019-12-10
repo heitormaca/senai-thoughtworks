@@ -69,6 +69,13 @@
             <param name="ordSsd">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
             <returns>Retorna uma lista, uma busca e um tipo de ordenação para equipamentos.</returns>
         </member>
+        <member name="M:TW.Controllers.EquipamentoController.GetidEqui(System.Int32)">
+            <summary>
+            Método que busca um equipamento por id.
+            </summary>
+            <param name="id">Envia um id.</param>
+            <returns>Retorna um equipamento.</returns>
+        </member>
         <member name="M:TW.Controllers.EquipamentoController.PostEqui(TW.Models.Equipamento)">
             <summary>
             Método para cadastrar equipamentos.

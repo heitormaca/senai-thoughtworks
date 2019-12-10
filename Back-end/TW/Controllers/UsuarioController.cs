@@ -8,21 +8,18 @@ using TW.Models;
 using TW.Repositorios;
 using System.Linq;
 using TW.ViewModel;
-using System.Text;
-using System.Security.Cryptography;
-using System;
-using System.Net.Mail;
-using System.Net;
+using TW.Utils;
 
 namespace TW.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     [Produces("application/json")]
-
     public class UsuarioController : ControllerBase
     {
-        UsuarioRepositorio repositorio = new UsuarioRepositorio();  
+        UsuarioRepositorio repositorio = new UsuarioRepositorio();
+        EncryptPassword encrypt = new EncryptPassword();
+        Email sendEmail = new Email();
         
         /// <summary>
         /// Método para listar, buscar e filtrar dados de usuários registrados no sistema.
@@ -46,7 +43,6 @@ namespace TW.Controllers
         [Authorize]
         [HttpGet("gUser")]
         public async Task<IActionResult> GetUser(){
-           
             try{
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await repositorio.Get(int.Parse(idDoUsuario));
@@ -78,6 +74,7 @@ namespace TW.Controllers
             }
         }
 
+
         [HttpPatch("forgotPassword")]
         public async Task<IActionResult> PostForgotPassword([FromBody] ForgotPasswordViewModel verificacao)
         {
@@ -86,7 +83,7 @@ namespace TW.Controllers
             if(user!=null)
             {   
                 string novaSenha = "CIFV@Y#"+user.Email.Length.ToString()+"¨&*("+user.NomeCompleto.Length.ToString()+"189mN";
-                var senhaEncrypy = Encrypt(novaSenha);
+                var senhaEncrypy = encrypt.Encrypt(novaSenha);
                 user.Senha = senhaEncrypy;
                 await repositorio.PutNewPassword(user);
                 string email = user.Email;
@@ -100,7 +97,7 @@ namespace TW.Controllers
                                 $"<p>Nova senha: {novaSenha}</p>"+
                                 $"<br>"+
                                 $"<p>ATENÇÂO: Está é uma senha provisória, favor altera-la após o seu login.</p>";
-                EnvioEmail(email, titulo, body);
+                sendEmail.EnvioEmail(email, titulo, body);
                 return Ok(user);
             }else{
                 return response;
@@ -129,7 +126,7 @@ namespace TW.Controllers
                 {
                     usuario.CategoriaUsuario = false;
                 }
-                var senhaEncrypt = Encrypt(usuario.Senha);
+                var senhaEncrypt = encrypt.Encrypt(usuario.Senha);
                 usuario.Senha = senhaEncrypt;
                 await repositorio.Post(usuario);
             }
@@ -180,61 +177,6 @@ namespace TW.Controllers
             } else {
                 return null;
             }           
-        }
-        public static string Encrypt(string encryptString)    
-        {    
-            string EncryptionKey = "0ram@1234xxxxxxxxxxtttttuuuuuiiiiio";  //we can change the code converstion key as per our requirement    
-            byte[] clearBytes = Encoding.Unicode.GetBytes(encryptString);    
-            using (Aes encryptor = Aes.Create())    
-            {    
-                Rfc2898DeriveBytes pdb = new Rfc2898DeriveBytes(EncryptionKey, new byte[] {      
-            0x49, 0x76, 0x61, 0x6e, 0x20, 0x4d, 0x65, 0x64, 0x76, 0x65, 0x64, 0x65, 0x76      
-        });    
-                encryptor.Key = pdb.GetBytes(32);    
-                encryptor.IV = pdb.GetBytes(16);    
-                using (MemoryStream ms = new MemoryStream())    
-                {    
-                    using (CryptoStream cs = new CryptoStream(ms, encryptor.CreateEncryptor(), CryptoStreamMode.Write))    
-                    {    
-                        cs.Write(clearBytes, 0, clearBytes.Length);    
-                        cs.Close();    
-                    }    
-                    encryptString = Convert.ToBase64String(ms.ToArray());    
-                }    
-            }    
-            return encryptString;    
-        }
-        public bool EnvioEmail(string email, string titulo, string body) {
-            try {
-                // Estancia da Classe de Mensagem
-                MailMessage _mailMessage = new MailMessage();
-                // Remetente
-                _mailMessage.From = new MailAddress("lightcodexp@gmail.com");
-
-                // Destinatario seta no metodo abaixo
-
-                //Contrói o MailMessage
-                _mailMessage.CC.Add(email);
-                _mailMessage.Subject = titulo;
-                _mailMessage.IsBodyHtml = true;
-                _mailMessage.Body = body;                
-
-                //CONFIGURAÇÃO COM PORTA
-                SmtpClient _smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32("587"));
-
-                _smtpClient.UseDefaultCredentials = false;
-
-                _smtpClient.Credentials = new NetworkCredential("lightcodexp@gmail.com", "Codexp@l23");
-
-                _smtpClient.EnableSsl = true;
-
-                _smtpClient.Send(_mailMessage);
-
-                return true;
-
-            } catch (Exception ex) {
-                throw ex;
-            }
         }
     }
 }

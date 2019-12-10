@@ -1,13 +1,11 @@
 
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using TW.Models;
 using TW.Repositorios;
+using TW.Utils;
 
 namespace TW.Controllers
 {
@@ -17,8 +15,8 @@ namespace TW.Controllers
     public class ClassificadoController : ControllerBase
     {
         ClassificadoRepositorio repositorio = new ClassificadoRepositorio();
+        UploadImg img = new UploadImg();
 
-        // /api/Classificado?busca=tela17&marca=dell&categoria=notebook
         /// <summary>
         /// Método para buscar a lista de classificados com seus respectivos nomes, imagens e preços para a barra de busca e para os filtros da home page.
         /// </summary>
@@ -28,7 +26,7 @@ namespace TW.Controllers
         /// <param name="ordenacao">Envia um estado true para ordenar Crescente e false para ordenar decrescente.</param>
         /// <returns>Retorna a lista de classificados com seus respectivos nomes, imagens e preços para a barra de busca e para os filtros da home page.</returns>
         [HttpGet]
-        [Authorize(Roles = "Comum")]
+        [Authorize(Roles="Comum")]
         public async Task<IActionResult> GetHome(string busca, string marca, string categoria, bool ordenacao)
         {
             return Ok(await repositorio.GetListHome(busca, marca, categoria, ordenacao));
@@ -79,52 +77,22 @@ namespace TW.Controllers
             try
             {
                 var files = Request.Form.Files;
-
                 if (files.Count < 1) return BadRequest("Favor informar ao menos uma imagem.");
-
                 var listaImagens = new List<Imagemclassificado>();
                 foreach (var file in files)
                 {
-                    var imagem = Upload(file, "Imagens/ClassificadoImagens");
+                    var imagem = img.Upload(file, "Imagens/ClassificadoImagens");
                     listaImagens.Add(new Imagemclassificado()
                     {
                         Imagem = imagem
                     });
                 }
-
                 classificado.Imagemclassificado = listaImagens;
-
                 return Ok(await repositorio.Post(classificado));
             }
             catch (System.Exception e)
             {
                 return StatusCode(500, e);
-            }
-        }
-        private string Upload(IFormFile arquivo, string savingFolder)
-        {
-
-            if (savingFolder == null)
-            {
-                savingFolder = Path.Combine("imgUpdated");
-            }
-
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), savingFolder);
-
-            if (arquivo.Length > 0)
-            {
-                var fileName = ContentDispositionHeaderValue.Parse(arquivo.ContentDisposition).FileName.Trim('"');
-                var fullPath = Path.Combine(pathToSave, fileName);
-
-                using (var stream = new FileStream(fullPath, FileMode.Create))
-                {
-                    arquivo.CopyTo(stream);
-                }
-                return fullPath;
-            }
-            else
-            {
-                return null;
             }
         }
     }

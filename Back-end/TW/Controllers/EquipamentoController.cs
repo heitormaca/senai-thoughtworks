@@ -43,9 +43,13 @@ namespace TW.Controllers
             }
         }
 
+        /// <summary>
+        /// Método que busca um equipamento por id.
+        /// </summary>
+        /// <param name="id">Envia um id.</param>
+        /// <returns>Retorna um equipamento.</returns>
         [Authorize(Roles="Administrador")]
         [HttpGet("{id}")]
-
         public async Task<IActionResult> GetidEqui(int id)
         {
             return Ok(await repositorio.GetId(id));
@@ -70,6 +74,5 @@ namespace TW.Controllers
             }
             return Ok(equipamento);
         }
-
     }
 }

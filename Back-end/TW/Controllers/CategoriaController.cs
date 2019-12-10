@@ -14,7 +14,6 @@ namespace TW.Controllers
     {
         CategoriaRepositorio repositorio = new CategoriaRepositorio();
 
-
         /// <summary>
         /// Método que lista, busca e ordena categorias.
         /// </summary>
@@ -25,14 +24,12 @@ namespace TW.Controllers
         {
             try
             {
-                return Ok(await repositorio.GetList(busca, ordenacao));
-            
+                return Ok(await repositorio.GetList(busca, ordenacao));    
             }
             catch (System.Exception e)
             {
                 return StatusCode(500, e);
             } 
-        
         }       
 
         /// <summary>
