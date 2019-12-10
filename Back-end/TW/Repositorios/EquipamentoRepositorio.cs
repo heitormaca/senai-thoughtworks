@@ -91,11 +91,18 @@ namespace TW.Repositorios
             return await query.ToListAsync();
         }
 
+        
+
         public async Task<Equipamento> Post(Equipamento equipamento)
         {
             await context.Equipamento.AddAsync(equipamento);
             await context.SaveChangesAsync();
             return equipamento;
+        }
+
+        public async Task<Equipamento> GetId(int id)
+        {
+            return await context.Equipamento.FindAsync(id);
         }
 
     }

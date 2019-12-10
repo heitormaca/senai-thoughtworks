@@ -43,6 +43,14 @@ namespace TW.Controllers
             }
         }
 
+        [Authorize(Roles="Administrador")]
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetidEqui(int id)
+        {
+            return Ok(await repositorio.GetId(id));
+        }
+
         /// <summary>
         /// Método para cadastrar equipamentos.
         /// </summary>
