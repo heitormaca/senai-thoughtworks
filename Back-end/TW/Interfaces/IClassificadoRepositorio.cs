@@ -12,15 +12,5 @@ namespace TW.Interfaces
         Task<Classificado> GetPageProduct(int id);
         Task<Classificado> Post(Classificado classificado);
         Task<Classificado> Put(Classificado classificado);
-
-
-
-
-
-
-
-
-
-
     }
 }

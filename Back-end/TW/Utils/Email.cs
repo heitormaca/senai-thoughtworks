@@ -7,78 +7,50 @@ namespace TW.Utils
 {
     public class Email
     {
-        public bool EnvioEmailComprador (string email, string titulo, string body, PdfDocument anexo) {
-            try {
-                // Estancia da Classe de Mensagem
+        public bool EnvioEmailComprador (string email, string titulo, string body, PdfDocument anexo) 
+        {
+            try 
+            {
                 MailMessage _mailMessage = new MailMessage ();
-                // Remetente
                 _mailMessage.From = new MailAddress ("lightcodexp@gmail.com");
-
-                // Destinatario seta no metodo abaixo
-
-                //Contrói o MailMessage
                 _mailMessage.CC.Add (email);
                 _mailMessage.Subject = titulo;
                 _mailMessage.IsBodyHtml = true;
                 _mailMessage.Body = body;
                 _mailMessage.Attachments.Add(new Attachment(anexo.ToString()));
-                
-
-                //CONFIGURAÇÃO COM PORTA
                 SmtpClient _smtpClient = new SmtpClient ("smtp.gmail.com", Convert.ToInt32 ("587"));
-
-                //CONFIGURAÇÃO SEM PORTA
-
-                // SmtpClient _smtpClient = new SmtpClient(UtilRsource.ConfigSmtp);
-
-                // Credencial para envio por SMTP Seguro (Quando o servidor exige autenticação);
-
                 _smtpClient.UseDefaultCredentials = false;
-
                 _smtpClient.Credentials = new NetworkCredential ("lightcodexp@gmail.com", "Codexp@l23");
-
                 _smtpClient.EnableSsl = true;
-
                 _smtpClient.Send (_mailMessage);
-
                 return true;
-
-            } catch (Exception ex) {
-                throw ex;
+            } 
+            catch (Exception e) 
+            {
+                throw e;
             }
         }
-        public bool EnvioEmail (string email, string titulo, string body) {
-            try {
-                // Estancia da Classe de Mensagem
+        public bool EnvioEmail (string email, string titulo, string body) 
+        {
+            try 
+            {
                 MailMessage _mailMessage = new MailMessage ();
-                // Remetente
                 _mailMessage.From = new MailAddress ("lightcodexp@gmail.com");
-
-                // Destinatario seta no metodo abaixo
-
-                //Contrói o MailMessage
                 _mailMessage.CC.Add (email);
                 _mailMessage.Subject = titulo;
                 _mailMessage.IsBodyHtml = true;
                 _mailMessage.Body = body;                
-
-                //CONFIGURAÇÃO COM PORTA
                 SmtpClient _smtpClient = new SmtpClient ("smtp.gmail.com", Convert.ToInt32 ("587"));
-
                 _smtpClient.UseDefaultCredentials = false;
-
                 _smtpClient.Credentials = new NetworkCredential ("lightcodexp@gmail.com", "Codexp@l23");
-
                 _smtpClient.EnableSsl = true;
-
                 _smtpClient.Send (_mailMessage);
-
                 return true;
-
-            } catch (Exception ex) {
-                throw ex;
+            } 
+            catch (Exception e) 
+            {
+                throw e;
             }
         }
-
     }
 }

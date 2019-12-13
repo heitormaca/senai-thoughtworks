@@ -42,12 +42,16 @@ namespace TW.Controllers
         /// <returns>Retorna os dados do usuário logado.</returns>
         [Authorize]
         [HttpGet("gUser")]
-        public async Task<IActionResult> GetUser(){
-            try{
+        public async Task<IActionResult> GetUser()
+        {
+            try
+            {
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await repositorio.Get(int.Parse(idDoUsuario));
                 return Ok(usr);
-            }catch (System.Exception e){
+            }
+            catch (System.Exception e)
+            {
                 return StatusCode(500, e);
             }
         }
@@ -59,13 +63,14 @@ namespace TW.Controllers
         /// <returns>Retorna a senha do usuário atualizada.</returns>
         [Authorize]
         [HttpPatch("changePassword")]
-        public async Task<IActionResult> ChangePassword([FromBody] PasswordUpdateViewModel model){
+        public async Task<IActionResult> ChangePassword([FromBody] PasswordUpdateViewModel model)
+        {
             try
             {
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await repositorio.Get(int.Parse(idDoUsuario));
                 usr.Senha = model.Senha;
-                var senhaEncrypt = encrypt.Encrypt(usr.Senha);
+                var senhaEncrypt = encrypt.Encrypt(model.Senha);
                 usr.Senha = senhaEncrypt;
                 await repositorio.Put(usr);
                 return Ok(usr);
@@ -105,7 +110,9 @@ namespace TW.Controllers
                                 $"<p>ATENÇÂO: Está é uma senha provisória, favor altera-la após o seu login.</p>";
                 sendEmail.EnvioEmail(email, titulo, body);
                 return Ok(user);
-            }else{
+            }
+            else
+            {
                 return response;
             }
         }
@@ -143,16 +150,19 @@ namespace TW.Controllers
         /// <returns>Atualiza a imagem do usuário logado.</returns>
         [Authorize]
         [HttpPut("userImage")]
-        public async Task<IActionResult> PutUserImage(){
-
-            try{
+        public async Task<IActionResult> PutUserImage()
+        {
+            try
+            {
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await repositorio.Get(int.Parse(idDoUsuario));
                 var arquivo = Request.Form.Files[0];
                 usr.ImagemUsuario = img.Upload(arquivo,"Imagens/UsuarioImagens");
                 await repositorio.Put(usr);
                 return Ok(usr);
-            }catch (System.Exception e){
+            }
+            catch (System.Exception e)
+            {
                 return StatusCode(500, e);
             }
         }

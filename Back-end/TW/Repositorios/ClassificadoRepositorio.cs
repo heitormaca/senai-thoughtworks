@@ -23,10 +23,12 @@ namespace TW.Repositorios
                 .Include(a => a.Interesse)
                 .AsQueryable();
 
-            if (!string.IsNullOrEmpty(categoria)) {
+            if (!string.IsNullOrEmpty(categoria)) 
+            {
                 query = query.Where(a => a.IdEquipamentoNavigation.IdCategoriaNavigation.NomeCategoria.Contains(categoria));
             }
-            if (!string.IsNullOrEmpty(busca)) {
+            if (!string.IsNullOrEmpty(busca)) 
+            {
                 query = query.Where(a => 
                     a.IdEquipamentoNavigation.NomeEquipamento.Contains(busca) || 
                     a.IdEquipamentoNavigation.Processador.Contains(busca) ||
@@ -42,22 +44,22 @@ namespace TW.Repositorios
                     a.IdEquipamentoNavigation.IdCategoriaNavigation.NomeCategoria.Contains(busca)
                 );
             }
-
-            if(ordenacao == true){
+            if(ordenacao == true)
+            {
                 query = query.OrderBy(p => p.Preco);
-            }else{
+            }
+            else
+            {
                 query = query.OrderByDescending(p => p.Preco);
             }
-
-            if (!string.IsNullOrEmpty(marca)) {
+            if (!string.IsNullOrEmpty(marca)) 
+            {
                 query = query.Where(a => a.IdEquipamentoNavigation.Marca.Contains(marca));
             }
-            
             foreach (var item in query)
             {
                 item.IdEquipamentoNavigation.IdCategoriaNavigation.Equipamento = null;
             }
-
             return await query.ToListAsync();
         }
 
@@ -68,33 +70,43 @@ namespace TW.Repositorios
                 .Include(a => a.IdEquipamentoNavigation)
                 .Include(b => b.Imagemclassificado)
                 .AsQueryable();
-            if (!string.IsNullOrEmpty(busca)){
+            if (!string.IsNullOrEmpty(busca))
+            {
                 query = query.Where(a =>
                     a.IdEquipamentoNavigation.NomeEquipamento.Contains(busca) ||
                     (a.CodigoClassificado).ToString().Contains(busca) ||
                     a.NumeroDeSerie.Contains(busca)
                 );
             }
-            if(ordNomeE == true){
+            if(ordNomeE == true)
+            {
                 query = query.OrderBy(p=>p.IdEquipamentoNavigation.NomeEquipamento);
-            }else if(ordNomeE == false){
+            }
+            else if(ordNomeE == false)
+            {
                 query = query.OrderByDescending(p=>p.IdEquipamentoNavigation.NomeEquipamento);
-            }else{}
-            if(ordCodClass == true){
+            }
+            else{}
+            if(ordCodClass == true)
+            {
                 query = query.OrderBy(p=>p.CodigoClassificado);
-            }else if(ordCodClass == false){
+            }
+            else if(ordCodClass == false)
+            {
                 query = query.OrderByDescending(p=>p.CodigoClassificado);
-            }else{}
-            if(ordNumSerie == true){
+            }
+            else{}
+            if(ordNumSerie == true)
+            {
                 query = query.OrderBy(p=>p.NumeroDeSerie);
-            }else if(ordNumSerie == false){
+            }
+            else if(ordNumSerie == false)
+            {
                 query = query.OrderByDescending(p=>p.NumeroDeSerie);
-            }else{}
-        
+            }
+            else{}
             return await query.ToListAsync();
         }
-
-
         public async Task<Classificado> GetPageProduct(int id)
         {
             Classificado produto = await context.Classificado
@@ -106,7 +118,6 @@ namespace TW.Repositorios
                                     .FirstOrDefaultAsync();
             return produto;
         }
-
         public async Task<List<Classificado>> GetL()
         {
             return await context.Classificado.ToListAsync();
@@ -117,13 +128,11 @@ namespace TW.Repositorios
             await context.SaveChangesAsync();
             return classificado;
         }
-
         public async Task<Classificado> Put(Classificado classificado)
         {
             context.Entry(classificado).State = EntityState.Modified;
             await context.SaveChangesAsync();
             return classificado;
         }
-
     }
 }

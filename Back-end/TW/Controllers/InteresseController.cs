@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Spire.Pdf;
@@ -12,15 +11,17 @@ using TW.Models;
 using TW.Repositorios;
 using TW.Utils;
 
-namespace TW.Controllers {
+namespace TW.Controllers 
+{
 
     [Route ("api/[controller]")]
     [ApiController]
     [Produces ("application/json")]
-    [EnableCors]
-    public class InteresseController : ControllerBase {
+    public class InteresseController : ControllerBase 
+    {
         InteresseRepositorio repositorio = new InteresseRepositorio();
         Email sendEmail = new Email();
+        UsuarioRepositorio urepositorio = new UsuarioRepositorio();
 
         /// <summary>
         /// Método que lista os interesses do usuário logado.
@@ -51,8 +52,6 @@ namespace TW.Controllers {
         [HttpPost]
         public async Task<IActionResult> PostInteresse(Interesse interesse)
         {
-            UsuarioRepositorio urepositorio = new UsuarioRepositorio();
-
             try
             {
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
@@ -94,14 +93,22 @@ namespace TW.Controllers {
         //         }
         //     }
         // }
+        [Authorize(Roles="Administrador")]
+        [HttpGet("teste")]
+        public async Task<IActionResult> ListClassInteresse()
+        {
+            return Ok(await repositorio.Get());
+        }
 
         [HttpPut ("email/{id}")]
-        public async Task<IActionResult> PutEmail (int id, Interesse interesse) {
-
-            if (id != interesse.IdInteresse) {
+        public async Task<IActionResult> PutEmail (int id, Interesse interesse)
+        {
+            if (id != interesse.IdInteresse)
+            {
                 return BadRequest ("Interesse não encontrado.");
             }
-            try {
+            try 
+            {
                 var temp = interesse.IdClassificado;
                 interesse.Comprador = true;
                 var x = await repositorio.Put(interesse);
@@ -109,10 +116,13 @@ namespace TW.Controllers {
                 string body = System.IO.File.ReadAllText (@"NaoComprador.html");
                 System.Console.WriteLine ("Contents of NaoComprador.html = {0}", body);
                 List<Interesse> lstInteresse = await repositorio.Get ();
-                foreach (var item in lstInteresse) {
-                    if (item.IdClassificado == temp && item.Comprador == false) {
+                foreach (var item in lstInteresse) 
+                {
+                    if (item.IdClassificado == temp && item.Comprador == false) 
+                    {
                         sendEmail.EnvioEmail (item.IdUsuarioNavigation.Email, titulo, body);
-                    }else if(item.IdClassificado == temp && item.Comprador == true)             
+                    }
+                    else if(item.IdClassificado == temp && item.Comprador == true)             
                     {
                         body = System.IO.File.ReadAllText (@"Comprador.html");
                         titulo = $"Parabéns {interesse.IdUsuarioNavigation.NomeCompleto} você foi selecionado - Você acaba de adquirir {interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento}";
@@ -128,11 +138,16 @@ namespace TW.Controllers {
                     }
                 }
                 return Ok(x);
-            } catch (DbUpdateConcurrencyException e) {
+            } 
+            catch (DbUpdateConcurrencyException e) 
+            {
                 var interesseValido = await repositorio.GetbyId(id);
-                if (interesseValido == null) {
+                if (interesseValido == null) 
+                {
                     return NotFound("Interesse não encontrado.");
-                } else {
+                } 
+                else 
+                {
                     return StatusCode(500, e);
                 }
             }

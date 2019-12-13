@@ -8,7 +8,6 @@ namespace TW.Utils
     {
         public string Upload(IFormFile arquivo, string savingFolder)
         {
-
             if (savingFolder == null)
             {
                 savingFolder = Path.Combine("imgUpdated");

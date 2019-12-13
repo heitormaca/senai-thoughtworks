@@ -50,6 +50,6 @@ namespace TW.Controllers
                 return StatusCode(500, e);
             }
             return Ok(categoria);
-         }
+        }
     }
 }

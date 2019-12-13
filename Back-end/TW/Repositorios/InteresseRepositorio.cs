@@ -19,8 +19,6 @@ namespace TW.Repositorios
                                                                     .Include (c =>c.IdClassificadoNavigation.Imagemclassificado)
                                                                     .Where(l => l.IdUsuario == id)
                                                                     .ToListAsync();
-                                                
-
             foreach (var item in listaInteresse)
             {
             item.IdClassificadoNavigation.Interesse = null;
@@ -47,13 +45,11 @@ namespace TW.Repositorios
             await context.SaveChangesAsync();
             return interesse;
         }
-
         public async Task<Interesse> Put(Interesse interesse)
         {
             context.Entry(interesse).State = EntityState.Modified;
             await context.SaveChangesAsync();
             return interesse;
         }
-
     }
 }

@@ -14,6 +14,5 @@ namespace TW.Interfaces
         Task<bool> ValidaEmail(Usuario usuario);
         Task<Usuario> Put(Usuario usuario);
         Usuario Verificacao(ForgotPasswordViewModel login);
-
     }
 }   
