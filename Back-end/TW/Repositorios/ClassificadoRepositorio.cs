@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TW.Interfaces;
 using TW.Models;
@@ -12,7 +11,7 @@ namespace TW.Repositorios
     public class ClassificadoRepositorio : IClassificadoRepositorio
     {
         TWContext context = new TWContext();
-    
+
         public async Task<List<Classificado>> GetListHome(string busca, string marca, string categoria, bool ordenacao)
         {
             var query = context
@@ -23,14 +22,14 @@ namespace TW.Repositorios
                 .Include(a => a.Interesse)
                 .AsQueryable();
 
-            if (!string.IsNullOrEmpty(categoria)) 
+            if (!string.IsNullOrEmpty(categoria))
             {
                 query = query.Where(a => a.IdEquipamentoNavigation.IdCategoriaNavigation.NomeCategoria.Contains(categoria));
             }
-            if (!string.IsNullOrEmpty(busca)) 
+            if (!string.IsNullOrEmpty(busca))
             {
-                query = query.Where(a => 
-                    a.IdEquipamentoNavigation.NomeEquipamento.Contains(busca) || 
+                query = query.Where(a =>
+                    a.IdEquipamentoNavigation.NomeEquipamento.Contains(busca) ||
                     a.IdEquipamentoNavigation.Processador.Contains(busca) ||
                     (a.CodigoClassificado).ToString().Contains(busca) ||
                     a.IdEquipamentoNavigation.Marca.Contains(busca) ||
@@ -44,7 +43,7 @@ namespace TW.Repositorios
                     a.IdEquipamentoNavigation.IdCategoriaNavigation.NomeCategoria.Contains(busca)
                 );
             }
-            if(ordenacao == true)
+            if (ordenacao == true)
             {
                 query = query.OrderBy(p => p.Preco);
             }
@@ -52,7 +51,7 @@ namespace TW.Repositorios
             {
                 query = query.OrderByDescending(p => p.Preco);
             }
-            if (!string.IsNullOrEmpty(marca)) 
+            if (!string.IsNullOrEmpty(marca))
             {
                 query = query.Where(a => a.IdEquipamentoNavigation.Marca.Contains(marca));
             }
@@ -60,7 +59,7 @@ namespace TW.Repositorios
             {
                 item.IdEquipamentoNavigation.IdCategoriaNavigation.Equipamento = null;
             }
-            return await query.ToListAsync();
+            return await query.Where(x => x.StatusClassificado == true).ToListAsync();
         }
 
         public async Task<List<Classificado>> GetListAdm(string busca, bool? ordNomeE, bool? ordCodClass, bool? ordNumSerie)
@@ -78,34 +77,34 @@ namespace TW.Repositorios
                     a.NumeroDeSerie.Contains(busca)
                 );
             }
-            if(ordNomeE == true)
+            if (ordNomeE == true)
             {
-                query = query.OrderBy(p=>p.IdEquipamentoNavigation.NomeEquipamento);
+                query = query.OrderBy(p => p.IdEquipamentoNavigation.NomeEquipamento);
             }
-            else if(ordNomeE == false)
+            else if (ordNomeE == false)
             {
-                query = query.OrderByDescending(p=>p.IdEquipamentoNavigation.NomeEquipamento);
+                query = query.OrderByDescending(p => p.IdEquipamentoNavigation.NomeEquipamento);
             }
-            else{}
-            if(ordCodClass == true)
+            else { }
+            if (ordCodClass == true)
             {
-                query = query.OrderBy(p=>p.CodigoClassificado);
+                query = query.OrderBy(p => p.CodigoClassificado);
             }
-            else if(ordCodClass == false)
+            else if (ordCodClass == false)
             {
-                query = query.OrderByDescending(p=>p.CodigoClassificado);
+                query = query.OrderByDescending(p => p.CodigoClassificado);
             }
-            else{}
-            if(ordNumSerie == true)
+            else { }
+            if (ordNumSerie == true)
             {
-                query = query.OrderBy(p=>p.NumeroDeSerie);
+                query = query.OrderBy(p => p.NumeroDeSerie);
             }
-            else if(ordNumSerie == false)
+            else if (ordNumSerie == false)
             {
-                query = query.OrderByDescending(p=>p.NumeroDeSerie);
+                query = query.OrderByDescending(p => p.NumeroDeSerie);
             }
-            else{}
-            return await query.ToListAsync();
+            else { }
+            return await query.Where(x => x.StatusClassificado == true).ToListAsync();
         }
         public async Task<Classificado> GetPageProduct(int id)
         {
@@ -115,15 +114,12 @@ namespace TW.Repositorios
                                     .Include(a => a.Imagemclassificado)
                                     .Include(a => a.Interesse)
                                     .Where(a => a.IdClassificado == id)
+                                    .Where(x => x.StatusClassificado == true)
                                     .FirstOrDefaultAsync();
             return produto;
         }
-        public async Task<List<Classificado>> GetL()
-        {
-            return await context.Classificado.ToListAsync();
-        }
         public async Task<Classificado> Post(Classificado classificado)
-        {   
+        {
             await context.Classificado.AddAsync(classificado);
             await context.SaveChangesAsync();
             return classificado;
@@ -133,6 +129,10 @@ namespace TW.Repositorios
             context.Entry(classificado).State = EntityState.Modified;
             await context.SaveChangesAsync();
             return classificado;
+        }
+        public async Task<Classificado> GetById(int id)
+        {
+            return await context.Classificado.FindAsync(id);
         }
     }
 }

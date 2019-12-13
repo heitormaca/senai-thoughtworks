@@ -17,6 +17,13 @@
             <param name="categoria">Envia uma categoria.</param>
             <returns>Retorna uma categoria cadastrada.</returns>
         </member>
+        <member name="M:TW.Controllers.CategoriaController.PutStatusCategoria(System.Int32)">
+            <summary>
+            Método para atualizar o status da categoria para false.
+            </summary>
+            <param name="id">Envia um id da categoria.</param>
+            <returns>Retorna a categoria atualizado.</returns>
+        </member>
         <member name="M:TW.Controllers.ClassificadoController.GetHome(System.String,System.String,System.String,System.Boolean)">
             <summary>
             Método para buscar a lista de classificados com seus respectivos nomes, imagens e preços para a barra de busca e para os filtros da home page.
@@ -51,6 +58,13 @@
             <param name="classificado">Envia uma classificado.</param>
             <returns>Retorna o classificado cadastrado.</returns>
         </member>
+        <member name="M:TW.Controllers.ClassificadoController.PutStatusClassificado(System.Int32)">
+            <summary>
+            Método para atualizar o status do classificado para false.
+            </summary>
+            <param name="id">Envia um id do classificado.</param>
+            <returns>Retorna a categoria atualizado.</returns>
+        </member>
         <member name="M:TW.Controllers.EquipamentoController.GetListEqui(System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
             <summary>
             Método que lista, busca e ordena equipamentos.
@@ -83,6 +97,13 @@
             <param name="equipamento">Envia um equipamento.</param>
             <returns>Retorna o equipamento recém cadastrado.</returns>
         </member>
+        <member name="M:TW.Controllers.EquipamentoController.PutStatusEquipamento(System.Int32)">
+            <summary>
+            Método para atualizar o status do equipamento para false.
+            </summary>
+            <param name="id">Envia um id da categoria.</param>
+            <returns>Retorna o equipamento.</returns>
+        </member>
         <member name="M:TW.Controllers.InteresseController.GetListInteresse">
             <summary>
             Método que lista os interesses do usuário logado.
@@ -95,6 +116,13 @@
             </summary>
             <param name="interesse">envia o interesse.</param>
             <returns>Retorna o interesse do usuário logado.</returns>
+        </member>
+        <member name="M:TW.Controllers.InteresseController.PutStatusInteresse(System.Int32)">
+            <summary>
+            Método para atualizar o status do interesse para false.
+            </summary>
+            <param name="id">Envia um id do interesse.</param>
+            <returns>Retorna o interesse atualizado.</returns>
         </member>
         <member name="M:TW.Controllers.LoginController.PostLogin(TW.ViewModel.LoginViewModel)">
             <summary>

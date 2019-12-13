@@ -54,7 +54,6 @@ namespace TW
                 options.AddPolicy (PermissaoEntreOrigens,
                     builder => builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
             });
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
@@ -62,6 +61,7 @@ namespace TW
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
         }
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {

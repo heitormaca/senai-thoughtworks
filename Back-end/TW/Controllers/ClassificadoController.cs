@@ -26,7 +26,7 @@ namespace TW.Controllers
         /// <param name="ordenacao">Envia um estado true para ordenar Crescente e false para ordenar decrescente.</param>
         /// <returns>Retorna a lista de classificados com seus respectivos nomes, imagens e preços para a barra de busca e para os filtros da home page.</returns>
         [HttpGet]
-        [Authorize(Roles="Comum")]
+        [Authorize(Roles = "Comum")]
         public async Task<IActionResult> GetHome(string busca, string marca, string categoria, bool ordenacao)
         {
             return Ok(await repositorio.GetListHome(busca, marca, categoria, ordenacao));
@@ -63,7 +63,7 @@ namespace TW.Controllers
             }
             return Ok(classificadoRetornado);
         }
-        
+
         /// <summary>
         /// Método para cadastrar um classificado com no mínimo uma imagem.
         /// </summary>
@@ -94,6 +94,21 @@ namespace TW.Controllers
             {
                 return StatusCode(500, e);
             }
+        }
+
+        /// <summary>
+        /// Método para atualizar o status do classificado para false.
+        /// </summary>
+        /// <param name="id">Envia um id do classificado.</param>
+        /// <returns>Retorna a categoria atualizado.</returns>
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutStatusClassificado(int id)
+        {
+            var classificado = await repositorio.GetById(id);
+            classificado.StatusClassificado = false;
+            await repositorio.Put(classificado);
+            return Ok(classificado);
         }
     }
 }

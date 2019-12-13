@@ -2,10 +2,6 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
-  <PropertyGroup>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-    <NoWarn>$(NoWarn);1591</NoWarn>
-  </PropertyGroup>
   <ItemGroup>&#xD;
   </ItemGroup>
   <ItemGroup>
@@ -19,4 +15,8 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.0.0-rc4"/>
     <PackageReference Include="Spire.PDF" Version="5.11.18"/>
   </ItemGroup>
+  <PropertyGroup>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);1591</NoWarn>
+  </PropertyGroup>
 </Project>

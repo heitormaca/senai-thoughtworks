@@ -74,5 +74,21 @@ namespace TW.Controllers
             }
             return Ok(equipamento);
         }
+
+        /// <summary>
+        /// Método para atualizar o status do equipamento para false.
+        /// </summary>
+        /// <param name="id">Envia um id da categoria.</param>
+        /// <returns>Retorna o equipamento.</returns>
+        [Authorize(Roles = "Administrador")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutStatusEquipamento(int id)
+        {
+            var equipamento = await repositorio.GetId(id);
+            equipamento.StatusEquipamento = false;
+            await repositorio.Put(equipamento);
+            return Ok(equipamento);
+        }
+
     }
 }

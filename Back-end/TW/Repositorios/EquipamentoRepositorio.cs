@@ -130,7 +130,7 @@ namespace TW.Repositorios
                 query = query.OrderByDescending(p =>p.Ssd);
             }
             else{} 
-            return await query.ToListAsync();
+            return await query.Where(x => x.StatusEquipamento == true).ToListAsync();
         }
         public async Task<Equipamento> Post(Equipamento equipamento)
         {
@@ -141,6 +141,13 @@ namespace TW.Repositorios
         public async Task<Equipamento> GetId(int id)
         {
             return await context.Equipamento.FindAsync(id);
+        }
+
+        public async Task<Equipamento> Put(Equipamento equipamento)
+        {
+            context.Entry(equipamento).State = EntityState.Modified;
+            await context.SaveChangesAsync();
+            return equipamento;
         }
     }
 }

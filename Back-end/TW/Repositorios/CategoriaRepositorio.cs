@@ -20,14 +20,14 @@ namespace TW.Repositorios
         {
             var query = context
                 .Categoria
-                .AsQueryable();  
-            if (!string.IsNullOrEmpty(busca)) 
+                .AsQueryable();
+            if (!string.IsNullOrEmpty(busca))
             {
-                query = query.Where(a => 
+                query = query.Where(a =>
                     a.NomeCategoria.Contains(busca)
                 );
             }
-            if(ordenacao == true)
+            if (ordenacao == true)
             {
                 query = query.OrderBy(p => p.NomeCategoria);
             }
@@ -35,7 +35,7 @@ namespace TW.Repositorios
             {
                 query = query.OrderByDescending(p => p.NomeCategoria);
             }
-            return await query.ToListAsync();
+            return await query.Where(x => x.StatusCategoria == true).ToListAsync();
         }
         public async Task<Categoria> Post(Categoria categoria)
         {
