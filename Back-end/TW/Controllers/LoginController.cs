@@ -62,7 +62,7 @@ namespace TW.Controllers {
         [AllowAnonymous]
         [HttpPost]
         public IActionResult PostLogin([FromBody] LoginViewModel login) {
-            IActionResult response = Unauthorized();
+            IActionResult response = Unauthorized("Usuário ou senha incorreto.");
             var user = Autenticacao (login);
             if (user != null) {
                 var tokenString = GenerateJSONWebToken(user);

@@ -96,14 +96,6 @@
             <param name="interesse">envia o interesse.</param>
             <returns>Retorna o interesse do usuário logado.</returns>
         </member>
-        <member name="M:TW.Controllers.InteresseController.Put(System.Int32,TW.Models.Interesse)">
-            <summary>
-            Método de envio de e-mails para os usuários que registraram interesse no classificado
-            </summary>
-            <param name="id">Recebe o ID especifico do interesse</param>
-            <param name="interesse">Recebe as informações do interesse que serão alteradas</param>
-            <returns>Retorna para o usuário o interesse com as informções alteradas e envia os emails para todos os tipos de usuários</returns>
-        </member>
         <member name="M:TW.Controllers.LoginController.PostLogin(TW.ViewModel.LoginViewModel)">
             <summary>
             Método de logar no sistema.
@@ -133,6 +125,13 @@
             </summary>
             <param name="model">Envia a senha que seja ser atualizada.</param>
             <returns>Retorna a senha do usuário atualizada.</returns>
+        </member>
+        <member name="M:TW.Controllers.UsuarioController.PostForgotPassword(TW.ViewModel.ForgotPasswordViewModel)">
+            <summary>
+            Método para enviar um email com uma nova senha para o usuário que à esqueceu.
+            </summary>
+            <param name="verificacao">Envia o nome completo e o email do usuário.</param>
+            <returns>Retorna os dados do usuário com uma nova senha.</returns>
         </member>
         <member name="M:TW.Controllers.UsuarioController.PostUser(TW.Models.Usuario)">
             <summary>

@@ -1,5 +1,3 @@
-using System.IO;
-using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -20,6 +18,8 @@ namespace TW.Controllers
         UsuarioRepositorio repositorio = new UsuarioRepositorio();
         EncryptPassword encrypt = new EncryptPassword();
         Email sendEmail = new Email();
+
+        UploadImg img = new UploadImg();
         
         /// <summary>
         /// Método para listar, buscar e filtrar dados de usuários registrados no sistema.
@@ -65,6 +65,8 @@ namespace TW.Controllers
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await repositorio.Get(int.Parse(idDoUsuario));
                 usr.Senha = model.Senha;
+                var senhaEncrypt = encrypt.Encrypt(usr.Senha);
+                usr.Senha = senhaEncrypt;
                 await repositorio.Put(usr);
                 return Ok(usr);
             }
@@ -74,7 +76,11 @@ namespace TW.Controllers
             }
         }
 
-
+        /// <summary>
+        /// Método para enviar um email com uma nova senha para o usuário que à esqueceu.
+        /// </summary>
+        /// <param name="verificacao">Envia o nome completo e o email do usuário.</param>
+        /// <returns>Retorna os dados do usuário com uma nova senha.</returns>
         [HttpPatch("forgotPassword")]
         public async Task<IActionResult> PostForgotPassword([FromBody] ForgotPasswordViewModel verificacao)
         {
@@ -103,13 +109,7 @@ namespace TW.Controllers
                 return response;
             }
         }
-        private Usuario Autenticacao(ForgotPasswordViewModel verificacao)
-        {
-            Usuario usuario = repositorio.Verificacao(verificacao);
-            return usuario;
-        }
 
-            
         /// <summary>
         /// Método para cadastrar usuário comum ou administrador no sistema.
         /// </summary>
@@ -149,34 +149,17 @@ namespace TW.Controllers
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await repositorio.Get(int.Parse(idDoUsuario));
                 var arquivo = Request.Form.Files[0];
-                usr.ImagemUsuario = Upload(arquivo,"Imagens/UsuarioImagens");
+                usr.ImagemUsuario = img.Upload(arquivo,"Imagens/UsuarioImagens");
                 await repositorio.Put(usr);
                 return Ok(usr);
             }catch (System.Exception e){
                 return StatusCode(500, e);
             }
         }
-
-        private string Upload(IFormFile arquivo, string savingFolder){
-            
-            if(savingFolder == null) {
-                savingFolder = Path.Combine("imgUpdated");                
-            }
-
-            var pathToSave = Path.Combine(Directory.GetCurrentDirectory(), savingFolder);
-
-            if (arquivo.Length > 0) {
-                var fileName = ContentDispositionHeaderValue.Parse(arquivo.ContentDisposition).FileName.Trim ('"');
-                var fullPath = Path.Combine(pathToSave, fileName);
-
-                using(var stream = new FileStream(fullPath, FileMode.Create)) {
-                    arquivo.CopyTo(stream);
-                }                    
-
-                return fullPath;
-            } else {
-                return null;
-            }           
+        private Usuario Autenticacao(ForgotPasswordViewModel verificacao)
+        {
+            Usuario usuario = repositorio.Verificacao(verificacao);
+            return usuario;
         }
     }
 }
