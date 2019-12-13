@@ -10,6 +10,12 @@ namespace TW.Repositorios
     public class CategoriaRepositorio : ICategoriaRepositorio
     {
         TWContext context = new TWContext();
+
+        public async Task<Categoria> Get(int id)
+        {
+            return await context.Categoria.FindAsync(id);
+        }
+
         public async Task<List<Categoria>> GetList(string busca, bool ordenacao)
         {
             var query = context
@@ -34,6 +40,12 @@ namespace TW.Repositorios
         public async Task<Categoria> Post(Categoria categoria)
         {
             await context.Categoria.AddAsync(categoria);
+            await context.SaveChangesAsync();
+            return categoria;
+        }
+        public async Task<Categoria> Put(Categoria categoria)
+        {
+            context.Entry(categoria).State = EntityState.Modified;
             await context.SaveChangesAsync();
             return categoria;
         }

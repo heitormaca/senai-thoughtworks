@@ -70,8 +70,8 @@ namespace TW.Controllers
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await repositorio.Get(int.Parse(idDoUsuario));
                 usr.Senha = model.Senha;
-                var senhaEncrypt = encrypt.Encrypt(model.Senha);
-                usr.Senha = senhaEncrypt;
+                // var senhaEncrypt = encrypt.Encrypt(model.Senha);
+                // usr.Senha = senhaEncrypt;
                 await repositorio.Put(usr);
                 return Ok(usr);
             }

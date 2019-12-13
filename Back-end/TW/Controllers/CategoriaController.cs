@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TW.Models;
 using TW.Repositorios;
+using TW.ViewModel;
 
 namespace TW.Controllers
 {
@@ -49,6 +50,16 @@ namespace TW.Controllers
             {
                 return StatusCode(500, e);
             }
+            return Ok(categoria);
+        }
+
+        [Authorize(Roles="Administrador")]
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutStatusCategoria(int id, StatusCategoriaViewModel model)
+        {
+            var categoria = await repositorio.Get(id);
+            categoria.StatusCategoria = model.StatusCategoria;
+            await repositorio.Put(categoria);
             return Ok(categoria);
         }
     }

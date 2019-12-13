@@ -100,8 +100,8 @@ namespace TW.Controllers
             return Ok(await repositorio.Get());
         }
 
-        [HttpPut ("email/{id}")]
-        public async Task<IActionResult> PutEmail (int id, Interesse interesse)
+        [HttpPut("email/{id}")]
+        public async Task<IActionResult> PutEmail(int id, Interesse interesse)
         {
             if (id != interesse.IdInteresse)
             {
@@ -115,7 +115,7 @@ namespace TW.Controllers
                 string titulo = $"Não foi dessa vez {interesse.IdUsuarioNavigation.NomeCompleto} - CLASSIFICADO ENCERRADO! - {interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento}";
                 string body = System.IO.File.ReadAllText (@"NaoComprador.html");
                 System.Console.WriteLine ("Contents of NaoComprador.html = {0}", body);
-                List<Interesse> lstInteresse = await repositorio.Get ();
+                List<Interesse> lstInteresse = await repositorio.Get();
                 foreach (var item in lstInteresse) 
                 {
                     if (item.IdClassificado == temp && item.Comprador == false) 
