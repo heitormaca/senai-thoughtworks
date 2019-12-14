@@ -101,8 +101,8 @@
             <summary>
             Método para atualizar o status do equipamento para false.
             </summary>
-            <param name="id">Envia um id da categoria.</param>
-            <returns>Retorna o equipamento.</returns>
+            <param name="id">Envia um id do equipamento.</param>
+            <returns>Retorna o equipamento atualizado.</returns>
         </member>
         <member name="M:TW.Controllers.InteresseController.GetListInteresse">
             <summary>
@@ -173,6 +173,13 @@
             Método para atualizar a imagem do usuário logado.
             </summary>
             <returns>Atualiza a imagem do usuário logado.</returns>
+        </member>
+        <member name="M:TW.Controllers.UsuarioController.PutStatusUsuario(System.Int32)">
+            <summary>
+            Método para atualizar o status do usuario para false.
+            </summary>
+            <param name="id">Envia um id do usuario.</param>
+            <returns>Retorna o usuario atualizado.</returns>
         </member>
     </members>
 </doc>

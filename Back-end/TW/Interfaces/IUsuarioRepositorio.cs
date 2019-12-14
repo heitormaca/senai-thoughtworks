@@ -3,16 +3,14 @@ using System.Threading.Tasks;
 using TW.Models;
 using TW.ViewModel;
 
-namespace TW.Interfaces
-{
-    public interface IUsuarioRepositorio
-    {
-        Task<Usuario> Get(int id);
-        Task<List<Usuario>> GetList(string busca, bool? ordNomeC, bool? ordNomeU, bool? ordEmail);
-        Task<List<Usuario>> GetL();
-        Task<Usuario> Post(Usuario usuario);
-        Task<bool> ValidaEmail(Usuario usuario);
-        Task<Usuario> Put(Usuario usuario);
-        Usuario Verificacao(ForgotPasswordViewModel login);
+namespace TW.Interfaces {
+    public interface IUsuarioRepositorio {
+        Task<Usuario> Get (int id);
+        Task<List<Usuario>> GetList (string busca, bool? ordNomeC, bool? ordNomeU, bool? ordEmail);
+        Task<List<Usuario>> GetL ();
+        Task<Usuario> Post (Usuario usuario);
+        Task<bool> ValidaEmail (Usuario usuario);
+        Task<Usuario> Put (Usuario usuario);
+        Usuario Verificacao (ForgotPasswordViewModel login);
     }
-}   
+}

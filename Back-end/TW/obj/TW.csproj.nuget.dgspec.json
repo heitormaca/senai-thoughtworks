@@ -13,6 +13,9 @@
         "packagesPath": "C:\\Users\\heito\\.nuget\\packages\\",
         "outputPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        ],
         "configFilePaths": [
           "C:\\Users\\heito\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
