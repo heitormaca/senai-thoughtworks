@@ -10,5 +10,7 @@ namespace TW.Interfaces {
     Task<Classificado> GetById (int id);
     Task<Classificado> Post (Classificado classificado);
     Task<Classificado> Put (Classificado classificado);
+    Task<List<Classificado>> GetClassificadoWithInteresse();
+    Task<List<Interesse>> GetInteressesFromClassificado(int classificadoId);
   }
 }

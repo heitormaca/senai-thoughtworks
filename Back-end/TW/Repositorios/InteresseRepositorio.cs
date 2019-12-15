@@ -25,10 +25,7 @@ namespace TW.Repositorios
             }
             return listaInteresse;
         }
-        public async Task<List<Interesse>> Get()
-        {
-            return await context.Interesse.Where(x => x.StatusInteresse == true).ToListAsync();
-        }
+        
         public async Task<Interesse> GetbyId(int id)
         {
             return await context.Interesse
@@ -54,6 +51,11 @@ namespace TW.Repositorios
         public async Task CommitChanges()
         {
             await context.SaveChangesAsync();
+        }
+
+        public Task<List<Interesse>> Get()
+        {
+            throw new NotImplementedException();
         }
     }
 }

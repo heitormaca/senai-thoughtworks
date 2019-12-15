@@ -119,30 +119,6 @@ namespace TW.Repositorios
             }
 
             return await query.ToListAsync();
-
-            // if (ordNomeE == true) {
-            //     query = query.OrderBy (p => p.IdEquipamentoNavigation.NomeEquipamento);
-            // } else if (ordNomeE == false) {
-            //     query = query.OrderByDescending (p => p.IdEquipamentoNavigation.NomeEquipamento);
-            // } else { }
-            // if (ordCodClass == true)
-            // {
-            //     query = query.OrderBy(p => p.CodigoClassificado);
-            // }
-            // else if (ordCodClass == false)
-            // {
-            //     query = query.OrderByDescending(p => p.CodigoClassificado);
-            // }
-            // else { }
-            // if (ordNumSerie == true)
-            // {
-            //     query = query.OrderBy(p => p.NumeroDeSerie);
-            // }
-            // else if (ordNumSerie == false)
-            // {
-            //     query = query.OrderByDescending(p => p.NumeroDeSerie);
-            // }
-            // else { }
         }
         public async Task<Classificado> GetPageProduct(int id)
         {
@@ -171,6 +147,23 @@ namespace TW.Repositorios
         public async Task<Classificado> GetById(int id)
         {
             return await context.Classificado.FindAsync(id);
+        }
+
+        public async Task<List<Classificado>> GetClassificadoWithInteresse()
+        {
+            return await context.Classificado
+                .Include(a => a.Interesse)
+                .Where(a => a.Interesse.Count > 0)
+                .ToListAsync();
+        }
+
+        public async Task<List<Interesse>> GetInteressesFromClassificado(int classificadoId)
+        {
+            return await context.Interesse
+                .Include(a => a.IdUsuarioNavigation)
+                .Where(a => a.IdClassificado == classificadoId)
+                .Where(a => a.StatusInteresse == true)
+                .ToListAsync();
         }
     }
 }

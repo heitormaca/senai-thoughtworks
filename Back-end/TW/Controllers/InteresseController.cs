@@ -30,7 +30,7 @@ namespace TW.Controllers
         /// </summary>
         /// <returns>Retorna a lista dos interesses do usuário logado.</returns>
         [Authorize(Roles = "Comum")]
-        [HttpGet("{ListInteresse}")]
+        [HttpGet("ListInteresses")]
         public async Task<IActionResult> GetListInteresse() //definição do tipo de retorno
         {
             try
@@ -68,10 +68,12 @@ namespace TW.Controllers
         }
 
         [Authorize(Roles = "Administrador")]
-        [HttpGet]
-        public async Task<IActionResult> ListClassInteresse()
+        [HttpGet("UsrInteresse")]
+
+        public async Task<IActionResult> ListUserClassInteresse(int id)
         {
-            return Ok(await repositorio.Get());
+            await repositorio.GetbyId(id);
+            return Ok();
         }
 
         [HttpPut("{id}/vender")]
@@ -132,59 +134,6 @@ namespace TW.Controllers
                 return StatusCode(500, e);
             }
         }
-
-        // [HttpPut("email/{id}")]
-        // public async Task<IActionResult> PutEmail(int id, Interesse interesse)
-        // {
-        //     if (id != interesse.IdInteresse)
-        //     {
-        //         return BadRequest("Interesse não encontrado.");
-        //     }
-        //     try
-        //     {
-        //         var temp = interesse.IdClassificado;
-        //         interesse.Comprador = true;
-        //         var x = await repositorio.Put(interesse);
-        //         string titulo = $"Não foi dessa vez {interesse.IdUsuarioNavigation.NomeCompleto} - CLASSIFICADO ENCERRADO! - {interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento}";
-        //         string body = System.IO.File.ReadAllText(@"NaoComprador.html");
-        //         System.Console.WriteLine("Contents of NaoComprador.html = {0}", body);
-        //         List<Interesse> lstInteresse = await repositorio.Get();
-        //         foreach (var item in lstInteresse)
-        //         {
-        //             if (item.IdClassificado == temp && item.Comprador == false)
-        //             {
-        //                 sendEmail.EnvioEmail(item.IdUsuarioNavigation.Email, titulo, body);
-        //             }
-        //             else if (item.IdClassificado == temp && item.Comprador == true)
-        //             {
-        //                 body = System.IO.File.ReadAllText(@"Comprador.html");
-        //                 titulo = $"Parabéns {interesse.IdUsuarioNavigation.NomeCompleto} você foi selecionado - Você acaba de adquirir {interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento}";
-        //                 System.Console.WriteLine("Contents of Comprador.html = {0}", body);
-        //                 string nome = interesse.IdUsuarioNavigation.NomeCompleto;
-        //                 string email = interesse.IdUsuarioNavigation.Email;
-        //                 string nomeClassificado = interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento;
-        //                 string codigoClassificado = interesse.IdClassificadoNavigation.CodigoClassificado.ToString();
-        //                 string nsClassificado = interesse.IdClassificadoNavigation.NumeroDeSerie;
-        //                 PdfDocument anexo = Pdf(nome, email, nomeClassificado, codigoClassificado, nsClassificado);
-        //                 sendEmail.EnvioEmailComprador(item.IdUsuarioNavigation.Email, titulo, body, anexo);
-        //                 // string anexo = @"C:\Users\fic\Desktop\apostila.pdf";
-        //             }
-        //         }
-        //         return Ok(x);
-        //     }
-        //     catch (DbUpdateConcurrencyException e)
-        //     {
-        //         var interesseValido = await repositorio.GetbyId(id);
-        //         if (interesseValido == null)
-        //         {
-        //             return NotFound("Interesse não encontrado.");
-        //         }
-        //         else
-        //         {
-        //             return StatusCode(500, e);
-        //         }
-        //     }
-        // }
 
         /// <summary>
         /// Método para atualizar o status do interesse para false.
