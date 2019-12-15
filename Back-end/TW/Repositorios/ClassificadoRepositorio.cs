@@ -146,7 +146,9 @@ namespace TW.Repositorios
         }
         public async Task<Classificado> GetById(int id)
         {
-            return await context.Classificado.FindAsync(id);
+            return await context.Classificado
+                .Include(a => a.Interesse)
+                .FirstOrDefaultAsync(a => a.IdClassificado == id);
         }
 
         public async Task<List<Classificado>> GetClassificadoWithInteresse()

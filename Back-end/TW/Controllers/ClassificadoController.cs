@@ -100,11 +100,15 @@ namespace TW.Controllers
         /// </summary>
         /// <param name="id">Envia um id do classificado.</param>
         /// <returns>Retorna a categoria atualizado.</returns>
-        [Authorize(Roles = "Administrador")]
+        // [Authorize(Roles = "Administrador")]
         [HttpPut("{id}")]
         public async Task<IActionResult> PutStatusClassificado(int id)
         {
             var classificado = await repositorio.GetById(id);
+
+            if (classificado.Interesse.Count > 0)
+                return BadRequest("Não é possível alterar o status de um classificado quando existem interesses nele.");
+
             classificado.StatusClassificado = false;
             await repositorio.Put(classificado);
             return Ok(classificado);
