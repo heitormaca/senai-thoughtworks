@@ -9,5 +9,6 @@ namespace TW.Infertaces {
         Task<Interesse> Post (Interesse interesse);
         Task<Interesse> Put (Interesse interesse);
         Task<List<Interesse>> GetListInteresse (int id);
+        Task CommitChanges();
     }
 }

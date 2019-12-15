@@ -1,28 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {}
+    "E:\\development\\other\\TWNewTime\\Back-end\\TW\\TW.csproj": {}
   },
   "projects": {
-    "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {
+    "E:\\development\\other\\TWNewTime\\Back-end\\TW\\TW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
+        "projectUniqueName": "E:\\development\\other\\TWNewTime\\Back-end\\TW\\TW.csproj",
         "projectName": "TW",
-        "projectPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
-        "packagesPath": "C:\\Users\\heito\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\obj\\",
+        "projectPath": "E:\\development\\other\\TWNewTime\\Back-end\\TW\\TW.csproj",
+        "packagesPath": "C:\\Users\\Jonathan Bertoldi\\.nuget\\packages\\",
+        "outputPath": "E:\\development\\other\\TWNewTime\\Back-end\\TW\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\heito\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\Jonathan Bertoldi\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -76,6 +75,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.0.1, 3.0.1]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.0.0, 3.0.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -84,7 +101,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.100\\RuntimeIdentifierGraph.json"
         }
       }
     }
