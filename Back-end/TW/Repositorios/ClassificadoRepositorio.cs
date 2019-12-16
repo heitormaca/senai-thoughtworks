@@ -19,6 +19,7 @@ namespace TW.Repositorios
                 .Include(a => a.IdEquipamentoNavigation.IdCategoriaNavigation)
                 .Include(a => a.Imagemclassificado)
                 .Include(a => a.Interesse)
+                .Where(x => x.StatusClassificado == true)
                 .AsQueryable();
 
             if (!string.IsNullOrEmpty(categoria))
@@ -58,7 +59,7 @@ namespace TW.Repositorios
             {
                 item.IdEquipamentoNavigation.IdCategoriaNavigation.Equipamento = null;
             }
-            return await query.Where(x => x.StatusClassificado == true).ToListAsync();
+            return await query.ToListAsync();
         }
 
         public async Task<List<Classificado>> GetListAdm(string busca, bool? ordNomeE, bool? ordCodClass, bool? ordNumSerie)
@@ -150,15 +151,16 @@ namespace TW.Repositorios
                 .Include(a => a.Interesse)
                 .FirstOrDefaultAsync(a => a.IdClassificado == id);
         }
-
         public async Task<List<Classificado>> GetClassificadoWithInteresse()
         {
             return await context.Classificado
-                .Include(a => a.Interesse)
+                // .Include(a =>a.Interesse)
+                .Include(a => new Interesse() 
+                .StatusInteresse == true)
+                // .Where(b =>b.StatusClassificado == true)
                 .Where(a => a.Interesse.Count > 0)
                 .ToListAsync();
         }
-
         public async Task<List<Interesse>> GetInteressesFromClassificado(int classificadoId)
         {
             return await context.Interesse

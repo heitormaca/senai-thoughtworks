@@ -1,12 +1,10 @@
 using System;
-using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using Spire.Pdf;
 using Spire.Pdf.Graphics;
 using TW.Models;
@@ -66,7 +64,7 @@ namespace TW.Controllers
                 return StatusCode(500, e);
             }
         }
-
+       
         [Authorize(Roles = "Administrador")]
         [HttpGet("UsrInteresse")]
 
@@ -121,7 +119,7 @@ namespace TW.Controllers
                     string bodyFalha = System.IO.File.ReadAllText(@"NaoComprador.html");
 
                     // mandar email para quem não conseguiu comprar
-                    sendEmail.EnvioEmail(item.IdUsuarioNavigation.Email, titulo, body);
+                    sendEmail.EnvioEmail(item.IdUsuarioNavigation.Email, tituloFalha, bodyFalha);
                 }
 
                 // atualizar status do classificado e dos interesses que falharam

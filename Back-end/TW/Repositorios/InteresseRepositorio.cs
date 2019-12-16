@@ -11,6 +11,12 @@ namespace TW.Repositorios
     public class InteresseRepositorio : IInteresseRepositorio
     {
         TWContext context = new TWContext();
+
+         public async Task<List<Interesse>> GetInteresses(){
+
+                return await context.Interesse.Where(x =>x.StatusInteresse == true).ToListAsync();
+
+        }
         public async Task<List<Interesse>> GetListInteresse(int id)
         {
             List<Interesse> listaInteresse = await context.Interesse.Include(a => a.IdClassificadoNavigation)

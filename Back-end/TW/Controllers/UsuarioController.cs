@@ -42,8 +42,8 @@ namespace TW.Controllers {
         public async Task<IActionResult> GetUser () {
             try {
                 var idDoUsuario = HttpContext.User.Claims.First (a => a.Type == "id").Value;
-                var usr = await repositorio.Get (int.Parse (idDoUsuario));
-                return Ok (usr);
+                var usr = await repositorio.Get(int.Parse (idDoUsuario));
+                return Ok(usr);
             } catch (System.Exception e) {
                 return StatusCode (500, e);
             }
@@ -59,11 +59,11 @@ namespace TW.Controllers {
         public async Task<IActionResult> ChangePassword ([FromBody] PasswordUpdateViewModel model) {
             try {
                 var idDoUsuario = HttpContext.User.Claims.First (a => a.Type == "id").Value;
-                var usr = await repositorio.Get (int.Parse (idDoUsuario));
+                var usr = await repositorio.Get(int.Parse (idDoUsuario));
                 usr.Senha = model.Senha;
                 var senhaEncrypt = encrypt.Encrypt (model.Senha);
                 usr.Senha = senhaEncrypt;
-                await repositorio.Put (usr);
+                await repositorio.Put(usr);
                 return Ok (usr);
             } catch (System.Exception e) {
                 return StatusCode (500, e);
@@ -111,7 +111,7 @@ namespace TW.Controllers {
         [HttpPost]
         public async Task<IActionResult> PostUser (Usuario usuario) {
             try {
-                var listUser = await repositorio.GetL ();
+                var listUser = await repositorio.GetL();
                 if (listUser.Count == 0) {
                     usuario.CategoriaUsuario = false;
                 }
@@ -152,9 +152,17 @@ namespace TW.Controllers {
         [HttpPut ("{id}")]
         public async Task<IActionResult> PutStatusUsuario (int id) {
             var usuario = await repositorio.Get (id);
-            usuario.StatusUsuario = false;
-            await repositorio.Put (usuario);
-            return Ok (usuario);
+
+            if(usuario.Interesse.Count > 0)
+            {
+                return BadRequest("Não é possível alterar o status de um usuário quando existem interesses nele.");
+            }
+            else
+            {
+                usuario.StatusUsuario = false;
+                await repositorio.Put(usuario);
+                return Ok (usuario);
+            }
         }
         private Usuario Autenticacao (ForgotPasswordViewModel verificacao) {
             Usuario usuario = repositorio.Verificacao (verificacao);

@@ -4,6 +4,9 @@ using TW.Models;
 
 namespace TW.Infertaces {
     public interface IInteresseRepositorio {
+
+        
+        Task<List<Interesse>> GetInteresses ();
         Task<List<Interesse>> Get ();
         Task<Interesse> GetbyId (int id);
         Task<Interesse> Post (Interesse interesse);

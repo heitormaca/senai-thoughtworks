@@ -107,12 +107,17 @@ namespace TW.Controllers
             var classificado = await repositorio.GetById(id);
 
             if (classificado.Interesse.Count > 0)
+            {
                 return BadRequest("Não é possível alterar o status de um classificado quando existem interesses nele.");
-
-            classificado.StatusClassificado = false;
-            await repositorio.Put(classificado);
-            return Ok(classificado);
+            }
+            else
+            {
+                classificado.StatusClassificado = false;
+                await repositorio.Put(classificado);
+                return Ok(classificado);
+            }   
         }
+
 
         // [Authorize(Roles = "Administrador")]
         [HttpGet("interesse")]
@@ -122,7 +127,7 @@ namespace TW.Controllers
         }
 
         // [Authorize(Roles = "Administrador")]
-        [HttpGet("{classificadoId}/interesses")]
+        [HttpGet("{classificadoId}/interesse")]
         public async Task<IActionResult> GetClassificadoInteresses(int classificadoId)
         {
             return Ok(await repositorio.GetInteressesFromClassificado(classificadoId));

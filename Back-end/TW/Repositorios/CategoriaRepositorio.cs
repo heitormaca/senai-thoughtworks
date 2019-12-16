@@ -16,6 +16,7 @@ namespace TW.Repositorios {
         public async Task<List<Categoria>> GetList (string busca, bool ordenacao) {
             var query = context
                 .Categoria
+                .Where (x => x.StatusCategoria == true)
                 .AsQueryable ();
             if (!string.IsNullOrEmpty (busca)) {
                 query = query.Where (a =>
@@ -27,7 +28,7 @@ namespace TW.Repositorios {
             } else {
                 query = query.OrderByDescending (p => p.NomeCategoria);
             }
-            return await query.Where (x => x.StatusCategoria == true).ToListAsync ();
+            return await query.ToListAsync ();
         }
         public async Task<Categoria> Post (Categoria categoria) {
             await context.Categoria.AddAsync (categoria);

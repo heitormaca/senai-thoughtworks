@@ -14,6 +14,7 @@ namespace TW.Repositorios {
         public async Task<List<Usuario>> GetList (string busca, bool? ordNomeC, bool? ordNomeU, bool? ordEmail) {
             var query = context
                 .Usuario
+                .Where(x => x.StatusUsuario == true)
                 .AsQueryable ();
             if (!string.IsNullOrEmpty (busca)) {
                 query = query.Where (a =>
@@ -22,25 +23,43 @@ namespace TW.Repositorios {
                     a.Email.Contains (busca)
                 );
             }
-            if (ordNomeC == true) {
-                query = query.OrderBy (p => p.NomeCompleto);
-            } else if (ordNomeC == false) {
-                query = query.OrderByDescending (p => p.NomeCompleto);
-            } else { }
-            if (ordNomeU == true) {
-                query = query.OrderBy (p => p.NomeUsuario);
-            } else if (ordNomeU == false) {
-                query = query.OrderByDescending (p => p.NomeCompleto);
-            } else { }
-            if (ordEmail == true) {
-                query = query.OrderBy (p => p.Email);
-            } else if (ordEmail == false) {
-                query = query.OrderByDescending (p => p.Email);
-            } else { }
-            return await query.Where (x => x.StatusUsuario == true).ToListAsync ();
+            if (ordNomeC != null)
+            {
+                if (ordNomeC.Value)
+                {
+                    query = query.OrderBy (p => p.NomeCompleto);
+                }
+                else
+                {
+                    query = query.OrderByDescending (p => p.NomeCompleto);
+                }
+            }
+            if (ordNomeU != null)
+            {
+                if (ordNomeU.Value)
+                {
+                    query = query.OrderBy (p => p.NomeUsuario);
+                }
+                else
+                {
+                    query = query.OrderByDescending (p => p.NomeCompleto);
+                }
+            }
+            if (ordEmail != null)
+            {
+                if (ordEmail.Value)
+                {
+                    query = query.OrderBy (p => p.Email);
+                }
+                else
+                {
+                   query = query.OrderByDescending (p => p.Email); 
+                }
+            }
+            return await query.ToListAsync ();
         }
-        public async Task<Usuario> Get (int id) {
-            return await context.Usuario.FindAsync (id);
+        public async Task<Usuario> Get(int id) {
+            return await context.Usuario.FirstOrDefaultAsync(a => a.IdUsuario == id);
         }
         public async Task<List<Usuario>> GetL () {
             return await context.Usuario.Where (x => x.StatusUsuario == true).ToListAsync ();
