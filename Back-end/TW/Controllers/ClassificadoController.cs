@@ -14,6 +14,7 @@ namespace TW.Controllers
     public class ClassificadoController : ControllerBase
     {
         ClassificadoRepositorio repositorio = new ClassificadoRepositorio();
+        InteresseRepositorio interesseRepositorio = new InteresseRepositorio();
         UploadImg img = new UploadImg();
 
         /// <summary>
@@ -121,11 +122,25 @@ namespace TW.Controllers
         /// Método para listar classificados que possuem interesses.
         /// </summary>
         /// <returns>Retorna uma lista de classificados que possuem interesses.</returns>
-        [Authorize(Roles = "Administrador")]
+        // [Authorize(Roles = "Administrador")]
         [HttpGet("interesse")]
         public async Task<IActionResult> GetClassificadosWithInteresse()
         {
-            return Ok(await repositorio.GetClassificadoWithInteresse());
+            var listaClassificados = await repositorio.GetClassificadoWithInteresse();
+            var listaInteresses = await interesseRepositorio.GetInteresses();
+            List<Classificado> classificadosTrue = new List<Classificado>();
+            foreach (var itemClas in listaClassificados)
+            {
+               foreach (var itemInt in listaInteresses)
+               {
+                   if(itemClas.IdClassificado == itemInt.IdClassificado){
+                       if(itemInt.StatusInteresse == true){
+                           classificadosTrue.Add(itemClas);
+                       }
+                   }
+               }
+            }
+            return Ok(classificadosTrue);
         }
 
         /// <summary>
