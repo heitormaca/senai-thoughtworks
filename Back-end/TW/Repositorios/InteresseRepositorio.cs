@@ -53,15 +53,9 @@ namespace TW.Repositorios
             await context.SaveChangesAsync();
             return interesse;
         }
-
         public async Task CommitChanges()
         {
             await context.SaveChangesAsync();
-        }
-
-        public Task<List<Interesse>> Get()
-        {
-            throw new NotImplementedException();
         }
     }
 }

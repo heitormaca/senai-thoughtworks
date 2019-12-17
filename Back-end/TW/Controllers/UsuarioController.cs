@@ -115,6 +115,7 @@ namespace TW.Controllers {
                 if (listUser.Count == 0) {
                     usuario.CategoriaUsuario = false;
                 }
+                   
                 var senhaEncrypt = encrypt.Encrypt (usuario.Senha);
                 usuario.Senha = senhaEncrypt;
                 await repositorio.Post (usuario);

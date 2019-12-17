@@ -46,10 +46,17 @@ namespace TW.Controllers {
         [Authorize (Roles = "Administrador")]
         [HttpPut ("{id}")]
         public async Task<IActionResult> PutStatusCategoria (int id) {
-            var categoria = await repositorio.Get (id);
-            categoria.StatusCategoria = false;
-            await repositorio.Put (categoria);
-            return Ok (categoria);
+            var categoria = await repositorio.Get(id);
+            if (categoria.Equipamento.Count > 0)
+            {
+                return BadRequest("Não é possível alterar o status de uma categoria quando existem equipamentos nela.");
+            }
+            else
+            {
+                categoria.StatusCategoria = false;
+                await repositorio.Put(categoria);
+                return Ok (categoria);
+            }
         }
     }
 }

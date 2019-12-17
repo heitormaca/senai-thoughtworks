@@ -115,13 +115,12 @@ namespace TW.Repositorios {
                 {
                     query = query.OrderBy (p => p.PlacaDeVideo);
                 }
-            }
-            else
-            {
-                query = query.OrderByDescending (p => p.PlacaDeVideo);
+                else
+                {
+                    query = query.OrderByDescending (p => p.PlacaDeVideo);
+                }
             }
             if (ordProc != null)
-
             {
                 if (ordProc.Value)
                 {
@@ -158,11 +157,13 @@ namespace TW.Repositorios {
         }
         public async Task<Equipamento> Post (Equipamento equipamento) {
             await context.Equipamento.AddAsync (equipamento);
-            await context.SaveChangesAsync ();
+            await context.SaveChangesAsync();
             return equipamento;
         }
-        public async Task<Equipamento> GetId (int id) {
-            return await context.Equipamento.FindAsync (id);
+        public async Task<Equipamento> GetById(int id) {
+            return await context.Equipamento
+            .Include(a => a.Classificado)
+            .FirstOrDefaultAsync(a => a.IdEquipamento == id);
         }
         public async Task<Equipamento> Put (Equipamento equipamento) {
             context.Entry (equipamento).State = EntityState.Modified;

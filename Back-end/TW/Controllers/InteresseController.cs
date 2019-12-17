@@ -64,65 +64,44 @@ namespace TW.Controllers
                 return StatusCode(500, e);
             }
         }
-       
-        [Authorize(Roles = "Administrador")]
-        [HttpGet("UsrInteresse")]
 
-        public async Task<IActionResult> ListUserClassInteresse(int id)
-        {
-            await repositorio.GetbyId(id);
-            return Ok();
-        }
 
+        /// <summary>
+        /// Método que atualiza o status comprador do usuário para true, envia um email para ele e envia outros emails para os não compradores.
+        /// </summary>
+        /// <param name="id">Envia um id de interesse.</param>
+        /// <returns>Retorna nada.</returns>
         [HttpPut("{id}/vender")]
         public async Task<IActionResult> Vender(int id)
         {
             try
             {
-                // localizar o interesse e retornar erro caso não encontrado
                 var interesse = await repositorio.GetbyId(id);
-
                 if (interesse == null) return BadRequest("O interesse não foi localizado");
-
-                // atualizar o status do interesse
                 interesse.Comprador = true;
                 interesse.StatusInteresse = false;
                 interesse.DataCompra = DateTime.Now;
-
-                // criar o pdf
                 string nome = interesse.IdUsuarioNavigation.NomeCompleto;
                 string email = interesse.IdUsuarioNavigation.Email;
                 string nomeClassificado = interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento;
                 string codigoClassificado = interesse.IdClassificadoNavigation.CodigoClassificado.ToString();
                 string nsClassificado = interesse.IdClassificadoNavigation.NumeroDeSerie;
                 var fileName = Pdf(nome, email, nomeClassificado, codigoClassificado, nsClassificado);
-
-                // criar email de "compra efetuada com sucesso"
                 var titulo = $"Parabéns {interesse.IdUsuarioNavigation.NomeCompleto} você foi selecionado - Você acaba de adquirir {interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento}";
                 var body = System.IO.File.ReadAllText(@"Comprador.html");
-
-                // mandar email para comprador avisando da compra
                 sendEmail.EnvioEmailComprador(email, titulo, body, fileName);
-
-                // criar o email de "não foi possível comprar"
                 var interessesQueFalharam = interesse
                     .IdClassificadoNavigation
                     .Interesse
                     .Where(a => a.IdInteresse != id)
                     .ToList();
-
                 foreach (var item in interessesQueFalharam)
                 {
                     item.StatusInteresse = false;
-
                     string tituloFalha = $"Não foi dessa vez {interesse.IdUsuarioNavigation.NomeCompleto} - CLASSIFICADO ENCERRADO! - {interesse.IdClassificadoNavigation.IdEquipamentoNavigation.NomeEquipamento}";
                     string bodyFalha = System.IO.File.ReadAllText(@"NaoComprador.html");
-
-                    // mandar email para quem não conseguiu comprar
                     sendEmail.EnvioEmail(item.IdUsuarioNavigation.Email, tituloFalha, bodyFalha);
                 }
-
-                // atualizar status do classificado e dos interesses que falharam
                 await repositorio.CommitChanges();
 
                 return Ok();
@@ -152,24 +131,21 @@ namespace TW.Controllers
             PdfDocument doc = new PdfDocument();
             PdfPageBase page = doc.Pages.Add();
             page.Canvas.DrawString(@"New Time - Documento de compra" +
-                "Nome: " + nome +
-                "Email: " + email +
-                "Nome do Produto: " + nomeClassificado +
-                "Código do Classificado: " + codigoClassificado +
-                "Número de série: " + nsClassificado +
-                "Assinatura do Comprador ________________________________" +
-                "Assinatura da Empresa __________________________________",
-                new PdfFont(PdfFontFamily.Helvetica, 13f),
-                new PdfSolidBrush(Color.Black),
-                new PointF(50, 50));
-
-            var fileName = "filePDF.pdf";
-
+                                   $"Nome: " + nome +
+                                   $"Email: " + email +
+                                   $"Nome do Produto: " + nomeClassificado +
+                                   $"Código do Classificado: " + codigoClassificado +
+                                   $"Número de série: " + nsClassificado +
+                                   $"Assinatura do Comprador ________________________________" +
+                                   $"Assinatura da Empresa __________________________________",
+                                    new PdfFont(PdfFontFamily.Helvetica, 13f),
+                                    new PdfSolidBrush(Color.Black),
+                                    new PointF(50, 50));
+            var fileName = "Compra.pdf";
             using (var fileStream = new FileStream(fileName, FileMode.OpenOrCreate))
             {
                 doc.SaveToStream(fileStream);
             }
-
             return fileName;
         }
     }

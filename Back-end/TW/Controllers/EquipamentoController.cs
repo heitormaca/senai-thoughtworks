@@ -17,15 +17,15 @@ namespace TW.Controllers {
         /// <param name="busca">Envia um valor para busca.</param>
         /// <param name="ordNomeE">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
         /// <param name="ordMarca">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
-        /// <param name="ordMem">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-        /// <param name="ordModelo">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-        /// <param name="ordSO">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-        /// <param name="ordPol">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-        /// <param name="ordPeso">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-        /// <param name="ordPvideo">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-        /// <param name="ordProc">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-        /// <param name="ordHd">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-        /// <param name="ordSsd">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
+        /// <param name="ordMem">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+        /// <param name="ordModelo">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+        /// <param name="ordSO">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+        /// <param name="ordPol">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+        /// <param name="ordPeso">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+        /// <param name="ordPvideo">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+        /// <param name="ordProc">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+        /// <param name="ordHd">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+        /// <param name="ordSsd">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
         /// <returns>Retorna uma lista, uma busca e um tipo de ordenação para equipamentos.</returns>
         [Authorize (Roles = "Administrador")]
         [HttpGet]
@@ -45,7 +45,7 @@ namespace TW.Controllers {
         [Authorize (Roles = "Administrador")]
         [HttpGet ("{id}")]
         public async Task<IActionResult> GetidEqui (int id) {
-            return Ok (await repositorio.GetId (id));
+            return Ok (await repositorio.GetById(id));
         }
 
         /// <summary>
@@ -55,7 +55,7 @@ namespace TW.Controllers {
         /// <returns>Retorna o equipamento recém cadastrado.</returns>
         [Authorize (Roles = "Administrador")]
         [HttpPost]
-        public async Task<IActionResult> PostEqui (Equipamento equipamento) {
+        public async Task<IActionResult> PostEqui(Equipamento equipamento) {
             try {
                 await repositorio.Post (equipamento);
             } catch (System.Exception e) {
@@ -71,12 +71,19 @@ namespace TW.Controllers {
         /// <returns>Retorna o equipamento atualizado.</returns>
         [Authorize (Roles = "Administrador")]
         [HttpPut ("{id}")]
-        public async Task<IActionResult> PutStatusEquipamento (int id) {
-            var equipamento = await repositorio.GetId (id);
-            equipamento.StatusEquipamento = false;
-            await repositorio.Put (equipamento);
-            return Ok (equipamento);
+        public async Task<IActionResult> PutStatusEquipamento(int id) 
+        {
+            var equipamento = await repositorio.GetById(id);
+            if (equipamento.Classificado.Count > 0)
+            {
+                return BadRequest("Não é possível alterar o status de um equipamento quando existem classificados nele.");
+            }
+            else
+            {
+                equipamento.StatusEquipamento = false;
+                await repositorio.Put (equipamento);
+                return Ok(equipamento);
+            }
         }
-
     }
 }

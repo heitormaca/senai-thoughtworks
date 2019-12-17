@@ -18,12 +18,10 @@ namespace TW.Utils
                 _mailMessage.Subject = titulo;
                 _mailMessage.IsBodyHtml = true;
                 _mailMessage.Body = body;
-
                 var fs = File.OpenRead(anexoFileName);
                 var attachment = new Attachment(fs, "application/pdf");
-                attachment.Name = "Teste.pdf";
+                attachment.Name = "Comprador.pdf";
                 _mailMessage.Attachments.Add(attachment);
-
                 SmtpClient _smtpClient = new SmtpClient("smtp.gmail.com", Convert.ToInt32("587"));
                 _smtpClient.UseDefaultCredentials = false;
                 _smtpClient.Credentials = new NetworkCredential("lightcodexp@gmail.com", "Codexp@l23");

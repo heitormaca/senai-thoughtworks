@@ -72,15 +72,15 @@
             <param name="busca">Envia um valor para busca.</param>
             <param name="ordNomeE">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
             <param name="ordMarca">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
-            <param name="ordMem">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-            <param name="ordModelo">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-            <param name="ordSO">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-            <param name="ordPol">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-            <param name="ordPeso">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-            <param name="ordPvideo">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-            <param name="ordProc">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-            <param name="ordHd">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
-            <param name="ordSsd">Envia um estado true para ordenar de A-Z ou falta para Z-A.</param>
+            <param name="ordMem">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+            <param name="ordModelo">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+            <param name="ordSO">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+            <param name="ordPol">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+            <param name="ordPeso">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+            <param name="ordPvideo">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+            <param name="ordProc">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+            <param name="ordHd">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
+            <param name="ordSsd">Envia um estado true para ordenar de A-Z ou false para Z-A.</param>
             <returns>Retorna uma lista, uma busca e um tipo de ordenação para equipamentos.</returns>
         </member>
         <member name="M:TW.Controllers.EquipamentoController.GetidEqui(System.Int32)">

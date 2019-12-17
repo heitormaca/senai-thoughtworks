@@ -85,5 +85,12 @@ namespace TW.Repositorios {
             Usuario usuario = context.Usuario.FirstOrDefault (u => u.Email == verificacao.Email && u.NomeCompleto == verificacao.NomeCompleto);
             return usuario;
         }
+
+        public Task<List<Usuario>> ListEmail()
+        {
+            string ListEmail = context.Usuario.Where(a => a.Email);
+
+                    
+        }
     }
 }
