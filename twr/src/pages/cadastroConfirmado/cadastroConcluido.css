@@ -1,0 +1,222 @@
+﻿/* PADRONIZAÇÕES */
+/* /////////////////////////////////////////////////// */
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+
+
+h1, h2, h3, h4, a, p, label, input, td {
+    font-family: 'Segoue Ui', sans-serif;
+}
+
+p{
+    font-size: 1.1em;
+}
+
+/* /////////////////////////////////////////////////////// */
+
+
+
+
+
+
+/* CORPO POSICIONAMENTO FLEX */
+
+
+#posicao-1-sec-ord-confcad{
+    width: 100%;
+    height: 100%;
+}
+
+#posicao-2-div-ord-titulo-confcad{
+    height: 11rem;
+    width: 100%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    font-size: 1.5em;
+}
+
+h1{
+font-size: 3em
+}
+
+
+#posicao-2-div-ord-conteudo-flex-confcad{
+    height: 35rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#posicao-3-div-ord-tema-esq-confcad{
+    width: 45%;
+    display: flex;
+    align-items: center;
+}
+
+#posicao-3-div-ord-txt-dir-confcad{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+#posicao-2-div-ord-inf-confcad{
+width: 100%;
+height: 8.1rem;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+}
+
+#posicao-4-ord-txt-img-confcad{
+    display: none;
+}
+
+/* ///////////////////////////////////////////////// */
+
+
+
+
+
+
+
+
+
+/* ESTILIZAÇÃO */
+/* ////////////////////////////////// */
+
+#posicao-2-div-ord-titulo-confcad h1:nth-child(1){
+
+        color: white;
+        background:  #00205a;
+        border-radius: 0.1em;
+        text-transform: uppercase;  
+        margin-right: 0.1em;
+        padding: 0em 0.1em; 
+}
+
+#posicao-2-div-ord-titulo-confcad h1:nth-child(2){
+    color:  #00205a;
+    text-transform: uppercase;
+}
+
+#posicao-3-div-ord-tema-esq-confcad img{
+width: 30em;
+}
+
+#posicao-3-div-ord-txt-dir-confcad h3{
+font-size: 1.7em;
+font-weight: 300;
+text-transform: uppercase;
+color: #00205a;
+}
+
+
+#posicao-3-btn-ord-inf-inf-confcad{
+    font-size: 1em;
+    width: 5.7em;
+    height: 2.9em;
+    background: #00205A;
+    color: white;
+    border-radius: 0.2em;
+    padding: 0.8em 0.5em; 
+    border: none;
+    text-align: center;
+    margin: 1em 0em;
+    cursor: pointer;
+}
+
+/* /////////////////////////////////// */
+
+
+@media screen and (max-width: 990px) and (min-width:769px){
+
+#posicao-3-div-ord-tema-esq-confcad img{
+        width: 20em;
+}
+}
+
+
+
+
+@media screen and (max-width: 769px) and (min-width:426px){
+
+
+#posicao-2-div-ord-conteudo-flex-confcad{
+    height: 23rem;
+}
+
+#posicao-3-div-ord-tema-esq-confcad{
+        display: none;
+}
+    
+#posicao-3-div-ord-txt-dir-confcad{
+    width: 74%;
+}    
+
+#posicao-4-ord-txt-img-confcad{
+        width: 100%;
+        margin-bottom: 2.5em;
+        display: flex;
+        justify-content: center;
+}
+
+
+
+}
+
+@media screen and (max-width: 425px) and (min-width:50px){
+
+#posicao-2-div-ord-titulo-confcad{
+    height: 9rem;
+    font-size: 0.9em;
+}
+    
+#posicao-2-div-ord-conteudo-flex-confcad{
+    height: 20rem;
+}
+    
+#posicao-3-div-ord-tema-esq-confcad{
+        display: none;
+}
+    
+#posicao-3-div-ord-txt-dir-confcad{
+    width: 74%;
+}    
+
+    #posicao-3-div-ord-txt-dir-confcad{
+        width: 85%;
+    }
+
+
+#posicao-4-ord-txt-img-confcad{
+        width: 100%;
+        margin-bottom: 2.5em;
+        display: flex;
+        justify-content: center;
+}
+
+#posicao-2-div-ord-inf-confcad{
+    width: 90%;
+    text-align: center;
+}
+
+p{
+    font-size: 0.9em;
+}
+
+img{
+    width: 4.5em;
+}
+
+
+}

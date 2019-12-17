@@ -1,0 +1,203 @@
+﻿/*/////////////////////////////////// */
+/*/////////CONFIGURAÇÃO PADRÃO////// */
+/*////////////////////////////////// */
+*{
+    margin: 0;
+    padding: 0;
+    /* border: 0; */
+    box-sizing: border-box;
+}
+a, p, label, input, td{
+    font-family: 'Open Sans', sans-serif;
+}
+h1, h2, h3, h4{
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    font-size: 16px;
+}
+
+/*/////////////////////////////////// */
+/*//////////////DESKTOP////////////// */
+/*////////////////////////////////// */
+
+.cabecalho{
+    width: 100%;
+    height: 12vh;
+background : white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* border: solid 1px black; */
+}
+.nav_menu{
+    width: 100%;
+    height: 9vh;
+    /* border: solid 1px black; */
+    display: flex;
+    justify-content: space-around;
+}
+.nav_menu_img{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right: 30px;
+    margin-left: 20px;
+}
+.nav_menu img{
+    width:3.5rem;
+    height:3.5rem;
+}
+.nav_menu form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+}
+
+.nav_menu form input {
+    width: 45vw;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    border: 0.125em solid #E2E2E2;
+    border-radius: 0.5em;
+    background-color: #E2E2E2;
+    padding-left: 58px;
+    padding-top: 6px;
+}
+::-webkit-input-placeholder {
+    font-size: 1.2rem;
+    margin-top: 10px;
+    /* padding: 5px; */
+    text-transform: uppercase;
+    width: 150px;
+    /* border: 1px solid #6db5f1; */
+    /* -webkit-transition: all 300ms ease-in-out;
+    transition: all 300ms ease-in-out;
+    margin: 10px auto;
+    display: block; */
+}
+.nav_menu form i {
+    font-size: 22px;
+    margin-left: 21px;
+    color: #9F9F9F;
+    position: absolute;    
+}
+.fa, .fas {
+    font-weight: 900;
+}
+.fa, .far, .fas {
+    font-family: "Font Awesome 5 Pro";
+}
+.fa, .fab, .fad, .fal, .far, .fas {
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+    display: inline-block;
+    font-style: normal;
+    font-variant: normal;
+    text-rendering: auto;
+    line-height: 1;
+}
+.nav_menu ul {
+    display: flex;
+}
+.nav_menu ul li {
+    list-style-type:none;
+}
+.nav_menu ul li a {
+    font-size: 1rem;
+    color: #7A7A7A;
+    text-decoration: none;
+    text-transform: uppercase;
+    padding: 33px 22px;
+}
+
+.nav_menu_items{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.nav_menu_botao{
+    display: none;
+}
+
+
+@media screen and (max-width: 1024px) and (min-width: 900px){
+    .nav_menu_img {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 30px;
+        margin-left: 32px;
+    }
+    .nav_menu form input {
+        width: 41vw;
+        height: 45px;
+        display: flex;
+        align-items: center;
+        border: 0.125em solid #E2E2E2;
+        border-radius: 0.5em;
+        background-color: #E2E2E2;
+        padding-left: 58px;
+        padding-top: 6px;
+    }
+    
+}
+
+/*/////////////////////////////////// */
+/*//////////////TABLET////////////// */
+/*////////////////////////////////// */
+
+@media screen and (max-width: 768px) and (min-width: 425px){
+    .nav_menu_items{
+        display: none;
+    }
+    .nav_menu_img {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 30px;
+        margin-left: 25px;
+    }
+    .nav_menu form input {
+        width: 47vw;
+        height: 42px;
+        display: flex;
+        align-items: center;
+        border: 0.125em solid #E2E2E2;
+        border-radius: 0.5em;
+        background-color: #E2E2E2;
+    }
+}
+
+
+
+/*/////////////////////////////////// */
+/*//////////////MOBILE////////////// */
+/*////////////////////////////////// */
+
+
+@media screen and (max-width: 424px) and (min-width: 300px) {
+
+    .nav_menu_items{
+        display: none;
+    }
+    .nav_menu_img {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        margin-right: 30px;
+        margin-left: 20px;
+    }
+    .nav_menu form input {
+        width: 50vw;
+        height: 38px;
+        display: flex;
+        align-items: center;
+        border: 0.125em solid #E2E2E2;
+        border-radius: 0.5em;
+        background-color: #E2E2E2;
+    }
+}

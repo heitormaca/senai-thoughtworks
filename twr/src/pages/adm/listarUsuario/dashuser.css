@@ -1,0 +1,241 @@
+﻿* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+
+
+header {
+    display: flex;
+    background: #1F2323;
+    height: 60px;
+    width: 100%;
+    justify-content: space-between;
+    position: fixed;
+}
+
+#menu_header_lateral_esquerda_adm {
+    display: flex;
+    align-items: center;
+}
+
+#icon_menu_header_adm {
+    color: #fff;
+    font-size: 23px;
+    margin-left: 19.8px;
+    margin-right: 65px;
+}
+
+#campo_busca_header_adm {
+    width: 352px;
+    height: 32px;
+    padding: 4px;
+    border-radius: 5px;
+    background: hsla(0, 0%, 100%, .08);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#campo_busca_header_adm input {
+    background: #fff;
+    width: 308px;
+    height: 32px;
+    padding: 1px;
+    background: transparent;
+    border: none;
+}
+
+#icon_campo_busca_header_adm {
+    color: #fff;
+    margin-right: 10px;
+}
+
+#menu_header_lateral_direita_adm {
+    display: flex;
+    align-items: center;
+}
+
+#menu_header_lateral_direita_adm {
+    color: #fff;
+}
+
+#img_menu_header_adm {
+    width: 30px;
+    height: 30px;
+    /* background: #1DF8CC; */
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    margin-left: 17px;
+}
+
+#conteudo_adm {
+    display: flex;
+}
+
+#menu_lateral_esquerda_adm {
+    background: rgba(0, 0, 0, 0.42);
+    width: 60px;
+    height: 100%;
+    position: fixed;
+    top: 60px;
+    justify-content: center;
+}
+
+
+/* #conteudo_tela_lateral_direita_adm {
+    background: #1DF8CC;
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: cover;
+    position: fixed;
+} */
+
+.icon_menu_lateral_adm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 18px;
+}
+
+.icon_menu_lateral_adm img {
+    width: 28px;
+    height: 28px;
+}
+
+.identificador_menu_lateral_adm {
+    background: rgba(173, 173, 173, 0.164);
+}
+
+.identificador_menu_lateral_cor_adm {
+    background: #FABE02;
+    width: 5px;
+    height: 50px;
+    position: absolute;
+}
+
+#cabecalho_corpo_adm {
+    background: rgba(0, 0, 0, 0.137);
+    width: 100%;
+    height: 50px;
+    margin-top: 60px;
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    box-shadow: 1px 5px 3px rgba(0, 0, 0, 0.105);
+}
+
+#cabecalho_corpo_adm p {
+    margin-left: 48px;
+    color: #fff;
+}
+
+#corpo_conteudo_adm {
+    /* background: red; */
+    width: 96.8vw;
+    height: 100%;
+    margin-left: 60.5px;
+    margin-top: 110px;
+    display: flex;
+    justify-content: center;
+}
+
+#limitacao_espaco_corpo_conteudo_adm {
+    /* background: blue; */
+    width: 91vw;
+    height: 100%;
+    /* margin-left: 108px;
+    margin-top: 120px; */
+}
+
+#tabela_usuarios_adm {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    border: none;
+    width: 100%;
+}
+
+td,
+th {
+    /* border: 1px solid #dddddd; */
+    text-align: left;
+    padding: 8px;
+    color: #fff;
+    /* border-radius: 5px; */
+}
+
+th {
+    text-transform: uppercase;
+    padding: 12px 8px 12px 8px;
+    margin-bottom: 30px;
+}
+
+td {
+    background-color: #0000004d;
+}
+
+#td_input_adm {
+    border-radius: 10px 0px 0px 10px;
+}
+
+#botao_delete {
+    border-radius: 0px 10px 10px 0px;
+    width: 50px;
+}
+
+#imagem_perfil_usuario {
+    width: 45px;
+    border-radius: 30px;
+}
+
+#td_imagem_adm {
+    width: 55px;
+    height: 60px;
+}
+
+#td_input_adm {
+    width: 60px;
+}
+
+#form_input_user_adm {
+    display: flex;
+    justify-content: center;
+    margin-left: 5px;
+}
+
+#icon_delete_user {
+    width: 21px;
+}
+
+#box_icon_delete_user {
+    width: 33px;
+    height: 33px;
+    background: rgba(0, 0, 0, 0.438);
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#nome_usuario {
+    width: 250px;
+}
+
+#numero_compras_user {
+    width: 180px;
+}
+
+a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+}

@@ -1,0 +1,365 @@
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+        }
+        
+        #corpo-1-login {
+            width: 100%;
+            height: 99vh;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+        
+        #conteudo-2-login {
+            width: 100%;
+        }
+        
+        #titulo-3-login {
+            width: 100%;
+            height: 20vh;
+            font-size: 2.5em;
+            text-align: center;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            padding: 0.9em 0em;
+        }
+        
+        #titulo-3-login h1:nth-child(2) {
+            display: flex;
+            color: white;
+            border-radius: 0.1em;
+            background: #00205a;
+            padding: 0.5px;
+            text-transform: uppercase;
+            margin-left: 1vw;
+        }
+        
+        #titulo-3-login h1:nth-child(1) {
+            display: flex;
+            color: #00205a;
+            border-radius: 0.3em;
+            padding: -0.3em 0em;
+            text-transform: uppercase;
+        }
+        
+        #conteudo-3-login {
+            display: flex;
+        }
+        
+        #imagem-principal-4-login {
+            width: 50vw;
+            height: 70vh;
+            display: flex;
+            justify-content: center;
+            background: white;
+            align-items: center;
+        }
+        
+        #imagem-principal-4-login img {
+            width: 32em;
+            height: 24em;
+        }
+        
+        .imagem2 img {
+            display: none;
+        }
+        
+        .imagem3 img {
+            width: 8em;
+            height: 38em;
+            display:flex;
+        }
+        
+        #inserir-dados-4-login {
+            width: 50vw;
+            height: 59vh;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            margin-right: 5em;
+        }
+        
+        #inserir-dados-4-login form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+        }
+        
+        #inserir-dados-4-login input {
+            margin-top: 1em;
+            width: 20em;
+            border-radius: 0.5em;
+            height: 3.5em;
+            border: none;
+            box-shadow: 0em 0em 0.3em 0.099em;
+            color: #B2B2B2;
+        }
+        
+        #inserir-dados-4-login img {
+            width: 20vw;
+            margin-bottom: 1em;
+        }
+        
+        input {
+            padding: 0em 1em;
+        }
+        
+        #entrar-5-login {
+            width: 9em;
+            height: 3em;
+            margin-top: 1.5em;
+            color: white;
+            background: #00205a;
+            width: 10em;
+            border-radius: 0.3em;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .opcoes-fim2-3-login {
+            width: 100%;
+            height: 7vh;
+            /* margin-top: 1.5em; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .opcoes-fim2-3-login a {
+            list-style: none;
+            text-decoration: none;
+            color: #00205a;
+        }
+        
+        .opcoes-fim2-3-login li {
+            /* padding: 0.5em 0.5em; */
+            font-weight: 300;
+            font-size: 1.1em;
+        }
+        
+        .opcoes-fim2-3-login ul li {
+            display: inline;
+            margin: 0em 0.5em;
+        }
+        #inserir-dados-4-login label {
+            margin-right: 13em;
+            margin-top: 1em;
+            color: gray;
+        }
+        /* REDEFINIR SENHA TELA */
+        
+        #titulo-3-redefinir-senha {
+            width: 100%;
+            height: 10vh;
+            font-size: 2.5em;
+            text-align: center;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            padding: 0.0em 0em;
+        }
+        
+        #titulo-3-redefinir-senha h1:nth-child(2) {
+            color: #00205a;
+            padding: 0.1em 0.1em;
+            text-transform: uppercase;
+        }
+        
+        #titulo-3-redefinir-senha h1:nth-child(1) {
+            color: white;
+            background: #00205a;
+            border-radius: 0.1em;
+            padding: -0.3em 0em;
+            text-transform: uppercase;
+        }
+        
+        #inserir-dados-4-redefinir-senha {
+            width: 50vw;
+            height: 70vh;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+        
+        #inserir-dados-4-redefinir-senha form {
+            display: flex;
+            flex-direction: column;
+            align-content: center;
+            align-items: center;
+        }
+        
+        #inserir-dados-4-redefinir-senha input {
+            margin-top: 1em;
+            width: 30em;
+            border-radius: 0.5em;
+            font-size: 1em;
+            height: 4em;
+            border: none;
+            box-shadow: 0em 0em 0.3em 0.099em;
+            color: #B2B2B2;
+        }
+        
+        #txt-5-redefinir-senha {
+            width: 60%;
+            height: 8vh;
+        }
+        
+        #txt-5-redefinir-senha p {
+            font-size: 1em;
+            text-align: center;
+            padding: 0.4em;
+        }
+        
+        #entrar-5-redefinir-senha {
+            margin-top: 1.5em;
+            color: white;
+            background: #005DFF;
+            width: 10em;
+            height: 3.5em;
+            border-radius: 0.3em;
+            border: none;
+            cursor: pointer;
+        }
+        
+
+        /* /////////////////////////////////// */
+        /* ////////RESPONSIVIDADE TABLET////// */
+        /* /////////////////////////////////// */
+        
+        @media screen and (max-width: 799px) and (min-width: 600px) {
+            #titulo-3-login {
+                width: 100%;
+                height: 10vh;
+                font-size: 2.5em;
+                text-align: center;
+                background: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                align-content: center;
+                padding: 0.9em 0em;
+            }
+            #imagem-principal-4-login img {
+                display: none;
+            }
+
+            .imagem2 img {
+                width: 29vw;
+                height: 68vh;
+                display: block;
+                position: absolute;
+                top: 33vh;
+                left: 0vw;
+            }
+            #inserir-dados-4-login {
+                width: 40vw;
+                height: 70vh;
+                margin-right: 11vw;
+            }
+            #entrar-5-login {
+                width: 9em;
+                height: 3em;
+            }
+            .opcoes-fim2-3-login ul {
+                width: 70vw;
+                height: 12vh;
+                margin-top: 14vw;
+                margin-left: 38px;
+                display: flex;
+                font-size: 0.8em;
+            }
+            .opcoes-fim2-3-login ul li {
+                /*width: 20vw;*/
+                display: inline;
+                text-align: left;
+                font-size: 0.9rem;
+            }
+            #titulo-3-login h1:nth-child(2){
+                margin-left: 2vw;
+            }
+        }
+        /* /////////////////////////////////// */
+        /* ////////RESPONSIVIDADE MOBILE////// */
+        /* /////////////////////////////////// */
+        
+        @media screen and (max-width: 599px) and (min-width: 300px) {
+            #imagem-principal-4-login {
+                width: 47vw;
+                height: 70vh;
+                display: flex;
+                justify-content: center;
+                background: white;
+                align-items: center;
+            }
+            #imagem-principal-4-login img {
+                display: none;
+            }
+            .imagem2 img {
+                width: 40vw;
+                height: 40vh;
+                display: block;
+                position: absolute;
+                top: 60vh;
+                left: 0vw;
+            }
+            .imagem3 img {
+                display: none;
+            }
+            #inserir-dados-4-login {
+                width: 10vw;
+                height: 70vh;
+                background: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+            #conteudo-3-login {
+                width: 100%;
+                height: 87vh;
+                display: flex;
+            }
+            #corpo-1-login {
+                width: 100%;
+                height: 109vh;
+                display: flex;
+                justify-content: center;
+                align-content: center;
+                align-items: center;
+            }
+            .opcoes-fim2-3-login ul {
+                width: 70vw;
+                height: 12vh;
+                margin-top: 30vw;
+                margin-left: 38px;
+                display: flex;
+                font-size: 0.8em;
+            }
+            .opcoes-fim2-3-login ul li {
+                display: inline;
+                /*width: 70vw;*/
+                text-align: left;
+                font-size: 0.8rem;
+            }
+            #entrar-5-login {
+                width: 9em;
+                height: 3em;
+            }
+            #titulo-3-login h1:nth-child(2){
+                margin-left: 2vw;
+            }
+        }

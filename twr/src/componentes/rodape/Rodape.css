@@ -1,0 +1,174 @@
+/*/////////////////////////////////// */
+/*/////////CONFIGURAÇÃO PADRÃO////// */
+/*////////////////////////////////// */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+a, p, label, input, td{
+    font-family: 'Open Sans', sans-serif;
+}
+h1, h2, h3, h4{
+    font-family: 'Open Sans', sans-serif;
+}
+body{
+    font-size: 16px;
+}
+/*/////////////////////////////////// */
+/*//////////////DESKTOP////////////// */
+/*////////////////////////////////// */
+.cabecalho{
+    width: 100%;
+    height: 200px;
+    /* border: solid 1px black; */
+}
+.conteudo{
+    width: 100%;
+    height: 602.5px;
+    border: solid 1px black;
+}
+.rodape {
+    width: 100%;
+    height: 166px;
+    /* border: solid 1px black; */
+    background: #00205A;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+}
+.rodape_structure {
+    width: 100%;
+    height: 93px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.rodape_structure_nav ul{
+    display: flex;
+}
+.rodape_structure_nav ul li {
+    display: flex;
+    padding-left: 2vw;
+    padding-right: 2vw;
+    list-style-type: none;
+}
+.rodape_structure_nav ul li a{
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: white;
+}
+.rodape_structure_icons {
+    width: 200px;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.rodape_structure_icons img{
+    width: 40px;
+    height: 40px;
+}
+/*/////////////NAV_MOBILE////////////*/
+.rodape_structure_nav_mobile{
+    display: none;
+}
+
+.rodape_structure_nav_mobile ul{
+    display: flex;
+}
+.rodape_structure_nav_mobile ul li{
+    display: flex;
+    padding-left: 2vw;
+    padding-right: 2vw ;
+    list-style-type: none;
+}
+.rodape_structure_nav_mobile ul li a{
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: white;
+}
+/*/////////////NAV_MOBILE////////////*/
+
+/*/////////////ICONS_MOBILE////////////*/
+.rodape_structure_icons_mobile{
+    display: none;
+}
+.rodape_structure_icons {
+    width: 200px;
+    height: 60px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.rodape_structure_icons img{
+    width: 40px;
+    height: 40px;
+}
+/*/////////////ICONS_MOBILE////////////*/
+
+
+
+
+
+
+
+
+/*/////////////////////////////////// */
+/*//////////////AJUSTES////////////// */
+/*////////////////////////////////// */
+
+
+
+
+
+
+
+
+/*/////////////////////////////////// */
+/*//////////////TABLET////////////// */
+/*////////////////////////////////// */
+@media screen and (max-width: 769px) and (min-width: 426px){
+    .rodape_structure_nav{
+        display: none;
+    }
+    .rodape_structure_nav_mobile {
+        /* display: none; */
+        display: flex;
+        justify-content: center;
+    }
+    .rodape_structure_nav_mobile ul li {
+        display: flex;
+        padding-left: 2vw;
+        padding-right: 2vw;
+        list-style-type: none;
+    }
+}
+/*/////////////////////////////////// */
+/*//////////////MOBILE////////////// */
+/*////////////////////////////////// */
+@media screen and (max-width: 425px) and (min-width: 300px){
+    .rodape_structure_icons{
+        display: none;
+    }
+    .rodape_structure_nav{
+        display: none;
+    }
+    .rodape_structure_nav_mobile{
+        display: flex;
+        justify-content: center;
+    }
+    .rodape_structure_icons_mobile{
+        display: block;
+        margin-top: 15px;
+        
+    }
+    .rodape_structure_icons_mobile img{
+        width: 40px;
+        height: 40px;
+        
+    }
+}
+
+

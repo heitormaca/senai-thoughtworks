@@ -1,0 +1,211 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+    #po-ord-sec-1-perf{
+        height: 65em;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #po-ord-sec-1-perf p{
+        font-family: 'Helvetica Neue';
+        color: black;
+    }
+
+    #po-ord-sec-1-perf hr{
+        margin: 1em 0em;
+    }
+    #po-ord-div-2-perf{
+        height: 30em;
+        width: 40em;
+        margin: 8em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #contorno-style{
+        background: #005DFF;
+        width: 389px;
+        height: 359px;
+        border-radius: 1.5em;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #po-ord-div-3-flex-perf{
+        background: white;
+        border-radius: 0.9em;
+        width: 369px;
+        height: 339px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #po-ord-div-4-img-perf{
+        width: 40%;
+        height: 123px;
+        display: flex;
+        align-items: center;
+        justify-content: center;     
+    }
+
+    #po-ord-div-4-img-perf img{
+        width: 103px;
+        height: 103px;
+        border-radius: 1.5em;
+        border: solid 1px blue;
+        box-shadow: 5px -3px 22px rgba(0, 0, 0, 0.5)  ; 
+    }
+
+    #po-ord-div-4-nome-perf{
+        width: 40%;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }    
+    #po-ord-div-4-nomeCompleto-perf{
+        width:60%;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #po-ord-div-4-nomeCompleto-perf{
+        width:60%;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #po-ord-div-4-email-perf{
+        width:60%;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1.1em;
+        border: solid 1px #005DFF;
+        align-items: center;
+    }
+
+    #po-ord-div-4-hr-perf hr{
+        width: 329px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #po-ord-div-4-flex-btn-perf{
+        height: 80px;
+        width: 366px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    #po-ord-div-4-flex-btn-perf button{
+        width: 155px;
+        height: 50px;
+        color: darkblue;
+        background: white;
+        padding: 0.5em;
+        margin: 0em 0.5em;
+        border-radius: 0.8em;
+        border: 1px solid darkblue;
+        cursor: pointer;
+        font-size: 1em;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .btn-img{
+        width: 30px;
+        height: 30px;
+        display: flex;
+        align-items: center;
+        margin-left: 0.5em;
+    }
+
+
+    /* PORD */
+
+    #pord{
+        display: none;
+        width: 329px;
+        height: 320px;
+    }
+
+    #pord-div-4-flex-perf{
+        height: 75%;
+        width: 100%;
+        background: #005DFF;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        border-radius: 1.5em;
+    }
+
+    #pord-div-5-h3-txt{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 27px;
+        margin-bottom: 1.5em;
+    }
+
+    #pord-div-5-h3-txt img{
+        margin-left: 1em;
+        width: 30px;
+        height: 30px;
+    }
+
+    #pord-div-5-input-perf{
+        height: 147px;
+        width: 269px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+    }
+
+    #pord-div-5-input-perf input{
+        margin: 1em 0em;
+        width: 269px;
+        height: 50px;
+        border-radius: 0.5em;
+        border: none;
+    }
+
+    #pord-div-5-btn-perf{
+        width: 100%;
+        height: 43px;
+        display: flex;
+        justify-content: center;
+    }
+
+    #pord-div-5-btn-perf button{
+        height: 3em;
+        margin: 2em 1.5em;
+        width: 6em;
+        font-size: 1em;
+        color: white;
+        background: #005DFF;
+        border: none;
+        border-radius: 0.8em;
+        cursor: pointer;
+    }

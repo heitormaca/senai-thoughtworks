@@ -1,0 +1,217 @@
+﻿/* /////////////////////////////////////// */
+/* /////////////////////////////////////// */
+/* PADRONIZAÇÕES ///////////////////////// */
+/* /////////////////////////////////////// */
+/* /////////////////////////////////////// */
+
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+h1, h2, h3, h4, a, p, label, input, td {
+    font-family: 'Open Sans', sans-serif;
+}
+
+
+
+
+
+/* ////////////////////////////////// */
+/* /////////////////////////////////////// */
+/* /////////////////////////////////////// */
+/* /////////////////////////////////////// */
+
+#posicao-1-ord-sec-comp{
+ width: 100%;
+ height: 100%;
+ display: flex;
+ justify-content: center;
+}
+
+#posicao-2-ord-div-comp{
+    margin: 10rem 6.25rem;
+    width: 72rem;
+    height: 40rem;
+}
+
+
+#posicao-3-ord-tab-comp td{ 
+     border-radius: 0.7em;
+     background: #F5F5F5;
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+     height: 6.5rem;
+     width: 100%;
+     margin-top: 0.5em;
+}
+
+
+#posicao-3-ord-tab-comp img{
+    margin-left: 1em;
+    margin-right: 1em;
+    /* width: 127px;
+    height: 118px; */
+    width: 6em;    
+}
+
+.posicao-inf-ord-div-comp{
+    width:11.5rem;
+    height: 2.8rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #00205A;
+    color: white;
+    border-radius: 0.5em;
+    padding: 0.8em 0.5em; 
+    margin-left: 1rem; 
+    margin-right: 1rem; 
+}
+
+.posicao-inf-ord-div-comp h3{
+    font-weight: 300;
+    font-size: 1em;
+}
+
+
+
+
+/* /////////////////////////////////////// */
+/* /////////////////////////////////////// */
+/* /////////////////////////////////////// */
+/* RESPONSIVIDADE //////////////////////////// */
+/* /////////////////////////////////////// */
+/* /////////////////////////////////////// */
+/* /////////////////////////////////////// */
+
+
+
+@media screen and (max-width: 768px) and (min-width:426px){
+
+#posicao-2-ord-div-comp{
+    margin: 1em 1em;
+    width: 46.0625rem;        
+}
+
+#posicao-3-ord-tab-comp td{
+font-size: 1em;
+}
+
+.posicao-5-ord-par-comp {
+    font-size: 0.8em;
+}   
+
+
+}
+
+
+
+
+@media screen and (max-width: 429px) and (min-width:375px){
+    #posicao-2-ord-div-comp{
+        width: 100%;
+        margin: 0;
+    }
+
+    #posicao-3-ord-tab-comp{
+        margin: 0em;
+        height: 5rem;
+        align-items: center;
+    }
+
+    #posicao-3-ord-tab-comp td{
+        margin: 0;
+    }
+    
+
+    #posicao-3-ord-tab-comp img{
+       margin: 0;
+    }
+
+    .posicao-inf-ord-div-comp{
+        font-size: 1.2em;
+        padding: 0.3em;
+        margin: 0em 0.5em;
+        width: 5em;
+        height: 3em;
+    }
+
+    #posicao-3-ord-tab-comp td{
+        margin: 0 auto;
+        width: 23rem;
+    }
+    
+    .posicao-5-ord-par-comp{
+    line-height: 1em;
+    width: 40%;
+    height: 40%;
+}
+    p{
+        font-size: 1.1em;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        white-space: nowrap;
+    }
+
+}
+
+
+@media screen and (max-width: 374px) and (min-width:315px){
+
+    #posicao-3-ord-tab-comp td{
+        margin: 0;
+        width: 19rem;
+    }
+
+    p{
+        font-size: 0.7em;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        white-space: nowrap;
+        display: flex;
+        align-items: center
+    }
+
+      
+    .posicao-5-ord-par-comp{
+        line-height: 1em;
+        width: 40%;
+        height: 40%;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        white-space: nowrap;
+    }
+
+
+}
+
+
+@media screen and (max-width: 314px) and (min-width:200px){  
+    
+    #posicao-3-ord-tab-comp td{
+        margin: 0 auto;
+        width: 17rem;
+    }
+
+    .posicao-5-ord-par-comp{
+        line-height: 1em;
+        width: 40%;
+        height: 40%;
+        overflow: hidden;
+        text-overflow: ellipsis; 
+        white-space: nowrap;
+    }
+
+    p{
+        font-size: 0.7em;
+    }
+
+
+
+
+}
