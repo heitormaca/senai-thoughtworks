@@ -155,8 +155,9 @@ namespace TW.Repositorios
         {
             return await context.Classificado
                 .Include(a =>a.Interesse)
-                // .Where(b =>b.StatusClassificado == true)
-                // .Where(a => a.Interesse.Count > 0)
+                .Include(c => c.IdEquipamentoNavigation)
+                .Where(b =>b.StatusClassificado == true)
+                .Where(a => a.Interesse.Count > 0)
                 .ToListAsync();
         }
         public async Task<List<Interesse>> GetInteressesFromClassificado(int classificadoId)
