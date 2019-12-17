@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {}
+    "C:\\Users\\fic\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {}
   },
   "projects": {
-    "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {
+    "C:\\Users\\fic\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
+        "projectUniqueName": "C:\\Users\\fic\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
         "projectName": "TW",
-        "projectPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
-        "packagesPath": "C:\\Users\\heito\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\heito\\Desktop\\TWNewTime\\Back-end\\TW\\obj\\",
+        "projectPath": "C:\\Users\\fic\\Desktop\\TWNewTime\\Back-end\\TW\\TW.csproj",
+        "packagesPath": "C:\\Users\\fic\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\fic\\Desktop\\TWNewTime\\Back-end\\TW\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\heito\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\fic\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.0"
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.101\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

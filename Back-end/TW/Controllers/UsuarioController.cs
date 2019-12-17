@@ -19,6 +19,12 @@ namespace TW.Controllers {
 
         UploadImg img = new UploadImg ();
 
+        [HttpGet("email")]
+        public async Task<IActionResult> ListEmail()
+        {
+            return Ok(await repositorio.ListEmail());
+        }
+
         /// <summary>
         /// Método para listar, buscar e filtrar dados de usuários registrados no sistema.
         /// </summary>
@@ -112,8 +118,16 @@ namespace TW.Controllers {
         public async Task<IActionResult> PostUser (Usuario usuario) {
             try {
                 var listUser = await repositorio.GetL();
+            
                 if (listUser.Count == 0) {
                     usuario.CategoriaUsuario = false;
+                }
+                foreach (var item in listUser)
+                {
+                    if (usuario.Email == item.Email)
+                    {
+                        return BadRequest("Este email já possui um cadastro.");
+                    }
                 }
                    
                 var senhaEncrypt = encrypt.Encrypt (usuario.Senha);

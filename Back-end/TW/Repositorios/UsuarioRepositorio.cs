@@ -86,11 +86,10 @@ namespace TW.Repositorios {
             return usuario;
         }
 
-        public Task<List<Usuario>> ListEmail()
+        public async Task<List<Usuario>> ListEmail()
         {
-            string ListEmail = context.Usuario.Where(a => a.Email);
-
-                    
+            List<Usuario> ListEmail = await context.Usuario.ToListAsync();
+            return ListEmail;        
         }
     }
 }

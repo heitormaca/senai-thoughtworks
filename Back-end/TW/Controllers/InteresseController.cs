@@ -57,6 +57,16 @@ namespace TW.Controllers
                 var idDoUsuario = HttpContext.User.Claims.First(a => a.Type == "id").Value;
                 var usr = await urepositorio.Get(int.Parse(idDoUsuario));
                 interesse.IdUsuario = usr.IdUsuario;
+                var listaInteresse = await repositorio.GetInteresses();
+                foreach (var item in listaInteresse)
+                {
+                    if(interesse.IdUsuario == item.IdUsuario){
+                        if (interesse.IdClassificado == item.IdClassificado)
+                        {
+                            return BadRequest("Você já efetuou interesse nesse classificado");
+                        }
+                    }
+                }
                 return Ok(await repositorio.Post(interesse));
             }
             catch (System.Exception e)

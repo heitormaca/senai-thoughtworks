@@ -65,6 +65,19 @@
             <param name="id">Envia um id do classificado.</param>
             <returns>Retorna a categoria atualizado.</returns>
         </member>
+        <member name="M:TW.Controllers.ClassificadoController.GetClassificadosWithInteresse">
+            <summary>
+            Método para listar classificados que possuem interesses.
+            </summary>
+            <returns>Retorna uma lista de classificados que possuem interesses.</returns>
+        </member>
+        <member name="M:TW.Controllers.ClassificadoController.GetClassificadoInteresses(System.Int32)">
+            <summary>
+            Método para listar usuários que possuem interesse em um classificado.
+            </summary>
+            <param name="classificadoId">Envia um id de classificado.</param>
+            <returns>Retorna uma lista de usuários que possuem interesse em um classificado.</returns>
+        </member>
         <member name="M:TW.Controllers.EquipamentoController.GetListEqui(System.String,System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean},System.Nullable{System.Boolean})">
             <summary>
             Método que lista, busca e ordena equipamentos.
@@ -116,6 +129,13 @@
             </summary>
             <param name="interesse">envia o interesse.</param>
             <returns>Retorna o interesse do usuário logado.</returns>
+        </member>
+        <member name="M:TW.Controllers.InteresseController.Vender(System.Int32)">
+            <summary>
+            Método que atualiza o status comprador do usuário para true, envia um email para ele e envia outros emails para os não compradores.
+            </summary>
+            <param name="id">Envia um id de interesse.</param>
+            <returns>Retorna nada.</returns>
         </member>
         <member name="M:TW.Controllers.InteresseController.PutStatusInteresse(System.Int32)">
             <summary>
