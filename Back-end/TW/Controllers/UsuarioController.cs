@@ -128,6 +128,7 @@ namespace TW.Controllers {
                     {
                         return BadRequest("Este email já possui um cadastro.");
                     }
+
                 }
                    
                 var senhaEncrypt = encrypt.Encrypt (usuario.Senha);

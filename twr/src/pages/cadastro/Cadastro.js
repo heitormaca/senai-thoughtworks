@@ -138,7 +138,7 @@ class Cadastro extends Component{
         </section>
     </main>
 </body>
-            </div>
+</div>
         )
     }
 }

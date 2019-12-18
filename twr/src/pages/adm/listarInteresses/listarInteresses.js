@@ -18,7 +18,7 @@ class listarInteresses extends Component{
             classificado: [],
             interessados: [],
             // comprador: '',
-            // compra: []
+            compra: []
         }
         this.cutUrlInt = this.cutUrlInt.bind(this)
         this.buscarClassificadoId = this.buscarClassificadoId.bind(this)
@@ -232,7 +232,7 @@ class listarInteresses extends Component{
                                         <p>{item.idUsuarioNavigation.email}</p>
                                     </div>
                                     <div class="botaoUser">
-                                        <button type="submit" onClick={a => this.aprovarCompra(compra.idInteresse)}  style={{cursor:"pointer"}}>Definir Comprador</button>
+                                        {/* <button type="submit" onClick={a => this.aprovarCompra(compra.idInteresse)}  style={{cursor:"pointer"}}>Definir Comprador</button> */}
                                     </div>
                                 </div>
                                 )})}
