@@ -6,28 +6,23 @@ import {Route, BrowserRouter as Router, Switch, Redirect} from 'react-router-dom
 import { usuarioAutenticado, parseJwt } from './services/auth';
 
 // páginas 
-import cadastro from './pages/cadastro/Cadastro'
-import cadastroConcluido from './pages/cadastroConfirmado/ConfirmacaoCadastro'
-import apresentacao from './pages/apresentacao/Apresentacao'
-import login from './pages/login/Login'
-import home from './pages/home/Home'
-import produto from './pages/paginaDoProduto/PaginaDoProduto'
-import perfil from './pages/perfilUser/Perfil'
-import historicoInteresse from './pages/historicoDeInteresse/Historico'
-import historicoCompras from './pages/historicoDeCompras/HistoricoCompras'
-// páginas adm
-import listarUser from './pages/adm/listarUsuario/DashboardUsuario'
-import listarCategoria from './pages/adm/listarCategoria/DashboardListarCategoria'
-import cadastrarCategoria from './pages/adm/cadastrarCategoria/DashboardCadastrarCategoria'
-import listarEquipamento from './pages/adm/listarEquipamento/listarEquipamento'
-import cadastrarEquipamento from './pages/adm/cadastrarEquipamento/cadastroEquipamento'
-import listarClassificado from './pages/adm/listarClassificado/DashboardClassificados'
-import cadastrarClassificado from './pages/adm/cadastrarClassificado/DashboardCadastrarClassificado'
-import listarClassificadoInteresses from './pages/adm/listarInteresses/listarInteresses'
-
-
-
-
+import cadastro from './pages/usuario/cadastro/Cadastro'
+import cadastroConcluido from './pages/usuario/cadastroConfirmado/ConfirmacaoCadastro'
+import apresentacao from './pages/usuario/apresentacao/Apresentacao'
+import login from './pages/usuario/login/Login'
+import home from './pages/usuario/home/Home'
+import produto from './pages/usuario/paginaDoProduto/PaginaDoProduto'
+import perfil from './pages/usuario/perfilUser/Perfil'
+import historicoInteresse from './pages/usuario/historicoDeInteresse/Historico'
+import historicoCompras from './pages/usuario/historicoDeCompras/HistoricoCompras'
+import listarUser from './pages/administrador/listarUsuario/DashboardUsuario'
+import listarCategoria from './pages/administrador/listarCategoria/DashboardListarCategoria'
+import cadastrarCategoria from './pages/administrador/cadastrarCategoria/DashboardCadastrarCategoria'
+import listarEquipamento from './pages/administrador/listarEquipamento/listarEquipamento'
+import cadastrarEquipamento from './pages/administrador/cadastrarEquipamento/cadastroEquipamento'
+import listarClassificado from './pages/administrador/listarClassificado/DashboardClassificados'
+import cadastrarClassificado from './pages/administrador/cadastrarClassificado/DashboardCadastrarClassificado'
+import listarClassificadoInteresses from './pages/administrador/listarInteresses/listarInteresses'
 
 const AdminAuth = ({ component : Component }) => (
     <Route
@@ -83,7 +78,6 @@ const Rota = (
         </div>
     </Router>
 )
-
 ReactDOM.render(Rota, document.getElementById('root'));
 
 serviceWorker.unregister();

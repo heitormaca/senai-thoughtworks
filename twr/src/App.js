@@ -4,22 +4,16 @@ import img from './assets/img/macbook.png';
 import pd1 from './assets/img/buffer.png';
 import pd2 from './assets/img/laptop.png';
 import pd3 from './assets/img/dollar-symbol.png';
-import Cabecalho from './componentes/Cabecalho';
-
-
-
+import Cabecalho from './componentes/cabecalho/Cabecalho';
 function App() {
   
   return (
     
     <div>
-
       <Cabecalho/>
-
-    <body>
-  
+    <body> 
   <section className="banner-home">
-    <div className="imagem-banner-home">              </div>
+    <div className="imagem-banner-home"></div>
   </section>
   
   
