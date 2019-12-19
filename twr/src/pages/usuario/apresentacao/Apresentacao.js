@@ -4,7 +4,6 @@ import img1 from '../../../assets/img/logo-nt-invertido.png';
 import img2 from '../../../assets/img/blogpost-banner.png'
 import img3 from '../../../assets/img/banner_image.png';
 import {Link} from 'react-router-dom';
-
 class Aprensatacao extends Component{
     render(){
         return(
@@ -50,7 +49,7 @@ class Aprensatacao extends Component{
                                     <img class="imagem-segunda-section-apresentacao" src={img3} alt="desenho de um homem usando uma camisa verde com dúvidas"/> 
                                 </div>
                         </div> 
-                    </section> 
+                    </section>
                 </body>
             </div>
         )

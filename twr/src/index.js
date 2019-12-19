@@ -18,7 +18,7 @@ import historicoCompras from './pages/usuario/historicoDeCompras/HistoricoCompra
 import listarUser from './pages/administrador/listarUsuario/DashboardUsuario'
 import listarCategoria from './pages/administrador/listarCategoria/DashboardListarCategoria'
 import cadastrarCategoria from './pages/administrador/cadastrarCategoria/DashboardCadastrarCategoria'
-import listarEquipamento from './pages/administrador/listarEquipamento/listarEquipamento'
+import listarEquipamentoClassificado from './pages/administrador/listarEquipamentoCadastro/listarEquipamentoClassificado'
 import cadastrarEquipamento from './pages/administrador/cadastrarEquipamento/cadastroEquipamento'
 import listarClassificado from './pages/administrador/listarClassificado/DashboardClassificados'
 import cadastrarClassificado from './pages/administrador/cadastrarClassificado/DashboardCadastrarClassificado'
@@ -43,21 +43,18 @@ const ContriAuth = ({ component : Component }) => (
 }
 />
 )
-
-
-
 const Rota = (
     <Router>
         <div>
             
             <Switch>
 
-                                {/* páginas de usuario */}
+                {/* páginas de usuario */}
                 <Route path='/Cadastro' component={cadastro}/>  
                 <Route path='/Bem vindo' component={cadastroConcluido} />               
                 <Route path='/Login' component={login} />
-                <Route path='/Apresentacao' component={apresentacao}/> 
-                <ContriAuth exact path ='/' component={home}/>
+                <Route path='/home' component={home}/> 
+                <ContriAuth exact path ='/' component={apresentacao}/>
                 <ContriAuth path='/Historico' component= {historicoInteresse}/>
                 <ContriAuth path='/Historico de compras' component={historicoCompras}/>
                 <ContriAuth path='/Perfil' component={perfil}/>    
@@ -69,7 +66,7 @@ const Rota = (
                 <AdminAuth path='/cadastrarEquipamento' component={cadastrarEquipamento} />
                 <AdminAuth path='/cadastrarClassificado' component={cadastrarClassificado} />
                 <AdminAuth path='/listarCategoria' component={listarCategoria} />
-                <AdminAuth path='/listarEquipamento' component={listarEquipamento} />
+                <AdminAuth path='/listarEquipamentoClassificado' component={listarEquipamentoClassificado} />
                 <AdminAuth path='/listarClassificado' component={listarClassificado} />
                 <AdminAuth path='/classificadoInteresses' component={listarClassificadoInteresses} />
                 

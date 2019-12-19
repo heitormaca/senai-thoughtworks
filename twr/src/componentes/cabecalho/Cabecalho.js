@@ -11,7 +11,7 @@ function Cabecalho(){
     <header class="cabecalho">
         <nav class="nav_menu">
             <div class="nav_menu_img">
-                <a href="/"><img src={img1} alt=""/></a>
+                <a href="/home"><img src={img1} alt=""/></a>
             </div>
 
             <form action="#" method="GET">

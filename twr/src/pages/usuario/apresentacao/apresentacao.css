@@ -109,7 +109,7 @@
 #primeira-section-apresentacao{
     background-image: url("../../../assets/img/bannerazulzinho.png");
     height: 95vh; /*altura da imagem*/
-    width: 98.9vw;
+    width: 99.1vw;
     background-repeat: no-repeat;
     background-size: cover; /* irá cobrir toda a section*/
     display: flex;
@@ -170,15 +170,11 @@
 }
 
 
-
-
-
-
 /*   ESTILIZAÇÃO DO FOOTER DA APRESENTAÇÃO  */
 
 .footer-apresentacao {
     background-color: #B2B2B2;
-    width: 98.9vw;
+    width: 99.1vw;
 }
 
 .footer-apresentacao > div > ol {

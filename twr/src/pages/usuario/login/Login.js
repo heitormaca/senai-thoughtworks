@@ -29,7 +29,7 @@ class Login extends Component{
         if (parseJwt().Role === 'Administrador') {
           this.props.history.push('listarClassificado')
         }else{
-          this.props.history.push('/')
+          this.props.history.push('/home')
         }
       }})
     .catch(erro => {

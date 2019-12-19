@@ -1,0 +1,293 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#corpoTelaAdm-09 {
+    background-image: url(../img/Background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: cover;
+    background-size: 100% 100%;
+}
+
+.fixed-09 {
+    display: flex;
+    background: #1F2323;
+    height: 60px;
+    width: 100%;
+    justify-content: space-between;
+    position: fixed;
+}
+
+#menu_header_lateral_esquerda_adm-09 {
+    display: flex;
+    align-items: center;
+}
+
+#icon_menu_header_adm-09 {
+    color: #fff;
+    font-size: 23px;
+    margin-left: 19.8px;
+    margin-right: 65px;
+}
+
+#menu_header_lateral_direita_adm-09 {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+#img_menu_header_adm-09 {
+    width: 30px;
+    height: 30px;
+    background: #1DF8CC;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    margin-left: 17px;
+}
+
+#conteudo_adm-09 {
+    display: flex;
+}
+
+#menu_lateral_esquerda_adm-09 {
+    background: rgba(0, 0, 0, 0.42);
+    width: 60px;
+    height: 100%;
+    position: fixed;
+    top: 60px;
+    justify-content: center;
+}
+
+.icon_menu_lateral_adm-09 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 18px;
+}
+
+.icon_menu_lateral_adm-09 img {
+    width: 28px;
+    height: 28px;
+}
+
+.identificador_menu_lateral_adm-09 {
+    background: rgba(173, 173, 173, 0.164);
+}
+
+.identificador_menu_lateral_cor_adm-09 {
+    background: #FABE02;
+    width: 5px;
+    height: 50px;
+    position: absolute;
+}
+
+#cabecalho_corpo_adm-09 {
+    background: rgba(0, 0, 0, 0.137);
+    width: 100%;
+    height: 50px;
+    margin-top: 60px;
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    background-image: url(../img/Background.png);
+    box-shadow: 1px 5px 3px rgba(0, 0, 0, 0.105);
+}
+
+#cabecalho_corpo_adm-09 a {
+    margin-left: 48px;
+    color: #fff;
+    text-decoration: none;
+}
+
+#cabecalho_corpo_adm-09 img {
+    width: 10px;
+}
+
+#corpo_conteudo_adm-09 {
+    width: 95.8vw;
+    margin-left: 60.5px;
+    margin-top: 110px;
+    display: flex;
+    justify-content: center;
+}
+
+#limitacao_espaco_corpo_conteudo_adm-09 {
+    width: 91vw;
+    height: 100%;
+    padding: 45px 0px 40px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#conteudo_add_classificado_adm-09 {
+    background: rgba(0, 0, 0, 0.214);
+    width: 400px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+}
+
+#margin_tela_add_classificado_adm-09 {
+    width: 85vw;
+    background: rgba(255, 255, 255, 0.096);
+    border-radius: 5px;
+    padding: 20px;
+}
+
+#box-09 {
+    widows: 100%;
+    height: 100%;
+}
+
+#fotoAdm-09 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#circulo1-09 {
+    width: 110px;
+    height: 110px;
+    background: rgba(0, 0, 0, 0.233);
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#circulo2-09 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #FABE02;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#foto-09 {
+    width: 94px;
+    height: 94px;
+    border-radius: 60px;
+}
+
+#foto-09 img {
+    width: 94px;
+    height: 94px;
+    border-radius: 60px;
+}
+
+#alterarImg-09 {
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#iconAlterarImg-09 {
+    width: 24px;
+    height: 24px;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0px 0px 3px rgb(107, 107, 107);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#iconAlterarImg-09 img {
+    width: 14px;
+    height: 14px;
+}
+
+#nomeAdm-09 {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#nomeAdm-09 p {
+    color: #fff;
+    font-size: 18px;
+}
+
+#nomeCompletoAdm-09 {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#nomeCompletoAdm-09 p {
+    color: rgb(182, 182, 182);
+    font-size: 18px;
+}
+
+#bordaEmailAdm-09 {
+    width: 190px;
+    background: rgba(255, 255, 255, 0.137);
+    border: 1px solid #FABE02;
+    border-radius: 15px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+}
+
+#bordaEmailAdm-09 p {
+    color: #fff;
+}
+
+#emailAdm-09 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#tracoAdm-09 {
+    margin-top: 20px;
+    border: 0.25px solid rgba(255, 255, 255, 0.212);
+}
+
+#butaoAlterarSenha-09 {
+    border: none;
+    padding: 10px;
+    width: 171px;
+    border-radius: 5px;
+    border: 1px solid #FABE02;
+    background: rgba(0, 0, 0, 0.24);
+    color: #fff;
+    display: flex;
+    justify-content: center;
+}
+
+#butaoAlterarSenha-09 img {
+    width: 17px;
+    margin-left: 10px;
+}
+
+#botoesPerfilAdm-09 {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.fa-bars:before {
+    font-size: 23px;
+}

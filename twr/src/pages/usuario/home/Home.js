@@ -7,8 +7,6 @@ import pd3 from '../../../assets/img/dollar-symbol.png';
 import Cabecalho from '../../../componentes/cabecalho/Cabecalho';
 import Rodape from '../../../componentes/rodape/Rodape';
 
-
-
 class Home extends React.Component{
   constructor(props){
     super(props)

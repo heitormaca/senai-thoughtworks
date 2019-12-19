@@ -1,0 +1,336 @@
+* {
+    margin: 0px;
+    padding: 0px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 16px;
+}
+
+#corpoTelaAdm-08 {
+    background-image: url(../img/Background.png);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background: cover;
+    background-size: 100% 100%;
+}
+
+.fixed-08 {
+    display: flex;
+    background: #1F2323;
+    height: 60px;
+    width: 100%;
+    justify-content: space-between;
+    position: fixed;
+}
+
+#menu_header_lateral_esquerda_adm-08 {
+    display: flex;
+    align-items: center;
+}
+
+#icon_menu_header_adm-08 {
+    color: #fff;
+    font-size: 23px;
+    margin-left: 19.8px;
+    margin-right: 65px;
+}
+
+#menu_header_lateral_direita_adm-08 {
+    display: flex;
+    align-items: center;
+    color: #fff;
+}
+
+.fa-bars:before {
+    font-size: 23px;
+}
+
+#img_menu_header_adm-08 {
+    width: 30px;
+    height: 30px;
+    background: #1DF8CC;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 30px;
+    margin-left: 17px;
+}
+
+#conteudo_adm-08 {
+    display: flex;
+}
+
+#menu_lateral_esquerda_adm-08 {
+    background: rgba(0, 0, 0, 0.42);
+    width: 60px;
+    height: 100%;
+    position: fixed;
+    top: 60px;
+    justify-content: center;
+}
+
+.icon_menu_lateral_adm-08 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    margin-bottom: 18px;
+}
+
+.icon_menu_lateral_adm-08 img {
+    width: 28px;
+    height: 28px;
+}
+
+.identificador_menu_lateral_adm-08 {
+    background: rgba(173, 173, 173, 0.164);
+}
+
+.identificador_menu_lateral_cor_adm-08 {
+    background: #FABE02;
+    width: 5px;
+    height: 50px;
+    position: absolute;
+}
+
+#cabecalho_corpo_adm-08 {
+    background: rgba(0, 0, 0, 0.137);
+    width: 100%;
+    height: 50px;
+    margin-top: 60px;
+    margin-left: 60px;
+    display: flex;
+    align-items: center;
+    position: fixed;
+    background-image: url(../img/Background.png);
+    box-shadow: 1px 5px 3px rgba(0, 0, 0, 0.105);
+}
+
+#cabecalho_corpo_adm-08 p {
+    margin-left: 48px;
+    color: #fff;
+    text-decoration: none;
+}
+
+#corpo_conteudo_adm-08 {
+    width: 95.8vw;
+    margin-left: 60.5px;
+    margin-top: 110px;
+    display: flex;
+    justify-content: center;
+}
+
+#limitacao_espaco_corpo_conteudo_adm-08 {
+    width: 91vw;
+    height: 100%;
+    padding: 45px 0px 40px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#conteudo_add_classificado_adm-08 {
+    background: rgba(0, 0, 0, 0.214);
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    padding: 14px;
+}
+
+#margin_tela_add_classificado_adm-08 {
+    background: rgba(255, 255, 255, 0.096);
+    border-radius: 5px;
+    padding: 20px;
+    width: 22.5em;
+}
+
+#box-08 {
+    widows: 100%;
+    height: 100%;
+}
+
+#fotoAdm-08 {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#circulo1-08 {
+    width: 110px;
+    height: 110px;
+    background: rgba(0, 0, 0, 0.233);
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+#circulo2-08 {
+    width: 100px;
+    height: 100px;
+    border: 1px solid #FABE02;
+    border-radius: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#foto-08 {
+    width: 94px;
+    height: 94px;
+    border-radius: 60px;
+}
+
+#foto-08 img {
+    width: 94px;
+    height: 94px;
+    border-radius: 60px;
+}
+
+#alterarImg-08 {
+    width: 32px;
+    height: 32px;
+    background: #fff;
+    position: absolute;
+    right: 5px;
+    bottom: 0;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#iconAlterarImg-08 {
+    width: 24px;
+    height: 24px;
+    border-radius: 22px;
+    background: #fff;
+    box-shadow: 0px 0px 3px rgb(107, 107, 107);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#iconAlterarImg-08 img {
+    width: 14px;
+    height: 14px;
+}
+
+#nomeAdm-08 {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#nomeAdm-08 p {
+    color: #fff;
+    font-size: 18px;
+}
+
+#nomeCompletoAdm-08 {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+#nomeCompletoAdm-08 p {
+    color: rgb(182, 182, 182);
+    font-size: 18px;
+}
+
+#bordaEmailAdm-08 {
+    width: 190px;
+    background: rgba(255, 255, 255, 0.137);
+    border: 1px solid #FABE02;
+    border-radius: 15px;
+    padding: 4px;
+    display: flex;
+    justify-content: center;
+}
+
+#bordaEmailAdm-08 p {
+    color: #fff;
+}
+
+#emailAdm-08 {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#tracoAdm-08 {
+    margin-top: 20px;
+    border: 0.25px solid rgba(255, 255, 255, 0.212);
+}
+
+#boxAlterarSenha-08 p {
+    color: #fff;
+}
+
+#caixaPerfilAdm-08 {
+    margin-top: 20px;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.304);
+    border-radius: 5px;
+    border: 1px solid #FABE02;
+}
+
+#form-08 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 18px 30px 30px 30px;
+}
+
+#boxAlterarSenha-08 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+#boxAlterarSenha-08 img {
+    margin-left: 10px;
+}
+
+.inputsPerfilAdm-08 {
+    display: flex;
+    flex-direction: column;
+    margin-top: 12px;
+}
+
+.inputsPerfilAdm-08 label {
+    color: #fff;
+    margin-bottom: 12px;
+    font-size: 15px;
+}
+
+.inputsPerfilAdm-08 input {
+    width: 280px;
+    height: 40px;
+    padding-left: 10px;
+    border: none;
+    border-radius: 4px;
+    background: rgba(255, 255, 255, 0.112);
+    color: rgb(201, 201, 201);
+}
+
+#botoesAdm-08 {
+    display: flex;
+    justify-content: center;
+}
+
+#botoesAdm-08 div {
+    padding: 19px 13px 0px 13px;
+}
+
+#botoesAdm-08 button {
+    padding: 7px 12px;
+    border: none;
+    border-radius: 5px;
+    background: rgba(0, 0, 0, 0.304);
+    color: #fff;
+    font-size: 15px;
+}
