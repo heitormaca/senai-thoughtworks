@@ -19,12 +19,6 @@ namespace TW.Controllers {
 
         UploadImg img = new UploadImg ();
 
-        [HttpGet("email")]
-        public async Task<IActionResult> ListEmail()
-        {
-            return Ok(await repositorio.ListEmail());
-        }
-
         /// <summary>
         /// Método para listar, buscar e filtrar dados de usuários registrados no sistema.
         /// </summary>
@@ -179,6 +173,12 @@ namespace TW.Controllers {
                 await repositorio.Put(usuario);
                 return Ok (usuario);
             }
+        }
+
+        [HttpGet("email")]
+        public async Task<IActionResult> ListEmail()
+        {
+            return Ok(await repositorio.ListEmail());
         }
         private Usuario Autenticacao (ForgotPasswordViewModel verificacao) {
             Usuario usuario = repositorio.Verificacao (verificacao);
